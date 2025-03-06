@@ -111,15 +111,7 @@
   </div>
  
   <header>
-    <p>Visiteurs : <?php include("count.txt"); ?></p>
-
-    <?php
-        $file = "count.txt";
-        $count = file_get_contents($file);
-        $count = intval($count) + 1;
-        file_put_contents($file, $count);
-    ?>  
-    <footer>	
+  
       <p style="font-size: 0.9em; text-align: center;">Outils et aides personnalisées pour la gastro-entérologie &copy; 2025 Dr A KADA – Disclaimer : Ce document est fourni à titre informatif. a.kada@clinique-vivarais.fr</p>
     </footer>
   </div>
