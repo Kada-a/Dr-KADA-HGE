@@ -8119,31 +8119,30 @@ function generateColitePlan() {
         if(!insuffRenale) {
           recommendation += '<strong>Quadrithérapie bismuthée (Pylera®) 10 jours</strong><br>';
           recommendation += '➤ 3 gélules/jour (4 prises quotidiennes)<br>';
-          recommendation += '• Efficacité >90% indépendante des résistances<br>';
-          recommendation += '• Associations : sous-salicylate de bismuth 140 mg/tétracycline 125 mg/métronidazole 125 mg<br>';
+          recommendation += '• Alternative idéale en cas d\'allergie aux bêta-lactamines<br>';
         } else {
           recommendation += '<div class="alert-warning">Contre-indication Pylera® :<br>Alternative nécessaire (clairance <30 ml/min)</div>';
         }
         
         recommendation += '<div class="alternative">';
         recommendation += '<h5>Alternative si Pylera® indisponible :</h5>';
-        recommendation += 'Quadrithérapie concomitante 14 jours :<br>';
-        recommendation += '➤ Pantoprazole 40mg x2/j + Amoxicilline 1g x3/j + Clarithromycine 500mg x2/j + Métronidazole 500mg x2/j';
-        recommendation += '</div></div>';
-        
-      } else if(echecs === 1) {
-        recommendation += '<div class="second-line">';
-        recommendation += '<h4>Deuxième intention :</h4>';
-        recommendation += 'Thérapie guidée par culture :<br>';
-        recommendation += '➤ Amoxicilline 50mg/kg/j (max 6g/j) + ';
         
         if(allergiePenicillin) {
-          recommendation += 'Lévofloxacine 500mg/j + Rifabutine 300mg/j';
+          // Protocole spécifique allergie pénicilline
+          recommendation += 'Quadrithérapie adaptée 14 jours :<br>';
+          recommendation += '➤ Pantoprazole 40mg x2/j + ';
+          recommendation += 'Lévofloxacine 500mg x1/j + ';
+          recommendation += 'Clarithromycine 500mg x2/j + ';
+          recommendation += 'Métronidazole 500mg x2/j';
         } else {
-          recommendation += resistance === 'clarithro' ? 'Lévofloxacine 500mg/j' : 'Clarithromycine 500mg x2/j';
+          recommendation += 'Quadrithérapie concomitante 14 jours :<br>';
+          recommendation += '➤ Pantoprazole 40mg x2/j + ';
+          recommendation += 'Amoxicilline 1g x3/j + ';
+          recommendation += 'Clarithromycine 500mg x2/j + ';
+          recommendation += 'Métronidazole 500mg x2/j';
         }
         
-        recommendation += '</div>';
+        recommendation += '</div></div>';
       } else {
         recommendation += '<div class="rescue-therapy">';
         recommendation += '<h4>Traitement de rattrapage :</h4>';
