@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Dr A KADA WHGE</title>
-  <!-- Page avec clic droit désactivé -->
+  <!-- Page avec clic droit désactivé -->clinicalSigns
   <script>
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
@@ -109,31 +109,16 @@
       <button onclick="acceptDisclaimer()">Continuer</button>
     </div>
   </div>
-<script>
-    // Fonction pour afficher le module sélectionné et masquer les autres
-    function showModule(moduleId) {
-      var modules = document.getElementsByClassName('module');
-      for (var i = 0; i < modules.length; i++) {
-        modules[i].style.display = 'none';
-      }
-      document.getElementById(moduleId).style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-    
-    // Au chargement de la page, afficher par défaut le module "Symptomes"
-    window.onload = function() {
-      showModule('moduleConsult');
-    };
-  </script>
  
   <header>
      
     <footer>	
-      <p style="font-size: 0.9em; text-align: center;">Outils et aides personnalisées pour la gastro-entérologie &copy; 2025 Dr A KADA – Disclaimer : Ce document est fourni à titre informatif.</p>
+      <p style="font-size: 0.9em; text-align: center;">Outils et aides personnalisées pour la gastro-entérologie &copy; 2025 Dr A KADA – Disclaimer : Ce document est fourni à titre informatif. a.kada@clinique-vivarais.fr</p>
     </footer>
   </div>
   </header>
   <nav>
+    
     <button onclick="showModule('moduleAbdominalPain')">Douleurs abdominales chroniques</button>	
 	<button onclick="showModule('moduleGastricLesions')">Lésions Pré-néoplasiques Gastriques</button>
 	<button onclick="showModule('modulePolypCharacterization')">Carètérisation des polypes</button>
@@ -180,24 +165,242 @@
 	<button onclick="showModule('moduleBCLC')">BCLC</button>
 	<button onclick="showModule('moduleCDAI')">CDAI</button>
     <button onclick="showModule('moduleForest')">Forest</button>
-    <button onclick="showModule('modulesirs')">SIRS</button>  
+	<button onclick="showModule('modulesirs')">SIRS</button>  
     <button onclick="showModule('moduleCTSI')">CTSI</button>
     <button onclick="showModule('moduleRome')">Rome III</button>	
-   <button onclick="showModule('moduleBristol')">Bristol</button>
-   <button onclick="showModule('moduleConsult')">Info</button>
+	<button onclick="showModule('moduleBristol')">Bristol</button>
 	
   </nav>
   
 
 <!-- Module: Résumé clinique -->
 <div id="moduleConsult" class="module">
-  <h3>Ce site web est un outil de support décisionnel dédié aux professionnels de la santé, et en particulier aux gastro entérlogues. Il a été conçu pour faciliter l’élaboration de stratégies thérapeutiques personnalisées en intégrant une multitude de fonctionnalités cliniques et techniques. Parmi ses principales caractéristiques, on retrouve : Formulaires Intelligents et Modules Spécialisés Chaque module permet de saisir précisément les données cliniques et tumorales propres à divers cancers (œsophage, colorectal, pancréas, GIST, cholangiocarcinomes, etc.). Ces formulaires interactifs couvrent la stadification TNM, les caractéristiques histologiques, les biomarqueurs, ainsi que les facteurs pronostiques essentiels. Calcul Automatique de la Surface Corporelle (BSA) Le système intègre un calculateur de surface corporelle qui, à partir du poids et de la taille du patient, permet d’ajuster les doses des protocoles de chimiothérapie et autres traitements, garantissant ainsi une prise en charge individualisée. Personnalisation des Protocoles Thérapeutiques En fonction des données saisies, le site propose des recommandations thérapeutiques basées sur les guidelines internationales. Chaque protocole (par exemple, CROSS pour le carcinome épidermoïde de l'œsophage) est présenté avec les doses précises des médicaments, ajustées en fonction de la BSA.
-
-En résumé, ce site offre une interface conviviale et modulable, alliant données cliniques, calculs personnalisés et outils de communication, pour aider les cliniciens à prendre des décisions thérapeutiques éclairées et adaptées aux spécificités de chaque patient. contact: a.kada@clinique-vivarais.fr
-</h3>
-  
+  <h2>Compte‑Rendu de Consultation Gastro‑Hépatologie</h2>
+  <form id="formConsult">
     
-   
+    <!-- Section 1 : Identité et Paramètres Vitaux -->
+    <section class="form-section">
+      <h3>Données Démographiques</h3>
+      <div class="input-group">
+        <label>Âge : <input type="number" id="age" min="18" max="120" required></label>
+        <label>Sexe : 
+          <select id="sexe" required>
+            <option value="">--Sélectionner--</option>
+            <option value="M">Masculin</option>
+            <option value="F">Féminin</option>
+          </select>
+        </label>
+        <label>Poids (kg) : <input type="number" id="poids" step="0.1" required></label>
+        <label>Taille (cm) : <input type="number" id="taille" required></label>
+      </div>
+    </section>
+
+    <!-- Section 2 : Motifs de Consultation -->
+    <section class="form-section">
+      <h3>Signes Fonctionnels</h3>
+      <div class="input-group">
+        <label><input type="checkbox" id="douleur"> Douleur abdominale</label>
+        <div id="douleurDetails" style="display:none; margin-left:20px;">
+          <label>Localisation :
+            <select id="localisationDouleur">
+              <option value="epigastre">Épigastrique</option>
+              <option value="hypocondreD">Hypocondre droit</option>
+              <option value="fosseIliaqueD">Fosse iliaque droite</option>
+              <option value="diffuse">Diffuse</option>
+            </select>
+          </label>
+          <label>Intensité (EVA 0-10) : <input type="number" id="eva" min="0" max="10"></label>
+        </div>
+        <label><input type="checkbox" id="dyspepsie"> Dyspepsie</label>
+        <label><input type="checkbox" id="reflux"> Reflux gastro‑œsophagien</label>
+        <label><input type="checkbox" id="diarrhee"> Diarrhée</label>
+        <label><input type="checkbox" id="constipation"> Constipation</label>
+        <label><input type="checkbox" id="hematemese"> Hématémèse</label>
+        <label><input type="checkbox" id="melena"> Méléna</label>
+        <label><input type="checkbox" id="ictere"> Ictère</label>
+        <label><input type="checkbox" id="asthenie"> Asthénie</label>
+        <label>Autre : <input type="text" id="autresSymptomes"></label>
+      </div>
+    </section>
+
+    <!-- Section 3 : Examen Clinique -->
+    <section class="form-section">
+      <h3>Examen Clinique</h3>
+      <div class="input-group">
+        <label>État général : 
+          <select id="etatGeneral">
+            <option value="bon">Bon</option>
+            <option value="altere">Altéré</option>
+            <option value="mauvais">Mauvais</option>
+          </select>
+        </label>
+        
+        <h4>Abdomen :</h4>
+		<label><input type="checkbox" id="examennormal"> Abdomen souple indolor sans masse palpable</label>
+        <label><input type="checkbox" id="douleurPalpation"> Douleur à la palpation</label>
+        <label><input type="checkbox" id="defense"> Défense</label>
+        <label><input type="checkbox" id="hepatomegalie"> Hépatomégalie</label>
+        <label><input type="checkbox" id="splenomegalie"> Splénomégalie</label>
+        <label><input type="checkbox" id="ascite"> Ascite</label>
+        
+        <h4>Signes Cutanéo‑Muqueux :</h4>
+        <label><input type="checkbox" id="ictereConj"> Ictère conjonctival</label>
+        <label><input type="checkbox" id="angiomes"> Angiomes stellaires</label>
+        <label><input type="checkbox" id="erythemePalmaire"> Érythème palmaire</label>
+      </div>
+    </section>
+
+    <!-- Section 4 : Antécédents -->
+    <section class="form-section">
+      <h3>Antécédents</h3>
+      <div class="input-group">
+        <h4>Personnels :</h4>
+        <label><input type="checkbox" id="RCH"> RCH</label>
+        <label><input type="checkbox" id="MH"> Maladie de Crohn</label>
+        <label><input type="checkbox" id="cirrhose"> Cirrhose</label>
+        <label><input type="checkbox" id="VHB"> VHB</label>
+        <label><input type="checkbox" id="VHC"> VHC</label>
+        <label>Chirurgie digestive : <input type="text" id="chirurgie"></label>
+        
+        <h4>Familiaux :</h4>
+        <label><input type="checkbox" id="cancerColoFam"> Cancer colorectal</label>
+        <label><input type="checkbox" id="MHfam"> MICI familiale</label>
+        <label><input type="checkbox" id="celiaqueFam"> Maladie cœliaque familiale</label>
+        
+        <h4>Traitements :</h4>
+        <label><input type="checkbox" id="AINS"> AINS</label>
+        <label><input type="checkbox" id="anticoag"> Anticoagulants</label>
+        <label><input type="checkbox" id="IPP"> IPP</label>
+        <label>Allergies : <input type="text" id="allergies"></label>
+      </div>
+    </section>
+
+    <button type="button" onclick="genererCR()">Générer le Compte‑Rendu</button>
+  </form>
+
+  <div id="resultConsult" class="result"></div>
+</div>
+
+<script>
+// Afficher/Masquer la section détaillant la douleur abdominale
+document.getElementById("douleur").addEventListener("change", function() {
+  document.getElementById("douleurDetails").style.display = this.checked ? "block" : "none";
+});
+
+// Fonction d'évaluation de la douleur abdominale
+function evaluateDouleurAbdominale() {
+  if(document.getElementById("douleur").checked) {
+    return "Évaluer la nécessité d'un bilan complémentaire pour douleur persistante.";
+  }
+  return "Pas de douleur abdominale rapportée.";
+}
+
+// Fonction principale pour générer le compte‑rendu
+function genererCR() {
+  // Récupération des données démographiques
+  const age = document.getElementById("age").value;
+  const sexe = document.getElementById("sexe").value;
+  const poids = document.getElementById("poids").value;
+  const taille = document.getElementById("taille").value;
+  const imc = (poids / ((taille/100) ** 2)).toFixed(1);
+  
+  // Signes fonctionnels
+  let symptomes = [];
+  if(document.getElementById("douleur").checked) {
+    let details = "";
+    const localisation = document.getElementById("localisationDouleur").value;
+    const eva = document.getElementById("eva").value;
+    if(localisation) details += "Localisation : " + localisation;
+    if(eva) details += (details ? ", Intensité (EVA) : " : "Intensité (EVA) : ") + eva;
+    symptomes.push("Douleur abdominale (" + details + ")");
+  }
+  if(document.getElementById("dyspepsie").checked) symptomes.push("Dyspepsie");
+  if(document.getElementById("reflux").checked) symptomes.push("RGO");
+  if(document.getElementById("diarrhee").checked) symptomes.push("Diarrhée");
+  if(document.getElementById("constipation").checked) symptomes.push("Constipation");
+  if(document.getElementById("hematemese").checked) symptomes.push("Hématémèse");
+  if(document.getElementById("melena").checked) symptomes.push("Méléna");
+  if(document.getElementById("ictere").checked) symptomes.push("Ictère");
+  if(document.getElementById("asthenie").checked) symptomes.push("Asthénie");
+  const autresSympt = document.getElementById("autresSymptomes").value.trim();
+  if(autresSympt) symptomes.push(autresSympt);
+  
+  // Examen clinique
+  const etatGeneral = document.getElementById("etatGeneral").value;
+  let examenAbdomen = [];
+  if(document.getElementById("examennormal").checked) examenAbdomen.push("souple indolor sans masse palpable");
+  if(document.getElementById("douleurPalpation").checked) examenAbdomen.push("Douleur à la palpation");
+  if(document.getElementById("defense").checked) examenAbdomen.push("Défense");
+  if(document.getElementById("hepatomegalie").checked) examenAbdomen.push("Hépatomégalie");
+  if(document.getElementById("splenomegalie").checked) examenAbdomen.push("Splénomégalie");
+  if(document.getElementById("ascite").checked) examenAbdomen.push("Ascite");
+  
+  let examenCutan = [];
+  if(document.getElementById("ictereConj").checked) examenCutan.push("Ictère conjonctival");
+  if(document.getElementById("angiomes").checked) examenCutan.push("Angiomes stellaires");
+  if(document.getElementById("erythemePalmaire").checked) examenCutan.push("Érythème palmaire");
+  
+  // Antécédents personnels et familiaux
+  let antecedentsPerso = [];
+  if(document.getElementById("RCH").checked) antecedentsPerso.push("RCH");
+  if(document.getElementById("MH").checked) antecedentsPerso.push("Maladie de Crohn");
+  if(document.getElementById("cirrhose").checked) antecedentsPerso.push("Cirrhose");
+  if(document.getElementById("VHB").checked) antecedentsPerso.push("VHB");
+  if(document.getElementById("VHC").checked) antecedentsPerso.push("VHC");
+  const chirurgie = document.getElementById("chirurgie").value.trim();
+  if(chirurgie) antecedentsPerso.push("Chirurgie digestive: " + chirurgie);
+  
+  let antecedentsFamiliaux = [];
+  if(document.getElementById("cancerColoFam").checked) antecedentsFamiliaux.push("Cancer colorectal");
+  if(document.getElementById("MHfam").checked) antecedentsFamiliaux.push("MICI familiale");
+  if(document.getElementById("celiaqueFam").checked) antecedentsFamiliaux.push("Maladie cœliaque familiale");
+  
+  // Traitements
+  let traitements = [];
+  if(document.getElementById("AINS").checked) traitements.push("AINS");
+  if(document.getElementById("anticoag").checked) traitements.push("Anticoagulants");
+  if(document.getElementById("IPP").checked) traitements.push("IPP");
+  const allergies = document.getElementById("allergies").value.trim();
+  if(allergies) traitements.push("Allergies: " + allergies);
+  
+  // Assemblage du compte‑rendu
+  let cr = `<h2>Résumé clinique</h2>`;
+  cr += `<p>Patient de ${age} ans, ${sexe}. Poids : ${poids} kg, Taille : ${taille} cm, IMC : ${imc}</p>`;
+  
+  cr += `<h4>Motif(s) de Consultation :</h4>`;
+  cr += `<ul>${symptomes.map(s => `<li>${s}</li>`).join('')}</ul>`;
+  
+  cr += `<h4>Examen Clinique :</h4>`;
+  cr += `<p>État général : ${etatGeneral}</p>`;
+  cr += `<p>Abdomen : ${examenAbdomen.length ? examenAbdomen.join(", ") : "Non précisé"}</p>`;
+  cr += `<p>Signes cutanéo‑muqueux : ${examenCutan.length ? examenCutan.join(", ") : "Non précisé"}</p>`;
+  
+  cr += `<h4>Antécédents :</h4>`;
+  cr += `<p>Personnels : ${antecedentsPerso.length ? antecedentsPerso.join(", ") : "Aucun"}</p>`;
+  cr += `<p>Familiaux : ${antecedentsFamiliaux.length ? antecedentsFamiliaux.join(", ") : "Aucun"}</p>`;
+  
+  cr += `<h4>Traitements :</h4>`;
+  cr += `<p>${traitements.length ? traitements.join(", ") : "Aucun"}</p>`;
+  
+  cr += `<h4>Conduite à Tenir :</h4>`;
+  cr += `<ul>`;
+  cr += `<li>Demander bilans complémentaires adaptés (fibroscopie, scanner, etc.)</li>`;
+  cr += `<li>Suivi : Rendez‑vous dans 1 mois avec bilan complet</li>`;
+  cr += `<li>${evaluateDouleurAbdominale()}</li>`;
+  cr += `</ul>`;
+  
+  // Ordonnance type et conseils
+  let ordonnance = `<h4>Ordonnance type et conseils :</h4>`;
+  ordonnance += `<ul>`;
+  ordonnance += `<li>Paracétamol 500 mg, 1 comprimé 3‑4 fois par jour</li>`;
+  ordonnance += `<li>Mébévérine 135 mg, 1 comprimé trois fois par jour</li>`;
+  ordonnance += `<li>Conseils hygiéno‑diététiques adaptés (alimentation équilibrée, hydratation, etc.)</li>`;
+  ordonnance += `</ul>`;
+  
+  // Assemblage final du CR
+  document.getElementById("resultConsult").innerHTML = cr + ordonnance;
+}
+</script>
 
 <!-- Module: Caractérisation endoscopique des polypes coliques -->
 <div id="modulePolypCharacterization" class="module">
