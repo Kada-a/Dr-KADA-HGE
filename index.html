@@ -2498,7 +2498,7 @@ function generatePainPlan() {
   
   <script>
     /*
-      Module mis à jour selon les recommandations du Dr Alice Boileve
+      Module mis à jour
       (Voir document : 
       https://dokeos-prod.s3.eu-west-1.amazonaws.com/upload/gustaveroussy/training_resources/3335/02bis_Pancr%C3%A9as_-_Dr_Alice_Boileve.pdf)
     */
@@ -2516,7 +2516,7 @@ function generatePainPlan() {
       // Pour la maladie localisée (M0)
       if (M === 'M0') {
         recommendation += '<p><strong>Maladie localisée :</strong><br>';
-        // Critères de résectabilité selon Dr Alice Boileve :
+        // Critères de résectabilité  :
         // Pour T1/T2 sans envahissement vasculaire et N0, la résection est indiquée.
         if ((T === 'T1' || T === 'T2') && N === 'N0' && !envahissement) {
           recommendation += '- Tumeur resectable :<br>';
