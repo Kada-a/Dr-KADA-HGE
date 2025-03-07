@@ -137,15 +137,16 @@
   </header>
   <nav>
     <button onclick="showModule('moduleConsult')">Résumé clinique</button>
+    <button onclick="showModule('letterModule')">Lettre Histo</button>
     <button onclick="showModule('moduleAbdominalPain')">Douleurs abdominales chroniques</button>	
-	<button onclick="showModule('moduleGastricLesions')">Lésions Pré-néoplasiques Gastriques</button>
-	<button onclick="showModule('modulePolypCharacterization')">Carètérisation des polypes</button>
-	<button onclick="showModule('modulePolyp')">surveillance post-polypectomie</button>
+    <button onclick="showModule('moduleGastricLesions')">Lésions Pré-néoplasiques Gastriques</button>
+    <button onclick="showModule('modulePolypCharacterization')">Carètérisation des polypes</button>
+    <button onclick="showModule('modulePolyp')">surveillance post-polypectomie</button>
     <button onclick="showModule('moduleNutrition')">Nutrition</button>	
-	<button onclick="showModule('moduleRegime')">Regime</button>
-	<button onclick="showModule('moduleChimio_Ch')">Chimiothérapie</button>
+    <button onclick="showModule('moduleRegime')">Regime</button>
+    <button onclick="showModule('moduleChimio_Ch')">Chimiothérapie</button>
     <button onclick="showModule('moduleOesophageCarcinome')">Cancer de l'œsophage </button>	
-	<button onclick="showModule('moduleEstomac')">Cancer de l'estomac</button>
+    <button onclick="showModule('moduleEstomac')">Cancer de l'estomac</button>
     <button onclick="showModule('moduleColon')">Cancer du côlon</button>
     <button onclick="showModule('moduleRectum')">Cancer du Rectum</button>	
     <button onclick="showModule('modulePancreas')">Cancer du pancréas</button>
@@ -156,37 +157,37 @@
     <button onclick="showModule('moduleCholangiocarcinomeIntrahep')">Cholangiocarcinome intrahépatique</button>		
     <button onclick="showModule('moduleCholangiocarcinomeExtrahep')">Cholangiocarcinome extrahépatique</button>	
     <button onclick="showModule('moduleDrainageBiliaire')">Drainage Biliaire</button>	
-	<button onclick="showModule('moduleLymphomes')">Le lymphome digestif</button>
-	<button onclick="showModule('moduleTNE')">TNE</button>
-	<button onclick="showModule('moduleAnus')">Cancer de l'anus</button>
-	<button onclick="showModule('moduleRGO')">RGO</button>	
-	<button onclick="showModule('moduleOeE')">OeSophagite à Éosinophiles</button>
+    <button onclick="showModule('moduleLymphomes')">Le lymphome digestif</button>
+    <button onclick="showModule('moduleTNE')">TNE</button>
+    <button onclick="showModule('moduleAnus')">Cancer de l'anus</button>
+    <button onclick="showModule('moduleRGO')">RGO</button>	
+    <button onclick="showModule('moduleOeE')">OeSophagite à Éosinophiles</button>
     <button onclick="showModule('moduleColopathie')">Colopathie fonctionnelle</button>
-	<button onclick="showModule('moduleCoeliaque')">Maladie Cœliaque</button>
-	<button onclick="showModule('moduleMICI')">MICI</button>
-	<button onclick="showModule('moduleColiteUlcerueuse')">colite ulcéreuse</button>
+    <button onclick="showModule('moduleCoeliaque')">Maladie Cœliaque</button>
+    <button onclick="showModule('moduleMICI')">MICI</button>
+    <button onclick="showModule('moduleColiteUlcerueuse')">colite ulcéreuse</button>
     <button onclick="showModule('modulePancreatiteChro')">PCC</button>
     <button onclick="showModule('modulePancreatiteAigu')">Pancréatite aiguë</button>
-	<button onclick="showModule('modulePancreaticCyst')">kyste pancréatique</button>
+    <button onclick="showModule('modulePancreaticCyst')">kyste pancréatique</button>
     <button onclick="showModule('moduleBarrett')">EBO</button>
     <button onclick="showModule('moduleHemorrhoids')">Maladie hémorroïdaire</button>
     <button onclick="showModule('moduleHyperferritin')">Hyperferritinémie</button>
     <button onclick="showModule('moduleLiverTests')">Tests hépatiques perturbés</button>
     <button onclick="showModule('moduleHepatiteB')">Hépatite B</button> 
     <button onclick="showModule('moduleHepatites')">Hépatites Virales</button>	
-	<button onclick="showModule('moduleAutoimmuneHepatitis')">Hépatite Auto-immune</button>
+    <button onclick="showModule('moduleAutoimmuneHepatitis')">Hépatite Auto-immune</button>
     <button onclick="showModule('moduleFissureAnale')">Fissure anale</button>	
     <button onclick="showModule('moduleHPylori')">HP+</button>	
     <button onclick="showModule('moduleIMC')">IMC</button>
-	<button onclick="showModule('moduleChild')">Child-pugh</button> 
+    <button onclick="showModule('moduleChild')">Child-pugh</button> 
     <button onclick="showModule('moduleFIB')">FIB-4</button>	
-	<button onclick="showModule('moduleBCLC')">BCLC</button>
-	<button onclick="showModule('moduleCDAI')">CDAI</button>
+    <button onclick="showModule('moduleBCLC')">BCLC</button>
+    <button onclick="showModule('moduleCDAI')">CDAI</button>
     <button onclick="showModule('moduleForest')">Forest</button>
-	<button onclick="showModule('modulesirs')">SIRS</button>  
+    <button onclick="showModule('modulesirs')">SIRS</button>  
     <button onclick="showModule('moduleCTSI')">CTSI</button>
     <button onclick="showModule('moduleRome')">Rome III</button>	
-	<button onclick="showModule('moduleBristol')">Bristol</button>
+    <button onclick="showModule('moduleBristol')">Bristol</button>
 	
   </nav>
   
@@ -8244,7 +8245,151 @@ function generateColitePlan() {
     }
   </style>
 </div>
+<!-- Module: Lettre de Transmission des Résultats Histologiques -->
+<div id="letterModule" class="module">
+  <h1>Lettre pour médecin traitant - Résultats histologiques</h1>
 
+  <!-- Informations patient -->
+  <div class="section">
+    <label>Nom du Gastro : <input type="text" id="GastroName"></label>
+	<label>Nom du médecin traitant : <input type="text" id="medecinTName"></label>
+	<label>Nom Prenom age du patient : <input type="text" id="patientName"></label>
+    <label>Date de la coloscopie : <input type="date" id="procedureDate"></label>
+  </div>
+
+  <!-- Résultats histologiques -->
+  <div class="section">
+    <h2>Résultats histologiques</h2>
+    <textarea id="histoResults" rows="4" placeholder="Description des polypes..."></textarea>
+  </div>
+
+  <!-- Paramètres de recommandation -->
+  <div class="section">
+    <h2>Critères de surveillance</h2>
+    
+    <div class="subsection">
+      <label>Qualité de la coloscopie :
+        <select id="letterQualite">
+          <option value="adequate">Boston >7</option>
+          <option value="inadequate">Boston <7</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="subsection">
+      <h3>Facteurs de risque élevé</h3>
+      <div class="high-risk-factors">
+        <label><input type="checkbox" class="high-risk"> ≥5 adénomes</label>
+        <label><input type="checkbox" class="high-risk"> Adénome ≥10 mm</label>
+        <label><input type="checkbox" class="high-risk"> Dysplasie haut grade</label>
+        <label><input type="checkbox" class="high-risk"> Polype festonné ≥10 mm</label>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Facteurs de risque faible</h3>
+      <div class="low-risk-factors">
+        <label><input type="checkbox" class="low-risk"> <5 adénomes <10 mm</label>
+        <label><input type="checkbox" class="low-risk"> Polype festonné <10 mm</label>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Cas particuliers</h3>
+      <div class="special-cases">
+        <label><input type="checkbox" id="letterFragmente"> Exérèse fragmentée (≥20 mm)</label>
+        <label><input type="checkbox" id="letterCancer"> Antécédent de CCR traité</label>
+        <label><input type="checkbox" id="letterAge"> Patient âgé</label>
+        <label><input type="checkbox" id="letterFamille"> Antécédents familiaux</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton de génération -->
+  <button onclick="generateLetter()">Générer la lettre</button>
+
+  <!-- Lettre générée -->
+  <div id="generatedLetter" class="letter-output"></div>
+</div>
+
+<script>
+function generateLetter() {
+  // Récupération des données
+  const Gastro = document.getElementById('GastroName').value;
+  const patient = document.getElementById('patientName').value;
+  const médecinT = document.getElementById('medecinTName').value;
+  const procedureDate = document.getElementById('procedureDate').value;
+  const histoResults = document.getElementById('histoResults').value;
+  
+  // Calcul des recommandations
+  let interval = "";
+  let notes = [];
+
+  if(document.getElementById('letterQualite').value === 'inadequate') {
+    interval = "six mois";
+    notes.push("Coloscopie initiale inadéquate - coloscopie a refaire dés que possible");
+  } else if(document.getElementById('letterFragmente').checked) {
+    interval = "3-6 mois";
+    notes.push("Surveillance rapprochée pour exérèse fragmentée");
+  } else if(document.getElementById('letterCancer').checked) {
+    interval = "1 an";
+    notes.push("Surveillance post-cancer : puis à 3 ans et 5 ans");
+  } else {
+    const highRisk = document.querySelectorAll('.high-risk:checked').length > 0;
+    const lowRisk = document.querySelectorAll('.low-risk:checked').length > 0;
+
+    if(highRisk) {
+      interval = "3 ans";
+      notes.push("Surveillance rapprochée (puis 5 ans si contrôle normal)");
+    } else if(lowRisk) {
+      interval = "5 ans";
+      notes.push("Possibilité d'espacer ultérieurement (7-10 ans) ou utiliser un test FIT bisannuel");
+    }
+  }
+
+  if(document.getElementById('letterAge').checked) {
+    notes.push("Arrêt possible de la surveillance selon espérance de vie");
+  }
+  if(document.getElementById('letterFamille').checked) {
+    notes.push("Antécédents familiaux à prendre en compte");
+  }
+
+  // Construction de la lettre
+  const letterContent = `
+    <div class="letter">
+      <p>À l'attention du Dr ${médecinT}</p>
+      <p>Cher Confrère,</p>
+      <p>Nous venons de recevoir les résultats des prélèvements histologique réalisés chez votre patient: ${patient}<br>
+      Date de la coloscopie : ${new Date(procedureDate).toLocaleDateString()}</p>
+      
+      <p>Résultats histologiques : ${histoResults.replace(/\n/g, '<br>')}</p>
+	  
+      <p>Dans ce contexte, il convient de lui proposer une coloscopie de surveillance dans: <strong>${interval || "Aucune surveillance spécifique nécessaire"}</strong></p>
+      <p>Notes : ${notes.join(' • ')}</p>
+      
+      <p>Cordialement,<br>
+      ${Gastro}<br>
+      Gastroentérologue</p>
+    </div>
+  `;
+
+  document.getElementById('generatedLetter').innerHTML = letterContent;
+}
+</script>
+
+<style>
+.module { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
+.section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+.subsection { margin: 15px 0; }
+.high-risk-factors, .low-risk-factors { column-count: 2; margin: 10px 0; }
+.high-risk-factors { border: 2px solid #ffcccc; padding: 10px; }
+.low-risk-factors { border: 2px solid #ccffcc; padding: 10px; }
+.letter-output { margin-top: 20px; padding: 20px; background: #f8f8f8; border-radius: 5px; }
+.letter { line-height: 1.6; }
+button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+button:hover { background: #0056b3; }
+</style>
+</div>
 <footer>
       <p style="font-size: 0.9em; text-align: center;">&copy; 2025 Dr A KADA – Disclaimer : Ce document est fourni à titre informatif a.kada@clinique-vivarais.fr</p>
     </footer>
