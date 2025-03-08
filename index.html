@@ -6936,157 +6936,168 @@ function generateHepatiteE() {
     }
     </script>
   </div>
-<!-- Module: Conduite à tenir MICI - Score guidé -->
-  <div id="moduleMICI" class="module">
-   
-    <form id="formMICI">
+<!-- Module - Conduite à tenir MICI - Outil décisionnel  --->
+<div id="moduleMICI" class="module">
+  <form id="formMICI">
     <h1>Conduite à tenir MICI - Outil décisionnel</h1>
 
     <div class="section">
-        <h2>Données cliniques</h2>
-        <form id="clinicalData">
-            <label class="required">
-                Type de MICI:
-                <select id="diseaseType" required>
-                    <option value="">--Sélectionner--</option>
-                    <option value="crohn">Maladie de Crohn</option>
-                    <option value="rch">Rectocolite Hémorragique</option>
-                </select>
-            </label>
+      <h2>Données cliniques</h2>
+      <div id="clinicalData">
+        <label class="required">
+          Type de MICI:
+          <select id="diseaseType" required>
+            <option value="">--Sélectionner--</option>
+            <option value="crohn">Maladie de Crohn</option>
+            <option value="rch">Rectocolite Hémorragique</option>
+          </select>
+        </label>
 
-            <label class="required">
-                Score endoscopique:
-                <select id="endoscopicScore" required>
-                    <option value="">--Choisir le score--</option>
-                    <optgroup label="RCH (Mayo)">
-                        <option value="0">Mayo 0: Rémission</option>
-                        <option value="1">Mayo 1: Légère</option>
-                        <option value="2">Mayo 2: Modérée</option>
-                        <option value="3">Mayo 3: Sévère</option>
-                    </optgroup>
-                    <optgroup label="Crohn (SES-CD)">
-                        <option value="0-2">0-2: Rémission</option>
-                        <option value="3-6">3-6: Légère</option>
-                        <option value="7-15">7-15: Modérée</option>
-                        <option value=">15">>15: Sévère</option>
-                    </optgroup>
-                </select>
-            </label>
+        <label class="required">
+          Score endoscopique:
+          <select id="endoscopicScore" required>
+            <option value="">--Choisir le score--</option>
+            <optgroup label="RCH (Mayo)">
+              <option value="0">Mayo 0: Rémission</option>
+              <option value="1">Mayo 1: Légère</option>
+              <option value="2">Mayo 2: Modérée</option>
+              <option value="3">Mayo 3: Sévère</option>
+            </optgroup>
+            <optgroup label="Crohn (SES-CD)">
+              <option value="0-2">0-2: Rémission</option>
+              <option value="3-6">3-6: Légère</option>
+              <option value="7-15">7-15: Modérée</option>
+              <option value=">15">>15: Sévère</option>
+            </optgroup>
+          </select>
+        </label>
 
-            <label>
-                Histologie:
-                <select id="histology">
-                    <option value="0">Pas d'activité</option>
-                    <option value="1">Activité légère</option>
-                    <option value="2">Activité modérée</option>
-                    <option value="3">Activité sévère</option>
-                </select>
-            </label>
+        <label>
+          Histologie:
+          <select id="histology">
+            <option value="0">Pas d'activité</option>
+            <option value="1">Activité légère</option>
+            <option value="2">Activité modérée</option>
+            <option value="3">Activité sévère</option>
+          </select>
+        </label>
 
-            <fieldset>
-                <legend>Évolution:</legend>
-                <label><input type="checkbox" value="rechute"> Rechutes fréquentes (>2/an)</label>
-                <label><input type="checkbox" value="cortico"> Dépendance aux corticoïdes</label>
-                <label><input type="checkbox" value="complication"> Complications (sténose/fistule)</label>
-            </fieldset>
-        </form>
+        <fieldset>
+          <legend>Évolution:</legend>
+          <label><input type="checkbox" value="rechute"> Rechutes fréquentes (>2/an)</label>
+          <label><input type="checkbox" value="cortico"> Dépendance aux corticoïdes</label>
+          <label><input type="checkbox" value="complication"> Complications (sténose/fistule)</label>
+        </fieldset>
+      </div>
     </div>
 
     <div class="section">
-        <h2>Conduite à tenir recommandée</h2>
-        <button onclick="generateRecommendation()">Générer la recommandation</button>
-        <div id="recommendation" class="result"></div>
+      <h2>Conduite à tenir recommandée</h2>
+      <!-- Utilisation d'un attribut data-action au lieu d'un onclick inline -->
+      <button type="button" data-action="generateRecommendation">Générer la recommandation</button>
+      <div id="recommendation" class="result"></div>
     </div>
+  </form>
 
-    <script>
-        function generateRecommendation() {
-            const diseaseType = document.getElementById('diseaseType').value;
-            const endoscopicScore = document.getElementById('endoscopicScore').value;
-            const histology = document.getElementById('histology').value;
-            const evolution = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(cb => cb.value);
-
-            if(!diseaseType || !endoscopicScore) {
-                alert("Veuillez remplir les champs obligatoires (*)");
-                return;
-            }
-
-            let recommendation = "<h3>Stratégie thérapeutique recommandée:</h3>";
-            
-            // Logique de décision basée sur les scores
-            const severity = getSeverityLevel(endoscopicScore);
-            const isSevere = severity === 'sévère';
-            const hasComplications = evolution.includes('complication');
-            const isSteroidDependent = evolution.includes('cortico');
-
-            // Traitements de base
-            let treatments = [];
-            if(severity === 'rémission') {
-                treatments.push("Maintenance: 5-ASA ou immunomodulateurs");
-            }
-            else {
-                treatments.push("Induction: Corticoïdes topiques/systémiques");
-                
-                if(isSevere || histology >= 2 || isSteroidDependent) {
-                    treatments.push("Thérapie de rattrapage: Anti-TNF (Infliximab/Adalimumab)");
-                    if(diseaseType === 'crohn') treatments.push("Azathioprine en combothérapie");
-                }
-                
-                if(hasComplications) {
-                    treatments.push("Antibiothérapie si infection\nChirurgie si nécessaire");
-                }
-            }
-
-            // Surveillance
-            recommendation += "<ul>";
-            treatments.forEach(t => recommendation += `<li>${t}</li>`);
-            recommendation += "</ul>";
-
-            // Pronostic
-            recommendation += "<h3>Pronostic endoscopique:</h3>";
-            recommendation += getPrognosis(diseaseType, endoscopicScore);
-
-            document.getElementById('recommendation').innerHTML = recommendation;
-        }
-
-        function getSeverityLevel(score) {
-            if(score === "0" || score === "0-2") return 'rémission';
-            if(score === "1" || score === "3-6") return 'légère';
-            if(score === "2" || score === "7-15") return 'modérée';
-            return 'sévère';
-        }
-
-        function getPrognosis(diseaseType, score) {
-            const mayoPrognosis = {
-                "0": "Risque de rechute <10%",
-                "1": "Risque de rechute 20-30%",
-                "2": "Risque de rechute 40-50%",
-                "3": "Risque de rechute >60%"
-            };
-
-            const sescdPrognosis = {
-                "0-2": "Risque de complication 10%",
-                "3-6": "Risque de complication 25%",
-                "7-15": "Risque de complication 45%",
-                ">15": "Risque de complication 70%"
-            };
-
-            return diseaseType === 'rch' 
-                ? mayoPrognosis[score.split(":")[0].trim()] 
-                : sescdPrognosis[score];
-        }
-    </script>
-
-    <div class="section">
-        <h3>Références</h3>
-        <ul>
-            <li>ECCO Guidelines 2023</li>
-            <li>SCORE-CD (Crohn's Disease)</li>
-            <li>Indice d'activité histologique Nancy (RCH)</li>
-            <li>Recommandations SNFGE 2022</li>
-        </ul>
-    </div>      
-    </script>
+  <div class="section">
+    <h3>Références</h3>
+    <ul>
+      <li>ECCO Guidelines 2023</li>
+      <li>Recommandations SNFGE 2022</li>
+    </ul>
   </div>
+</div>
+
+<script>
+  (function(){
+    // Isolation du module : on limite la portée du code à "moduleMICI"
+    const moduleContainer = document.getElementById('moduleMICI');
+
+    function getSeverityLevel(score) {
+      if(score === "0" || score === "0-2") return 'rémission';
+      if(score === "1" || score === "3-6") return 'légère';
+      if(score === "2" || score === "7-15") return 'modérée';
+      return 'sévère';
+    }
+
+    function getPrognosis(diseaseType, score) {
+      const mayoPrognosis = {
+        "0": "Risque de rechute <10%",
+        "1": "Risque de rechute 20-30%",
+        "2": "Risque de rechute 40-50%",
+        "3": "Risque de rechute >60%"
+      };
+
+      const sescdPrognosis = {
+        "0-2": "Risque de complication 10%",
+        "3-6": "Risque de complication 25%",
+        "7-15": "Risque de complication 45%",
+        ">15": "Risque de complication 70%"
+      };
+
+      return diseaseType === 'rch' 
+              ? mayoPrognosis[score.split(":")[0].trim()] 
+              : sescdPrognosis[score];
+    }
+
+    function generateRecommendation() {
+      // Sélection des éléments uniquement dans le module en cours
+      const diseaseType = moduleContainer.querySelector('#diseaseType').value;
+      const endoscopicScore = moduleContainer.querySelector('#endoscopicScore').value;
+      const histology = moduleContainer.querySelector('#histology').value;
+      const evolution = Array.from(moduleContainer.querySelectorAll('input[type=checkbox]:checked')).map(cb => cb.value);
+
+      if(!diseaseType || !endoscopicScore) {
+          alert("Veuillez remplir les champs obligatoires (*)");
+          return;
+      }
+
+      let recommendation = "<h3>Stratégie thérapeutique recommandée:</h3>";
+      
+      // Logique de décision basée sur les scores
+      const severity = getSeverityLevel(endoscopicScore);
+      const isSevere = severity === 'sévère';
+      const hasComplications = evolution.includes('complication');
+      const isSteroidDependent = evolution.includes('cortico');
+
+      // Définition des traitements
+      let treatments = [];
+      if(severity === 'rémission') {
+          treatments.push("Maintenance: 5-ASA ou immunomodulateurs");
+      } else {
+          treatments.push("Induction: Corticoïdes topiques/systémiques");
+          
+          if(isSevere || parseInt(histology) >= 2 || isSteroidDependent) {
+              treatments.push("Thérapie de rattrapage: Anti-TNF (Infliximab/Adalimumab)");
+              if(diseaseType === 'crohn') {
+                treatments.push("Azathioprine en combothérapie");
+              }
+          }
+          if(hasComplications) {
+              treatments.push("Antibiothérapie si infection<br>Chirurgie si nécessaire");
+          }
+      }
+
+      recommendation += "<ul>";
+      treatments.forEach(t => recommendation += `<li>${t}</li>`);
+      recommendation += "</ul>";
+
+      // Ajout du pronostic endoscopique
+      recommendation += "<h3>Pronostic endoscopique:</h3>";
+      recommendation += getPrognosis(diseaseType, endoscopicScore);
+
+      moduleContainer.querySelector('#recommendation').innerHTML = recommendation;
+    }
+
+    // Attachement de l'événement sur le bouton spécifique à ce module
+    moduleContainer.querySelector('[data-action="generateRecommendation"]')
+                   .addEventListener('click', function(e) {
+      e.preventDefault();
+      generateRecommendation();
+    });
+  })();
+</script>
+
   <!-- Module: Régime Alimentaire Personnalisé par Pathologie -->
 <div id="moduleRegime" class="module">
   <h2>Régime Alimentaire Personnalisé par Pathologie</h2>
