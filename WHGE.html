@@ -96,7 +96,35 @@
   
 </head>
 <body>
- 
+  <!-- Splash Page d'introduction -->
+  <div id="splash">
+    <div id="splashContent">
+      <h2>Disclaimer</h2>
+      <p>Les informations présentées sur ce site sont fournies à titre informatif et ne remplacent en aucun cas un avis médical personnalisé.</p>
+      <p>En continuant, vous acceptez que ce contenu soit utilisé uniquement à des fins d'information et que vous assumez l'entière responsabilité de son utilisation dans votre pratique.</p>
+      <label>
+        <input type="checkbox" id="acceptConditions"> J'accepte les conditions d'utilisation
+      </label>
+      <br>
+      <button onclick="acceptDisclaimer()">Continuer</button>
+    </div>
+  </div>
+<script>
+    // Fonction pour afficher le module sélectionné et masquer les autres
+    function showModule(moduleId) {
+      var modules = document.getElementsByClassName('module');
+      for (var i = 0; i < modules.length; i++) {
+        modules[i].style.display = 'none';
+      }
+      document.getElementById(moduleId).style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    
+    // Au chargement de la page, afficher par défaut le module "Symptomes"
+    window.onload = function() {
+      showModule('moduleConsult');
+    };
+  </script>
  
   <header>
      
