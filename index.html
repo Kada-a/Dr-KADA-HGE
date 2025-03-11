@@ -1,20 +1,111 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr A KADA WHGE</title>
-  </head>
-  <body>
-    <p>Contact: abdelkrimkada@gmail.com</p>
-    <h1>Accédez à la vidéo YouTube</h1>   
-    <p>Cliquez sur le lien ci-dessous pour regarder la vidéo :</p>
-    <a href="https://youtu.be/Q0b7N1vcCQA" target="_blank">
-      Regarder la vidéo n°1 sur YouTube
-    </a>
-    <br>
-    	<a href="https://www.youtube.com/watch?v=FuQKvf0IECs" target="_blank">
-      Vidéo n°2
-    </a>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Index - Navigation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .nav-button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #007BFF; /* bleu */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      margin: 10px;
+    }
+    /* Styles pour le splash */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none; /* caché par défaut */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #splashContent {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+    }
+    #continueButton {
+      font-size: 1.1em;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #007BFF; /* bleu */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Dr KADA Web HGE</h2>
+  <p>Ce site web est un outil de support décisionnel dédié aux professionnels de la santé, et en particulier aux gastro entérlogues. 
+  Il a été conçu pour faciliter l’élaboration de stratégies thérapeutiques personnalisées en intégrant une multitude de fonctionnalités cliniques et techniques. Parmi ses principales caractéristiques, on retrouve : Formulaires Intelligents et Modules Spécialisés Chaque module permet de saisir précisément les données cliniques et tumorales propres à divers cancers (œsophage, colorectal, pancréas, GIST, cholangiocarcinomes, etc.). 
+  Ces formulaires interactifs couvrent la stadification TNM, les caractéristiques histologiques, les biomarqueurs, ainsi que les facteurs pronostiques essentiels. 
+  Personnalisation des Protocoles Thérapeutiques En fonction des données saisies, le site propose des recommandations thérapeutiques basées sur les guidelines internationales. 
+  Chaque protocole (par exemple, CROSS pour le carcinome épidermoïde de l'œsophage) est présenté avec les doses précises des médicaments.
+En résumé, ce site offre une interface conviviale et modulable, alliant données cliniques, calculs personnalisés et outils de communication, pour aider les cliniciens à prendre des décisions thérapeutiques éclairées et adaptées aux spécificités de chaque patient.:</p>
+
+  <!-- Boutons de navigation avec attribut data-target pour la redirection -->
+  <button class="nav-button" data-target="WHGE.html">Hépato-Gastro-Entérologie et Cancer Digestif</button>
+
+
+  <!-- Splash Page d'introduction -->
+  <div id="splash">
+    <div id="splashContent">
+      <h2>Disclaimer</h2>
+      <p>
+        Les informations présentées sur ce site sont fournies à titre informatif et ne remplacent en aucun cas un avis médical personnalisé.
+      </p>
+      <p>
+        En continuant, vous acceptez que ce contenu soit utilisé uniquement à des fins d'information et que vous assumez l'entière responsabilité de son utilisation dans votre pratique.
+      </p>
+      <label>
+        <input type="checkbox" id="acceptConditions"> J'accepte les conditions d'utilisation
+      </label>
+      <br>
+      <button id="continueButton">Continuer</button>
+    </div>
+  </div>
+
+  <script>
+    let targetUrl = ""; // Variable pour stocker l'URL de redirection
+
+    // Ajout d'un événement sur tous les boutons de navigation
+    document.querySelectorAll('.nav-button').forEach(button => {
+      button.addEventListener('click', function() {
+        targetUrl = this.getAttribute('data-target');
+        // Affichage du splash
+        document.getElementById('splash').style.display = "flex";
+      });
+    });
+
+    // Gestion de l'événement sur le bouton "Continuer" du splash
+    document.getElementById('continueButton').addEventListener('click', function() {
+      const checkbox = document.getElementById("acceptConditions");
+      if (checkbox.checked) {
+        // Redirection vers l'URL cible
+        window.location.href = targetUrl;
+      } else {
+        alert("Veuillez accepter les conditions d'utilisation pour continuer.");
+      }
+    });
+  </script>
+</body>
 </html>
