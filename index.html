@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <script>
+  <meta charset="UTF-8">
+  <title>Index - Navigation</title>
+  <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -52,19 +54,18 @@
 </head>
 <body>
 
-  <h2>Web HGE</h2>
+  <h2> Web HGE</h2>
   <p>
     Ce site web est un outil de support décisionnel dédié aux professionnels de la santé, et en particulier aux gastro-entérologues. 
-    Il a été conçu pour faciliter l’élaboration de stratégies thérapeutiques personnalisées en intégrant une multitude de fonctionnalités cliniques et techniques. 
-    Parmi ses principales caractéristiques, on retrouve :<br>
-    <strong>Formulaires Intelligents et Modules Spécialisés :</strong> chaque module permet de saisir précisément les données cliniques et tumorales propres à divers cancers (œsophage, colorectal, pancréas, GIST, cholangiocarcinomes, etc.).<br>
-    Ces formulaires interactifs couvrent la stadification TNM, les caractéristiques histologiques, les biomarqueurs, ainsi que les facteurs pronostiques essentiels.<br>
-    <strong>Personnalisation des Protocoles Thérapeutiques :</strong> en fonction des données saisies, le site propose des recommandations thérapeutiques basées sur les guidelines internationales. 
-    Chaque protocole (par exemple, CROSS pour le carcinome épidermoïde de l'œsophage) est présenté avec les doses précises des médicaments.<br>
+    Il a été conçu pour faciliter l’élaboration de stratégies thérapeutiques personnalisées en intégrant une multitude de fonctionnalités cliniques et techniques. Parmi ses principales caractéristiques, on retrouve : 
+    Formulaires Intelligents et Modules Spécialisés. Chaque module permet de saisir précisément les données cliniques et tumorales propres à divers cancers (œsophage, colorectal, pancréas, GIST, cholangiocarcinomes, etc.). 
+    Ces formulaires interactifs couvrent la stadification TNM, les caractéristiques histologiques, les biomarqueurs, ainsi que les facteurs pronostiques essentiels. 
+    Personnalisation des Protocoles Thérapeutiques. En fonction des données saisies, le site propose des recommandations thérapeutiques basées sur les guidelines internationales. 
+    Chaque protocole (par exemple, CROSS pour le carcinome épidermoïde de l'œsophage) est présenté avec les doses précises des médicaments.
     En résumé, ce site offre une interface conviviale et modulable, alliant données cliniques, calculs personnalisés et outils de communication, pour aider les cliniciens à prendre des décisions thérapeutiques éclairées et adaptées aux spécificités de chaque patient.
   </p>
 
-  <!-- Bouton de navigation avec attribut data-target pour la redirection -->
+  <!-- Bouton de navigation -->
   <button class="nav-button" data-target="WHGE.html">Hépato-Gastro-Entérologie et Cancer Digestif</button>
 
   <!-- Splash Page d'introduction -->
@@ -85,43 +86,51 @@
     </div>
   </div>
 
-  <a href="https://www.iubenda.com/privacy-policy/54371826/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed" title="Politique relative aux Cookies">Politique relative aux Cookies</a>
+  <a href="https://www.iubenda.com/privacy-policy/54371826/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed" title="Politique relative aux Cookies">
+    Politique relative aux Cookies
+  </a>
   <script type="text/javascript">
-    (function (w,d) {
+    (function (w, d) {
       var loader = function () {
         var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];
-        s.src="https://cdn.iubenda.com/iubenda.js";
-        tag.parentNode.insertBefore(s,tag);
+        s.src = "https://cdn.iubenda.com/iubenda.js";
+        tag.parentNode.insertBefore(s, tag);
       };
-      if(w.addEventListener){
+      if (w.addEventListener) {
         w.addEventListener("load", loader, false);
-      } else if(w.attachEvent){
+      } else if (w.attachEvent) {
         w.attachEvent("onload", loader);
-      } else{
+      } else {
         w.onload = loader;
       }
     })(window, document);
   </script>
-  <script>
-    let targetUrl = ""; // Variable pour stocker l'URL de redirection
 
-    // Ajout d'un événement sur le bouton de navigation
-    document.querySelectorAll('.nav-button').forEach(button => {
-      button.addEventListener('click', function() {
-        targetUrl = this.getAttribute('data-target');
-        document.getElementById('splash').style.display = "flex";
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let targetUrl = ""; // Variable pour stocker l'URL de redirection
+
+      // Ajout d'un événement sur tous les boutons de navigation
+      document.querySelectorAll('.nav-button').forEach(button => {
+        button.addEventListener('click', function () {
+          targetUrl = this.getAttribute('data-target');
+          // Affichage du splash
+          document.getElementById('splash').style.display = "flex";
+        });
+      });
+
+      // Gestion de l'événement sur le bouton "Continuer" du splash
+      document.getElementById('continueButton').addEventListener('click', function () {
+        const checkbox = document.getElementById("acceptConditions");
+        if (checkbox.checked) {
+          // Redirection vers l'URL cible
+          window.location.href = targetUrl;
+        } else {
+          alert("Veuillez accepter les conditions d'utilisation pour continuer.");
+        }
       });
     });
-
-    // Gestion de l'événement sur le bouton "Continuer" du splash
-    document.getElementById('continueButton').addEventListener('click', function() {
-      const checkbox = document.getElementById("acceptConditions");
-      if (checkbox.checked) {
-        window.location.href = targetUrl;
-      } else {
-        alert("Veuillez accepter les conditions d'utilisation pour continuer.");
-      }
-    });
   </script>
+
 </body>
 </html>
