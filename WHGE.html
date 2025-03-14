@@ -417,7 +417,6 @@ function genererCR() {
 }
 </script>
 
-<!-- Module: Caractérisation endoscopique des polypes coliques -->
 <div id="modulePolypCharacterization" class="module">
   <h2>Caractérisation endoscopique des polypes coliques</h2>
   <form id="formPolyp">
@@ -474,10 +473,15 @@ function genererCR() {
       </select>
       <br>
       <label for="pattern_description">Description du pattern (ex. NICE, Kudo, Sano)
-<p> <span style="font-size: 12px;"><strong>NICE</strong>: Type I : Lésions hyperplasiques ou non néoplasiques, avec une surface lisse, une couleur similaire à la muqueuse normale et des vaisseaux peu ou pas visibles. Type II : : Adénomes ou lésions néoplasiques précoces, présentant une couleur brunâtre ou jaunâtre, des vaisseaux réguliers et un léger changement dans le motif de surface. Type III : Lésions fortement suspectées d’invasion carcinomateuse, avec des modifications vasculaires marquées et une surface irrégulière, traduisant un risque élevé de malignité. <strong>Kudo</strong> (Pit pattern classification)Type I : Pits normaux, arrondis, caractéristiques de la muqueuse saine. Type II : Pits stellés ou papillaires, souvent observés dans les hyperplasies. Type III (a et b) : Pits tubulaires ou en forme d’ellipse, typiques des adénomes. Type IV  : Pits complexes ou branchés, associés aux adénomes présentant une hétérogénéité morphologique. Type V : Pits irréguliers ou absents, fortement évocateurs d’un cancer invasif. <strong>Sano</strong> Type I  : Réseau capillaire normal, associé aux lésions hyperplasiques. Type II  : Réseau capillaire modérément altéré, typique des adénomes, avec des vaisseaux fins et réguliers. Type III  : Réseau capillaire irrégulier et dilaté, observé dans les lésions carcinomateuses, notamment celles avec invasion submucosale.</span>  </p></label>
+        <p> <span style="font-size: 12px;">
+          <strong>NICE</strong>: Type I : Lésions hyperplasiques ou non néoplasiques, avec une surface lisse, une couleur similaire à la muqueuse normale et des vaisseaux peu ou pas visibles. Type II : Adénomes ou lésions néoplasiques précoces, présentant une couleur brunâtre ou jaunâtre, des vaisseaux réguliers et un léger changement dans le motif de surface. Type III : Lésions fortement suspectées d’invasion carcinomateuse, avec des modifications vasculaires marquées et une surface irrégulière, traduisant un risque élevé de malignité.
+          <strong>Kudo</strong> (Pit pattern classification) : Type I : Pits normaux, arrondis, caractéristiques de la muqueuse saine. Type II : Pits stellés ou papillaires, souvent observés dans les hyperplasies. Type III (a et b) : Pits tubulaires ou en forme d’ellipse, typiques des adénomes. Type IV : Pits complexes ou branchés, associés aux adénomes présentant une hétérogénéité morphologique. Type V : Pits irréguliers ou absents, fortement évocateurs d’un cancer invasif.
+          <strong>Sano</strong> : Type I : Réseau capillaire normal, associé aux lésions hyperplasiques. Type II : Réseau capillaire modérément altéré, typique des adénomes, avec des vaisseaux fins et réguliers. Type III : Réseau capillaire irrégulier et dilaté, observé dans les lésions carcinomateuses, notamment celles avec invasion submucosale.
+        </span>  </p>
+      </label>
       <input type="text" id="pattern_description" placeholder="Décrivez le pattern observé ">
       <br>
-      <!-- Critères de risque au niveau du polype -->
+      <!-- Critères de risque -->
       <h4>Critères de risque (à cocher si présents)</h4>
       <label><input type="checkbox" id="crit_nodule"> Présence de nodule mural</label><br>
       <label><input type="checkbox" id="crit_ulceration"> Ulcération ou zone déprimée</label><br>
@@ -535,6 +539,15 @@ function generatePolypReport() {
     return;
   }
 
+  // Correction: Si la lésion est de type CONECCT IIC+ avec présence de nodule mural ou de type III,
+  // l'option "résection à l’anse froide" n'est pas adaptée.
+  if ((conecctType === "IIC+" && document.getElementById("crit_nodule").checked) || conecctType === "III") {
+    if (therapeuticOption === "resection_froide") {
+      alert("Erreur : Pour une lésion de type CONECCT " + conecctType + (conecctType === "IIC+" ? " avec présence de nodule mural" : "") + ", l'option thérapeutique 'résection à l’anse froide' n’est pas adaptée. Veuillez sélectionner 'RCP' pour une discussion multidisciplinaire et confirmation de la stratégie thérapeutique (orientation sous-muqueuse).");
+      return;
+    }
+  }
+
   // Récupération des informations de base
   let report = "<strong>Rapport de caractérisation endoscopique des polypes coliques</strong><br>";
   report += "<u>Informations de base :</u><br>";
@@ -571,11 +584,8 @@ function generatePolypReport() {
     report += "<u>Observations complémentaires :</u><br>" + notes + "<br><br>";
   }
 
-  // Ajout d'une section dédiée aux marqueurs pour les lésions kystiques / polypaires si applicable
-  // (Bien que le texte concerne les polypes, certains éléments tels que l'usage de chromoendoscopie,
-  // les techniques d'imagerie et d'analyse sont aussi pertinents pour d'autres lésions.)
+  // Section dédiée aux marqueurs et analyses complémentaires
   report += "<u>Marqueurs et analyses complémentaires :</u><br>";
-  // On pourrait intégrer ici des informations spécifiques à la résection endoscopique
   report += "A utiliser en complément de l'expertise : NBI, BLI, et éventuelle analyse par intelligence artificielle (CONECCT).<br>";
 
   // Conclusion
@@ -585,11 +595,11 @@ function generatePolypReport() {
   document.getElementById("resultPolyp").innerHTML = report;
 }
 
-// Vous pouvez ajouter ici une fonction pour sauvegarder/restaurer l'état si nécessaire
 document.addEventListener('DOMContentLoaded', () => {
   // Code pour charger l'état sauvegardé si besoin...
 });
 </script>
+
 
  <!-- Module: Prise en charge des douleurs abdominales chroniques -->
 <div id="moduleAbdominalPain" class="module">
