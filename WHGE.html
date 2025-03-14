@@ -473,11 +473,13 @@ function genererCR() {
       </select>
       <br>
       <label for="pattern_description">Description du pattern (ex. NICE, Kudo, Sano)
-        <p> <span style="font-size: 12px;">
-          <strong>NICE</strong>: Type I : Lésions hyperplasiques ou non néoplasiques, avec une surface lisse, une couleur similaire à la muqueuse normale et des vaisseaux peu ou pas visibles. Type II : Adénomes ou lésions néoplasiques précoces, présentant une couleur brunâtre ou jaunâtre, des vaisseaux réguliers et un léger changement dans le motif de surface. Type III : Lésions fortement suspectées d’invasion carcinomateuse, avec des modifications vasculaires marquées et une surface irrégulière, traduisant un risque élevé de malignité.
-          <strong>Kudo</strong> (Pit pattern classification) : Type I : Pits normaux, arrondis, caractéristiques de la muqueuse saine. Type II : Pits stellés ou papillaires, souvent observés dans les hyperplasies. Type III (a et b) : Pits tubulaires ou en forme d’ellipse, typiques des adénomes. Type IV : Pits complexes ou branchés, associés aux adénomes présentant une hétérogénéité morphologique. Type V : Pits irréguliers ou absents, fortement évocateurs d’un cancer invasif.
-          <strong>Sano</strong> : Type I : Réseau capillaire normal, associé aux lésions hyperplasiques. Type II : Réseau capillaire modérément altéré, typique des adénomes, avec des vaisseaux fins et réguliers. Type III : Réseau capillaire irrégulier et dilaté, observé dans les lésions carcinomateuses, notamment celles avec invasion submucosale.
-        </span>  </p>
+        <p>
+          <span style="font-size: 12px;">
+            <strong>NICE</strong>: Type I : Lésions hyperplasiques ou non néoplasiques, avec une surface lisse, une couleur similaire à la muqueuse normale et des vaisseaux peu ou pas visibles. Type II : Adénomes ou lésions néoplasiques précoces, présentant une couleur brunâtre ou jaunâtre, des vaisseaux réguliers et un léger changement dans le motif de surface. Type III : Lésions fortement suspectées d’invasion carcinomateuse, avec des modifications vasculaires marquées et une surface irrégulière, traduisant un risque élevé de malignité.
+            <strong>Kudo</strong> (Pit pattern classification) : Type I : Pits normaux, arrondis, caractéristiques de la muqueuse saine. Type II : Pits stellés ou papillaires, souvent observés dans les hyperplasies. Type III (a et b) : Pits tubulaires ou en forme d’ellipse, typiques des adénomes. Type IV : Pits complexes ou branchés, associés aux adénomes présentant une hétérogénéité morphologique. Type V : Pits irréguliers ou absents, fortement évocateurs d’un cancer invasif.
+            <strong>Sano</strong> : Type I : Réseau capillaire normal, associé aux lésions hyperplasiques. Type II : Réseau capillaire modérément altéré, typique des adénomes, avec des vaisseaux fins et réguliers. Type III : Réseau capillaire irrégulier et dilaté, observé dans les lésions carcinomateuses, notamment celles avec invasion submucosale.
+          </span>
+        </p>
       </label>
       <input type="text" id="pattern_description" placeholder="Décrivez le pattern observé ">
       <br>
@@ -539,8 +541,16 @@ function generatePolypReport() {
     return;
   }
 
-  // Correction: Si la lésion est de type CONECCT IIC+ avec présence de nodule mural ou de type III,
-  // l'option "résection à l’anse froide" n'est pas adaptée.
+  // Convertir la taille en nombre
+  const polypTaille = parseFloat(taille);
+
+  // Vérification : Si la taille est supérieure à 10 mm, la résection à l’anse froide est inadaptée
+  if (polypTaille > 10 && therapeuticOption === "resection_froide") {
+    alert("Erreur : La stratégie thérapeutique 'résection à l’anse froide' n’est pas adaptée pour une lésion de plus de 10 mm. Veuillez sélectionner une option thérapeutique appropriée (ex. dissection sous-muqueuse ou discussion en RCP).");
+    return;
+  }
+  
+  // Vérification des critères de risque élevés
   if ((conecctType === "IIC+" && document.getElementById("crit_nodule").checked) || conecctType === "III") {
     if (therapeuticOption === "resection_froide") {
       alert("Erreur : Pour une lésion de type CONECCT " + conecctType + (conecctType === "IIC+" ? " avec présence de nodule mural" : "") + ", l'option thérapeutique 'résection à l’anse froide' n’est pas adaptée. Veuillez sélectionner 'RCP' pour une discussion multidisciplinaire et confirmation de la stratégie thérapeutique (orientation sous-muqueuse).");
@@ -584,7 +594,7 @@ function generatePolypReport() {
     report += "<u>Observations complémentaires :</u><br>" + notes + "<br><br>";
   }
 
-  // Section dédiée aux marqueurs et analyses complémentaires
+  // Marqueurs et analyses complémentaires
   report += "<u>Marqueurs et analyses complémentaires :</u><br>";
   report += "A utiliser en complément de l'expertise : NBI, BLI, et éventuelle analyse par intelligence artificielle (CONECCT).<br>";
 
@@ -599,6 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Code pour charger l'état sauvegardé si besoin...
 });
 </script>
+
 
 
  <!-- Module: Prise en charge des douleurs abdominales chroniques -->
