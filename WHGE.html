@@ -541,21 +541,27 @@ function generatePolypReport() {
     return;
   }
 
-  // Convertir la taille en nombre
+  // Conversion de la taille en nombre
   const polypTaille = parseFloat(taille);
 
-  // Vérification : Si la taille est supérieure à 10 mm, la résection à l’anse froide est inadaptée
+  // Vérification : si la taille est supérieure à 10 mm, la résection à l’anse froide est inadaptée
   if (polypTaille > 10 && therapeuticOption === "resection_froide") {
-    alert("Erreur : La stratégie thérapeutique 'résection à l’anse froide' n’est pas adaptée pour une lésion de plus de 10 mm. Veuillez sélectionner une option thérapeutique appropriée (ex. dissection sous-muqueuse ou discussion en RCP).");
+    alert("Erreur : La stratégie thérapeutique 'résection à l’anse froide' n’est pas adaptée pour une lésion de plus de 10 mm. Veuillez sélectionner une option appropriée (ex. dissection sous-muqueuse ou discussion en RCP).");
     return;
   }
   
-  // Vérification des critères de risque élevés
-  if ((conecctType === "IIC+" && document.getElementById("crit_nodule").checked) || conecctType === "III") {
-    if (therapeuticOption === "resection_froide") {
-      alert("Erreur : Pour une lésion de type CONECCT " + conecctType + (conecctType === "IIC+" ? " avec présence de nodule mural" : "") + ", l'option thérapeutique 'résection à l’anse froide' n’est pas adaptée. Veuillez sélectionner 'RCP' pour une discussion multidisciplinaire et confirmation de la stratégie thérapeutique (orientation sous-muqueuse).");
-      return;
-    }
+  // Définition d'un indicateur pour la présence d'au moins un critère de risque
+  const hasRiskCriteria = document.getElementById("crit_nodule").checked ||
+                          document.getElementById("crit_ulceration").checked ||
+                          document.getElementById("crit_irregular").checked ||
+                          document.getElementById("crit_mucus").checked;
+  
+  // Vérification : si la lésion présente un ou plusieurs critères de risque et/ou une classification CONECCT IIC (ou plus),
+  // la seule option thérapeutique acceptable est 'RCP'
+  if (((conecctType === "IIC" || conecctType === "IIC+" || conecctType === "III") || hasRiskCriteria) &&
+      therapeuticOption !== "RCP") {
+    alert("Erreur : Pour une lésion présentant des critères de risque et/ou une classification CONECCT IIC et plus, la stratégie thérapeutique recommandée est la discussion en RCP ou une prise en charge dans un centre expert. Veuillez sélectionner 'RCP'.");
+    return;
   }
 
   // Récupération des informations de base
@@ -573,15 +579,16 @@ function generatePolypReport() {
   report += "<u>Caractérisation endoscopique :</u><br>";
   report += "Technique utilisée : " + endoTechnique + "<br>";
   const pattern = document.getElementById("pattern_description").value;
-  if(pattern) {
+  if (pattern) {
     report += "Pattern observé : " + pattern + "<br>";
   }
+  
   // Critères de risque
   const crits = [];
-  if(document.getElementById("crit_nodule").checked) crits.push("Nodule mural");
-  if(document.getElementById("crit_ulceration").checked) crits.push("Ulcération / zone déprimée");
-  if(document.getElementById("crit_irregular").checked) crits.push("Pattern irrégulier");
-  if(document.getElementById("crit_mucus").checked) crits.push("Sécrétion abondante de mucus");
+  if (document.getElementById("crit_nodule").checked) crits.push("Nodule mural");
+  if (document.getElementById("crit_ulceration").checked) crits.push("Ulcération / zone déprimée");
+  if (document.getElementById("crit_irregular").checked) crits.push("Pattern irrégulier");
+  if (document.getElementById("crit_mucus").checked) crits.push("Sécrétion abondante de mucus");
   report += "Critères de risque : " + (crits.length ? crits.join(", ") : "Aucun") + "<br><br>";
 
   // Stratégie thérapeutique
@@ -590,7 +597,7 @@ function generatePolypReport() {
 
   // Observations complémentaires
   const notes = document.getElementById("additional_notes").value.trim();
-  if(notes) {
+  if (notes) {
     report += "<u>Observations complémentaires :</u><br>" + notes + "<br><br>";
   }
 
