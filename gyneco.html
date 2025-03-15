@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>KADAWeb - Gynécologie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header, footer {
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    nav button {
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background-color: #003f7f;
+    }
+    .module {
+      display: none;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #c3d8f0;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .module h2 {
+      color: #00539C;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    legend {
+      font-weight: bold;
+      padding: 0 5px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    input[readonly] {
+      background-color: #e9e9e9;
+    }
+    button {
+      padding: 10px 15px;
+      background: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #003f7f;
+    }
+    #splash {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eef;
+      border-radius: 4px;
+      font-size: 1.2em; /* Police agrandie */
+    }
+  </style>
+  <!-- Fonctions communes -->
+  <script>
+    // Fonction d'affichage des modules
+    function showModule(moduleId) {
+      var modules = document.getElementsByClassName('module');
+      for (var i = 0; i < modules.length; i++) {
+        modules[i].style.display = 'none';
+      }
+      document.getElementById(moduleId).style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    // Calcul de l'IMC
+    function updateBMI(weightId, heightId, bmiId) {
+      let weight = parseFloat(document.getElementById(weightId).value);
+      let height = parseFloat(document.getElementById(heightId).value);
+      if (weight && height) {
+        let bmi = weight / Math.pow(height / 100, 2);
+        document.getElementById(bmiId).value = bmi.toFixed(1);
+      } else {
+        document.getElementById(bmiId).value = "";
+      }
+    }
+    // Calcul de l'âge gestationnel à partir de la date des dernières règles
+    function calculateGestationalAge(lastPeriodDate) {
+      let lastDate = new Date(lastPeriodDate);
+      let currentDate = new Date();
+      let diffInDays = (currentDate - lastDate) / (1000 * 60 * 60 * 24);
+      let gestWeeks = Math.floor(diffInDays / 7);
+      return gestWeeks;
+    }
+  </script>
+</head>
+<body>
+  
+  
+  <header>
+    <h1>Web Gynécologie</h1>
+  </header>
+  
+  <!-- Barre de Navigation -->
+  <nav>
+    <button onclick="showModule('moduleGynecoReport')">Compte‑Rendu Gynécologique</button>
+    <button onclick="showModule('moduleColposcopy')">Colposcopie & Caractérisation Cervicale</button>
+    <button onclick="showModule('modulePregnancyFollowUp')">Suivi de Grossesse</button>
+    <button onclick="showModule('modulePelvicPain')">Douleurs Pelviennes Chroniques</button>
+    <button onclick="showModule('modulePeripartumCM')">Cardiomyopathie du Péripartum</button>
+    <button onclick="showModule('moduleBreastCancer')">Cancer du Sein</button>
+    <button onclick="showModule('moduleEndometrialCancer')">Cancer de l'Endomètre</button>
+    <button onclick="showModule('moduleMenopause')">Ménopause</button>
+  </nav>
+  
+  <!-- Module : Compte‑Rendu Gynécologique -->
+  <div id="moduleGynecoReport" class="module">
+    <h2>Compte‑Rendu Gynécologique</h2>
+    <form id="formGynecoReport">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="grAge">Âge :</label>
+        <input type="number" id="grAge" required>
+        
+        <label for="grWeight">Poids (kg) :</label>
+        <input type="number" id="grWeight" required oninput="updateBMI('grWeight','grHeight','grBMI')">
+        
+        <label for="grHeight">Taille (cm) :</label>
+        <input type="number" id="grHeight" required oninput="updateBMI('grWeight','grHeight','grBMI')">
+        
+        <label for="grBMI">IMC :</label>
+        <input type="number" id="grBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="consultReason">Motif de consultation :</label>
+      <textarea id="consultReason" rows="3" required></textarea>
+      
+      <label for="pregnancies">Nombre de grossesses antérieures :</label>
+      <input type="number" id="pregnancies" required>
+      
+      <label><input type="checkbox" id="followUpNeeded"> Nécessite un suivi rapproché</label>
+      
+      <button type="button" id="btnGyneco">Générer le Compte‑Rendu</button>
+    </form>
+    <div id="resultGynecoReport" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Compte‑Rendu Gynécologique -->
+  <script>
+    (function(){
+      document.getElementById("btnGyneco").addEventListener("click", function(){
+        var age = document.getElementById("grAge").value;
+        var weight = document.getElementById("grWeight").value;
+        var height = document.getElementById("grHeight").value;
+        var bmi = document.getElementById("grBMI").value;
+        var reason = document.getElementById("consultReason").value;
+        var pregnancies = document.getElementById("pregnancies").value;
+        var followUp = document.getElementById("followUpNeeded").checked ? "Suivi rapproché" : "Suivi standard";
+        var report = "Compte‑Rendu Gynécologique\n\n" +
+                     "Âge : " + age + " ans\n" +
+                     "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                     "Motif de consultation : " + reason + "\n" +
+                     "Nombre de grossesses antérieures : " + pregnancies + "\n" +
+                     "Option : " + followUp;
+        document.getElementById("resultGynecoReport").innerHTML = "<pre>" + report + "</pre>";
+      });
+    })();
+  </script>
+  
+  <!-- Module : Colposcopie & Caractérisation Cervicale -->
+  <div id="moduleColposcopy" class="module">
+    <h2>Colposcopie & Caractérisation Cervicale</h2>
+    <form id="formColposcopy">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="colpoAge">Âge :</label>
+        <input type="number" id="colpoAge" required>
+        
+        <label for="colpoWeight">Poids (kg) :</label>
+        <input type="number" id="colpoWeight" required oninput="updateBMI('colpoWeight','colpoHeight','colpoBMI')">
+        
+        <label for="colpoHeight">Taille (cm) :</label>
+        <input type="number" id="colpoHeight" required oninput="updateBMI('colpoWeight','colpoHeight','colpoBMI')">
+        
+        <label for="colpoBMI">IMC :</label>
+        <input type="number" id="colpoBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="lesionType">Type de lésion cervicale :</label>
+      <select id="lesionType" required>
+        <option value="">--Sélectionner--</option>
+        <option value="hyperplasie">Hyperplasie</option>
+        <option value="dysplasie">Dysplasie</option>
+        <option value="invasion">Invasion suspecte</option>
+      </select>
+      
+      <label for="colpoTechnique">Technique utilisée :</label>
+      <select id="colpoTechnique" required>
+        <option value="">--Sélectionner--</option>
+        <option value="acide_acetique">Acide Acétique</option>
+        <option value="lumiere_verte">Lumière Verte</option>
+        <option value="NBI">NBI</option>
+      </select>
+      
+      <label for="colpoObservations">Observations :</label>
+      <textarea id="colpoObservations" rows="3" required></textarea>
+      
+      <label for="colpoConfidence">Niveau de confiance dans le diagnostic :</label>
+      <select id="colpoConfidence">
+        <option value="">--Sélectionner--</option>
+        <option value="faible">Faible</option>
+        <option value="moyen">Moyen</option>
+        <option value="élevé">Élevé</option>
+      </select>
+      
+      <button type="button" id="btnColposcopy">Générer le Rapport</button>
+    </form>
+    <div id="resultColposcopy" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Colposcopie -->
+  <script>
+    (function(){
+      document.getElementById("btnColposcopy").addEventListener("click", function(){
+        var age = document.getElementById("colpoAge").value;
+        var weight = document.getElementById("colpoWeight").value;
+        var height = document.getElementById("colpoHeight").value;
+        var bmi = document.getElementById("colpoBMI").value;
+        var lesion = document.getElementById("lesionType").value;
+        var technique = document.getElementById("colpoTechnique").value;
+        var observations = document.getElementById("colpoObservations").value;
+        var confidence = document.getElementById("colpoConfidence").value;
+        var report = "Rapport de Colposcopie\n\n" +
+                     "Âge : " + age + " ans\n" +
+                     "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                     "Type de lésion : " + lesion + "\n" +
+                     "Technique utilisée : " + technique + "\n" +
+                     "Observations : " + observations + "\n" +
+                     "Niveau de confiance : " + confidence;
+        document.getElementById("resultColposcopy").innerHTML = "<pre>" + report + "</pre>";
+      });
+    })();
+  </script>
+  
+  <!-- Module : Suivi de Grossesse -->
+  <div id="modulePregnancyFollowUp" class="module">
+    <h2>Suivi de Grossesse</h2>
+    <form id="formPregnancy">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="pregAge">Âge :</label>
+        <input type="number" id="pregAge" required>
+        
+        <label for="pregWeight">Poids (kg) :</label>
+        <input type="number" id="pregWeight" required oninput="updateBMI('pregWeight','pregHeight','pregBMI')">
+        
+        <label for="pregHeight">Taille (cm) :</label>
+        <input type="number" id="pregHeight" required oninput="updateBMI('pregWeight','pregHeight','pregBMI')">
+        
+        <label for="pregBMI">IMC :</label>
+        <input type="number" id="pregBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="lastPeriod">Date des dernières règles :</label>
+      <input type="date" id="lastPeriod" required>
+      
+      <label for="riskFactors">Facteurs de risque :</label>
+      <textarea id="riskFactors" rows="3"></textarea>
+      
+      <label for="ultrasoundFindings">Résultats échographiques :</label>
+      <textarea id="ultrasoundFindings" rows="3"></textarea>
+      
+      <label><input type="checkbox" id="highRiskPregnancy"> Grossesse à haut risque</label>
+      
+      <button type="button" id="btnPregnancy">Générer le Rapport</button>
+    </form>
+    <div id="resultPregnancy" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Suivi de Grossesse -->
+  <script>
+    (function(){
+      document.getElementById("btnPregnancy").addEventListener("click", function(){
+        var age = document.getElementById("pregAge").value;
+        var weight = document.getElementById("pregWeight").value;
+        var height = document.getElementById("pregHeight").value;
+        var bmi = document.getElementById("pregBMI").value;
+        var lastPeriod = document.getElementById("lastPeriod").value;
+        var gestAge = lastPeriod ? calculateGestationalAge(lastPeriod) : "Non calculé";
+        var risks = document.getElementById("riskFactors").value;
+        var ultrasound = document.getElementById("ultrasoundFindings").value;
+        var highRisk = document.getElementById("highRiskPregnancy").checked ? "Grossesse à haut risque" : "Grossesse standard";
+        var report = "Suivi de Grossesse\n\n" +
+                     "Âge : " + age + " ans, Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                     "Date des dernières règles : " + lastPeriod + "\n" +
+                     "Âge gestationnel calculé : " + gestAge + " semaines\n\n" +
+                     "Facteurs de risque : " + risks + "\n" +
+                     "Résultats échographiques : " + ultrasound + "\n" +
+                     "Option : " + highRisk;
+        document.getElementById("resultPregnancy").innerHTML = "<pre>" + report + "</pre>";
+      });
+    })();
+  </script>
+  
+  <!-- Module : Douleurs Pelviennes Chroniques -->
+  <div id="modulePelvicPain" class="module">
+    <h2>Évaluation des Douleurs Pelviennes Chroniques</h2>
+    <form id="formPelvicPain">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="pelvicAge">Âge :</label>
+        <input type="number" id="pelvicAge" required>
+        
+        <label for="pelvicWeight">Poids (kg) :</label>
+        <input type="number" id="pelvicWeight" required oninput="updateBMI('pelvicWeight','pelvicHeight','pelvicBMI')">
+        
+        <label for="pelvicHeight">Taille (cm) :</label>
+        <input type="number" id="pelvicHeight" required oninput="updateBMI('pelvicWeight','pelvicHeight','pelvicBMI')">
+        
+        <label for="pelvicBMI">IMC :</label>
+        <input type="number" id="pelvicBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="painDuration">Durée de la douleur (en mois) :</label>
+      <input type="number" id="painDuration" required>
+      
+      <label for="painDescription">Description de la douleur :</label>
+      <textarea id="painDescription" rows="3" required></textarea>
+      
+      <label for="associatedSymptoms">Symptômes associés :</label>
+      <textarea id="associatedSymptoms" rows="3"></textarea>
+      
+      <label for="painType">Type de douleur :</label>
+      <select id="painType">
+        <option value="">--Sélectionner--</option>
+        <option value="aiguë">Aiguë</option>
+        <option value="chronique">Chronique</option>
+        <option value="cyclique">Cyclique</option>
+      </select>
+      
+      <button type="button" id="btnPelvicPain">Générer la Conduite à Tenir</button>
+    </form>
+    <div id="resultPelvicPain" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Douleurs Pelviennes Chroniques -->
+  <script>
+    (function(){
+      document.getElementById("btnPelvicPain").addEventListener("click", function(){
+        var age = document.getElementById("pelvicAge").value;
+        var weight = document.getElementById("pelvicWeight").value;
+        var height = document.getElementById("pelvicHeight").value;
+        var bmi = document.getElementById("pelvicBMI").value;
+        var duration = document.getElementById("painDuration").value;
+        var description = document.getElementById("painDescription").value;
+        var symptoms = document.getElementById("associatedSymptoms").value;
+        var painType = document.getElementById("painType").value;
+        var report = "Évaluation des Douleurs Pelviennes Chroniques\n\n" +
+                     "Âge : " + age + " ans, Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                     "Durée de la douleur : " + duration + " mois\n" +
+                     "Description : " + description + "\n" +
+                     "Symptômes associés : " + symptoms + "\n" +
+                     "Type de douleur : " + painType;
+        document.getElementById("resultPelvicPain").innerHTML = "<pre>" + report + "</pre>";
+      });
+    })();
+  </script>
+  
+  <!-- Module : Cardiomyopathie du Péripartum -->
+  <div id="modulePeripartumCM" class="module">
+    <h2>Cardiomyopathie du Péripartum</h2>
+    <form id="formPeripartumCM">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="peripAge">Âge :</label>
+        <input type="number" id="peripAge" required>
+        
+        <label for="peripWeight">Poids (kg) :</label>
+        <input type="number" id="peripWeight" required oninput="updateBMI('peripWeight','peripHeight','peripBMI')">
+        
+        <label for="peripHeight">Taille (cm) :</label>
+        <input type="number" id="peripHeight" required oninput="updateBMI('peripWeight','peripHeight','peripBMI')">
+        
+        <label for="peripBMI">IMC :</label>
+        <input type="number" id="peripBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Évaluation Clinique et Paraclinique</legend>
+        <label for="deliveryDate">Date d'accouchement / Période postpartum :</label>
+        <input type="date" id="deliveryDate" required>
+        
+        <p>Signes Cliniques (cochez ceux présents) :</p>
+        <label><input type="checkbox" id="dyspnea"> Dyspnée</label>
+        <label><input type="checkbox" id="fatigue"> Fatigue importante</label>
+        <label><input type="checkbox" id="edema"> Œdème périphérique</label>
+        <label><input type="checkbox" id="orthopnea"> Orthopnée</label>
+        
+        <label for="lvef">Fraction d'éjection du VG (LVEF %) :</label>
+        <input type="number" id="lvef" step="0.1" placeholder="Ex: 35" required>
+        
+        <label for="severity">Sévérité selon la LVEF :</label>
+        <select id="severity">
+          <option value="">--Sélectionner--</option>
+          <option value="mild">LVEF > 45%</option>
+          <option value="moderate">LVEF 35-45%</option>
+          <option value="severe">LVEF < 35%</option>
+        </select>
+        
+        <p>Facteurs de Risque (cochez le cas échéant) :</p>
+        <label><input type="checkbox" id="preeclampsia"> Prééclampsie</label>
+        <label><input type="checkbox" id="multiparity"> Grossesse multiple</label>
+        <label><input type="checkbox" id="advancedMaternalAge"> Âge maternel avancé</label>
+        
+        <label for="treatment">Approche thérapeutique envisagée :</label>
+        <select id="treatment">
+          <option value="">--Sélectionner--</option>
+          <option value="aceInhibitors">Inhibiteurs de l'enzyme de conversion (postpartum)</option>
+          <option value="betaBlockers">Bêta-bloquants</option>
+          <option value="diuretics">Diurétiques</option>
+          <option value="other">Autres / Associées</option>
+        </select>
+        
+        <label for="observationsPerip">Observations complémentaires :</label>
+        <textarea id="observationsPerip" rows="3"></textarea>
+      </fieldset>
+      
+      <button type="button" id="btnPeripartum">Générer le Rapport</button>
+    </form>
+    <div id="resultPeripartum" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Cardiomyopathie du Péripartum -->
+  <script>
+    (function(){
+      document.getElementById("btnPeripartum").addEventListener("click", function(){
+        var age = document.getElementById("peripAge").value;
+        var weight = document.getElementById("peripWeight").value;
+        var height = document.getElementById("peripHeight").value;
+        var bmi = document.getElementById("peripBMI").value;
+        var deliveryDate = document.getElementById("deliveryDate").value;
+        
+        var dyspnea = document.getElementById("dyspnea").checked ? "Dyspnée, " : "";
+        var fatigue = document.getElementById("fatigue").checked ? "Fatigue importante, " : "";
+        var edema = document.getElementById("edema").checked ? "Œdème périphérique, " : "";
+        var orthopnea = document.getElementById("orthopnea").checked ? "Orthopnée, " : "";
+        var clinicalSigns = dyspnea + fatigue + edema + orthopnea;
+        if (clinicalSigns.endsWith(", ")) {
+          clinicalSigns = clinicalSigns.slice(0, -2);
+        }
+        
+        var lvef = document.getElementById("lvef").value;
+        var severity = document.getElementById("severity").value;
+        
+        var preeclampsia = document.getElementById("preeclampsia").checked ? "Prééclampsie, " : "";
+        var multiparity = document.getElementById("multiparity").checked ? "Grossesse multiple, " : "";
+        var advancedMaternalAge = document.getElementById("advancedMaternalAge").checked ? "Âge maternel avancé, " : "";
+        var riskFactors = preeclampsia + multiparity + advancedMaternalAge;
+        if (riskFactors.endsWith(", ")) {
+          riskFactors = riskFactors.slice(0, -2);
+        }
+        
+        var treatment = document.getElementById("treatment").value;
+        var observations = document.getElementById("observationsPerip").value;
+        
+        var report = "Rapport de Cardiomyopathie du Péripartum\n\n" +
+                     "Informations Générales:\n" +
+                     "Âge : " + age + " ans\n" +
+                     "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                     "Date d'accouchement / Période postpartum : " + deliveryDate + "\n\n" +
+                     "Signes Cliniques : " + (clinicalSigns || "Aucun signe rapporté") + "\n\n" +
+                     "Échocardiographie:\n" +
+                     "Fraction d'éjection du VG : " + lvef + " %\n" +
+                     "Sévérité : " + severity + "\n\n" +
+                     "Facteurs de Risque : " + (riskFactors || "Aucun facteur coché") + "\n\n" +
+                     "Approche thérapeutique : " + (treatment || "Non spécifiée") + "\n\n" +
+                     "Observations complémentaires : " + observations + "\n\n" +
+                     "Selon le consensus de la SF-Gynécologie sur la Cardiomyopathie du Péripartum.";
+        
+        document.getElementById("resultPeripartum").innerHTML = "<pre>" + report + "</pre>";
+      });
+    })();
+  </script>
+  
+  <!-- Module : Cancer du Sein -->
+  <div id="moduleBreastCancer" class="module">
+    <h2>Prise en Charge du Cancer du Sein</h2>
+    <form id="formBreastCancer">
+      <fieldset>
+        <legend>Caractéristiques Tumorales</legend>
+        <label for="bcAge">Âge :</label>
+        <input type="number" id="bcAge" required>
+        
+        <label for="bcStage">Stade TNM :</label>
+        <select id="bcStage" required>
+          <option value="I">I</option>
+          <option value="IIA">IIA</option>
+          <option value="IIB">IIB</option>
+          <option value="IIIA">IIIA</option>
+          <option value="IIIB">IIIB</option>
+          <option value="IIIC">IIIC</option>
+          <option value="IV">IV</option>
+        </select>
+
+        <label for="erStatus">Récepteurs Estrogènes :</label>
+        <select id="erStatus" required>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+
+        <label for="prStatus">Récepteurs Progestérone :</label>
+        <select id="prStatus" required>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+
+        <label for="her2Status">Statut HER2 :</label>
+        <select id="her2Status" required>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+
+        <label for="ki67">Ki67 (%) :</label>
+        <input type="number" id="ki67" min="0" max="100" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contexte Clinique</legend>
+        <label for="comorbidities">Comorbidités :</label>
+        <textarea id="comorbidities" rows="2"></textarea>
+      </fieldset>
+
+      <button type="button" id="btnBreastCancer">Générer le Plan</button>
+    </form>
+    <div id="resultBreastCancer" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Cancer du Sein -->
+  <script>
+    (function(){
+      document.getElementById("btnBreastCancer").addEventListener("click", function(){
+        const age = document.getElementById("bcAge").value;
+        const stage = document.getElementById("bcStage").value;
+        const er = document.getElementById("erStatus").value;
+        const pr = document.getElementById("prStatus").value;
+        const her2 = document.getElementById("her2Status").value;
+        const ki67 = document.getElementById("ki67").value;
+        const comorbidities = document.getElementById("comorbidities").value;
+
+        let treatment = [];
+        let followUp = [];
+        
+        // Conduite à tenir selon les recommandations
+        if(stage.includes('I') || stage.includes('II')) {
+          treatment.push("Chirurgie conservatrice ou mastectomie selon taille tumorale");
+          treatment.push("Radiothérapie adjuvante");
+          if(er === "positif") {
+            treatment.push("Hormonothérapie (Tamoxifène ou Inhibiteurs de l'aromatase)");
+          }
+          if(her2 === "positif") {
+            treatment.push("Trastuzumab pendant 1 an");
+          }
+        }
+        if(stage.includes('III') || stage.includes('IV')) {
+          treatment.push("Chimiothérapie néoadjuvante");
+          treatment.push("Traitement systémique personnalisé selon biomarqueurs");
+        }
+        
+        followUp.push("Surveillance clinique trimestrielle pendant 2 ans puis semestrielle");
+        followUp.push("Mammographie annuelle");
+        if(her2 === "positif") followUp.push("Échocardiographie annuelle sous trastuzumab");
+
+        const report = `Plan de Prise en Charge du Cancer du Sein\n\n
+Âge: ${age} ans
+Stade TNM: ${stage}
+Récepteurs hormonaux: ER ${er}, PR ${pr}
+HER2: ${her2} | Ki67: ${ki67}%
+Comorbidités: ${comorbidities || "Aucune"}\n\n
+Traitement Recommandé:
+- ${treatment.join('\n- ')}
+
+Suivi:
+- ${followUp.join('\n- ')}
+
+[Selon recommandations NCCN 2023 et St Gallen 2023]`;
+
+        document.getElementById("resultBreastCancer").innerHTML = `<pre>${report}</pre>`;
+      });
+    })();
+  </script>
+  
+  <!-- Module : Cancer de l'Endomètre -->
+  <div id="moduleEndometrialCancer" class="module">
+    <h2>Prise en Charge du Cancer de l'Endomètre</h2>
+    <form id="formEndometrialCancer">
+      <fieldset>
+        <legend>Caractéristiques Tumorales</legend>
+        
+        <label for="ecAge">Âge :</label>
+        <input type="number" id="ecAge" required>
+        
+        <label for="ecHistology">Type Histologique :</label>
+        <select id="ecHistology" required>
+          <option value="endometrioide">Endométrioïde</option>
+          <option value="seropapillaire">Séropapillaire</option>
+          <option value="cellules_claires">Cellules claires</option>
+          <option value="mixte">Mixte</option>
+        </select>
+        
+        <label for="figoStage">Stade FIGO 2023 :</label>
+        <select id="figoStage" required>
+          <option value="IA">IA</option>
+          <option value="IB">IB</option>
+          <option value="II">II</option>
+          <option value="IIIA">IIIA</option>
+          <option value="IIIB">IIIB</option>
+          <option value="IIIC">IIIC</option>
+          <option value="IVA">IVA</option>
+          <option value="IVB">IVB</option>
+        </select>
+        
+        <label for="tumorGrade">Grade :</label>
+        <select id="tumorGrade">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        
+        <label for="molecularClass">Classification Moléculaire :</label>
+        <select id="molecularClass">
+          <option value="POLE">POLE muté</option>
+          <option value="MMRd">MMRd</option>
+          <option value="NSMP">NSMP</option>
+          <option value="p53abn">p53abn</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contexte Clinique</legend>
+        
+        <label for="menopausalStatus">Statut Ménopausique :</label>
+        <select id="menopausalStatus">
+          <option value="pre">Pré-ménopausique</option>
+          <option value="peri">Périménopausique</option>
+          <option value="post">Post-ménopausique</option>
+        </select>
+        
+        <label><input type="checkbox" id="lymphovascular"> Emboles lymphovasculaires</label>
+        <label><input type="checkbox" id="myometrial"> Envahissement myométrial >50%</label>
+        <label><input type="checkbox" id="fertility"> Désir de préservation fertilité</label>
+      </fieldset>
+
+      <button type="button" id="btnEndometrial">Générer le Plan</button>
+    </form>
+    <div id="resultEndometrial" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Cancer de l'Endomètre -->
+  <script>
+    (function(){
+      document.getElementById("btnEndometrial").addEventListener("click", function(){
+        const age = document.getElementById("ecAge").value;
+        const histology = document.getElementById("ecHistology").value;
+        const stage = document.getElementById("figoStage").value;
+        const grade = document.getElementById("tumorGrade").value;
+        const molecular = document.getElementById("molecularClass").value;
+        const menopausal = document.getElementById("menopausalStatus").value;
+        const lvi = document.getElementById("lymphovascular").checked;
+        const myoinvasion = document.getElementById("myometrial").checked;
+        const fertility = document.getElementById("fertility").checked;
+
+        let treatment = [];
+        let followUp = [];
+        let recommendations = [];
+
+        // Arbre décisionnel selon ESMO 2023
+        if(fertility && stage === "IA" && grade === "1") {
+          treatment.push("Traitement conservateur : Progestatifs + surveillance rapprochée");
+          treatment.push("Hystéroscopie de contrôle trimestrielle");
+        } else {
+          treatment.push("Hystérectomie totale avec annexectomie bilatérale");
+          
+          if(stage >= "IB" || lvi || grade === "3") {
+            treatment.push("Lymphadénectomie pelvienne ± para-aortique");
+          }
+          
+          if(stage >= "II") {
+            treatment.push("Radiothérapie pelvienne");
+          }
+          
+          if(stage >= "III" || molecular === "p53abn") {
+            treatment.push("Chimiothérapie adjuvante (Carboplatine/Paclitaxel)");
+          }
+        }
+
+        // Gestion selon profil moléculaire
+        switch(molecular) {
+          case "POLE":
+            recommendations.push("Risque faible - possible désescalade thérapeutique");
+            break;
+          case "MMRd":
+            recommendations.push("Immunothérapie à considérer (Dostarlimab)");
+            break;
+          case "p53abn":
+            recommendations.push("Risque élevé - traitement agressif nécessaire");
+            break;
+        }
+
+        // Suivi
+        followUp.push("Examen clinique trimestriel pendant 2 ans puis semestriel");
+        followUp.push("Échographie pelvienne + dosage CA125 annuel");
+        if(molecular === "MMRd") followUp.push("Dépistage syndrome Lynch");
+
+        const report = `Plan de Prise en Charge - Cancer de l'Endomètre\n\n
+Caractéristiques:
+- Âge: ${age} ans | Statut: ${menopausal}
+- Type: ${histology} | Grade: ${grade}
+- Stade: ${stage} | Classification: ${molecular}
+
+Traitements Proposés:
+- ${treatment.join('\n- ')}
+
+Recommandations Spécifiques:
+${recommendations.join('\n')}
+
+Protocole de Suivi:
+- ${followUp.join('\n- ')}
+
+[Selon recommandations ESMO 2023 et NCCN 2024]`;
+
+        document.getElementById("resultEndometrial").innerHTML = `<pre>${report}</pre>`;
+      });
+    })();
+  </script>
+  
+  <!-- Module : Ménopause -->
+  <div id="moduleMenopause" class="module">
+    <h2>Évaluation de la Ménopause</h2>
+    <form id="formMenopause">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="menoAge">Âge :</label>
+        <input type="number" id="menoAge" required>
+        
+        <label for="menoWeight">Poids (kg) :</label>
+        <input type="number" id="menoWeight" required oninput="updateBMI('menoWeight','menoHeight','menoBMI')">
+        
+        <label for="menoHeight">Taille (cm) :</label>
+        <input type="number" id="menoHeight" required oninput="updateBMI('menoWeight','menoHeight','menoBMI')">
+        
+        <label for="menoBMI">IMC :</label>
+        <input type="number" id="menoBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Évaluation de la Ménopause</legend>
+        <label for="menoAgeOnset">Âge de début de la ménopause :</label>
+        <input type="number" id="menoAgeOnset" placeholder="ex: 50">
+        
+        <label>Symptômes (cochez ceux présents) :</label>
+        <label><input type="checkbox" id="hotFlashes"> Bouffées de chaleur</label>
+        <label><input type="checkbox" id="nightSweats"> Sueurs nocturnes</label>
+        <label><input type="checkbox" id="sleepDisturbances"> Troubles du sommeil</label>
+        <label><input type="checkbox" id="moodChanges"> Changements d'humeur</label>
+        <label><input type="checkbox" id="vaginalDryness"> Sécheresse vaginale</label>
+        
+        <label for="otherSymptoms">Autres symptômes :</label>
+        <textarea id="otherSymptoms" rows="2"></textarea>
+        
+        <label for="hrtUsage">Utilisation d'HRT :</label>
+        <select id="hrtUsage">
+          <option value="">--Sélectionner--</option>
+          <option value="oui">Oui</option>
+          <option value="non">Non</option>
+          <option value="en_cours">En cours de discontinuation</option>
+        </select>
+        
+        <label for="fshLevel">Niveau de FSH (UI/L) :</label>
+        <input type="number" id="fshLevel" step="0.1">
+        
+        <label for="estradiolLevel">Niveau d'Estradiol (pg/mL) :</label>
+        <input type="number" id="estradiolLevel" step="0.1">
+      </fieldset>
+      
+      <button type="button" id="btnMenopause">Générer le Rapport</button>
+    </form>
+    <div id="resultMenopause" class="result"></div>
+  </div>
+  <!-- Script isolé pour le module Ménopause -->
+  <script>
+    (function(){
+      document.getElementById("btnMenopause").addEventListener("click", function(){
+         var age = document.getElementById("menoAge").value;
+         var weight = document.getElementById("menoWeight").value;
+         var height = document.getElementById("menoHeight").value;
+         var bmi = document.getElementById("menoBMI").value;
+         var ageOnset = document.getElementById("menoAgeOnset").value;
+         
+         var symptoms = [];
+         if(document.getElementById("hotFlashes").checked) symptoms.push("Bouffées de chaleur");
+         if(document.getElementById("nightSweats").checked) symptoms.push("Sueurs nocturnes");
+         if(document.getElementById("sleepDisturbances").checked) symptoms.push("Troubles du sommeil");
+         if(document.getElementById("moodChanges").checked) symptoms.push("Changements d'humeur");
+         if(document.getElementById("vaginalDryness").checked) symptoms.push("Sécheresse vaginale");
+         
+         var otherSymptoms = document.getElementById("otherSymptoms").value;
+         var hrtUsage = document.getElementById("hrtUsage").value;
+         var fshLevel = document.getElementById("fshLevel").value;
+         var estradiolLevel = document.getElementById("estradiolLevel").value;
+         
+         var report = "Rapport d'Évaluation de la Ménopause\n\n" +
+                      "Informations Générales:\n" +
+                      "Âge : " + age + " ans\n" +
+                      "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                      "Évaluation de la Ménopause:\n" +
+                      "Âge de début de la ménopause : " + (ageOnset || "Non précisé") + "\n" +
+                      "Symptômes : " + (symptoms.length ? symptoms.join(", ") : "Aucun") +
+                      (otherSymptoms ? " | Autres: " + otherSymptoms : "") + "\n" +
+                      "Utilisation d'HRT : " + (hrtUsage || "Non précisé") + "\n" +
+                      "Niveau de FSH : " + (fshLevel || "Non renseigné") + " UI/L\n" +
+                      "Niveau d'Estradiol : " + (estradiolLevel || "Non renseigné") + " pg/mL\n" +
+                      "\n[Basé sur les recommandations cliniques actuelles]";
+         document.getElementById("resultMenopause").innerHTML = "<pre>" + report + "</pre>";
+      });
+    })();
+  </script>
+  
+  <footer>
+    <p style="font-size: 0.9em;">Outils innovants et aides personnalisées pour la gynécologie &copy; 2025. Tous droits réservés. Conception et développement par Dr KADA.</p>
+    <p style="font-size: 0.9em;">Ce document est fourni à titre informatif.</p>
+  </footer>
+</body>
+</html>
