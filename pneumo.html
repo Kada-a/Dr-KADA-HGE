@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>KADAWeb P</title>
+ 
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header, footer {
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    nav button {
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background-color: #003f7f;
+    }
+    .module {
+      display: none;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #c3d8f0;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .module h2 {
+      color: #00539C;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eef;
+      border-radius: 4px;
+    }
+    /* Styles pour la connexion/inscription */
+    #loginContainer, #registerContainer {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    form > div {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 15px;
+      background: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #003f7f;
+    }
+    .hidden { display: none; }
+  </style>
+  	<style>
+    .module {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .selection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 25px;
+    }
+    .input-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+    .recommend-btn {
+      background: #2c3e50;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+      margin: 15px 0;
+    }
+    .recommend-btn:hover {
+      background: #34495e;
+    }
+    .protocol-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    .protocol-card h4 {
+      color: #2980b9;
+      margin: 0 0 10px 0;
+      font-size: 1.4em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f6f6;
+    }
+    .effets {
+      background: #fdebd0;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+    .surveillance {
+      background: #d5f5e3;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+    .premed {
+      color: #16a085;
+      padding: 10px;
+      background-color: #e8f6f3;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  
+<script>
+    // Fonction pour afficher le module sélectionné et masquer les autres
+    function showModule(moduleId) {
+      var modules = document.getElementsByClassName('module');
+      for (var i = 0; i < modules.length; i++) {
+        modules[i].style.display = 'none';
+      }
+      document.getElementById(moduleId).style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    
+  </script>
+  <header>
+ <footer>	
+      <p style="font-size: 0.9em; text-align: center;">Outils innovant et aides personnalisées pour la pneumologie 2025 Tous droits réservés.</p>
+	<p style="font-size: 0.9em; text-align: center;">Si vous trouvez ce travail intéressant, ou si vous avez des remarques ou suggestions de corrections, je reste à votre entière disposition. contact@kadawebhge.fr</a></p>	
+	<p style="font-size: 0.9em; text-align: center;">Disclaimer : Ce document est fourni à titre informatif.</p>
+    </footer>    
+    
+  </header>
+  
+  <!-- Barre de Navigation -->
+  <nav>
+    <button onclick="showModule('moduleSCLC')">Cancer Bronchique à Petites Cellules</button>
+    <button onclick="showModule('moduleCBNPC')">Cancer Bronchique Non à Petites Cellules</button>
+	<button onclick="showModule('moduleCNBGC')">CNE Bronchiques à Grandes Cellules</button>
+    <button onclick="showModule('moduleMP')">Mésothéliome pleural</button>
+    <button onclick="showModule('')">vide</button>
+    
+  </nav>
+
+<div id="moduleMP" class="module">
+  <h2>Mésothéliome pleural</h2>
+  <form data-module-form="mp">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="mp_histologie">Sous-type histologique :</label>
+        <select id="mp_histologie" required>
+          <option value="">--Sélectionner--</option>
+          <option value="epithelioid">Epithelioïde</option>
+          <option value="biphasique">Biphasique</option>
+          <option value="sarcomatoide">Sarcomatoïde</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="mp_stage">Stade (IMIG/TNM modifié) :</label>
+        <select id="mp_stage" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I</option>
+          <option value="II">II</option>
+          <option value="III">III</option>
+          <option value="IV">IV</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="mp_ps">Performance Status (PS) :</label>
+        <select id="mp_ps" required>
+          <option value="">--Sélectionner--</option>
+          <option value="0">PS 0</option>
+          <option value="1">PS 1</option>
+          <option value="2">PS 2</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 2 : Options Thérapeutiques -->
+    <section class="form-section">
+      <h3>Options Thérapeutiques</h3>
+      <div class="input-group">
+        <label for="mp_resceabilite">Resécabilité :</label>
+        <select id="mp_resceabilite" required>
+          <option value="">--Sélectionner--</option>
+          <option value="resceable">Resécable</option>
+          <option value="nonresceable">Non résécable</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="mp_pdl1">Expression PD-L1 (TPS) :</label>
+        <select id="mp_pdl1" required>
+          <option value="">--Sélectionner--</option>
+          <option value="<1%">&lt;1%</option>
+          <option value="1-49%">1-49%</option>
+          <option value="≥50%">≥50%</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 3 : Paramètres Complémentaires -->
+    <section class="form-section">
+      <h3>Paramètres Complémentaires</h3>
+      <div class="input-group">
+        <label for="mp_comorbidites">Comorbidités :</label>
+        <select id="mp_comorbidites" required>
+          <option value="">--Sélectionner--</option>
+          <option value="bpcop">BPCO</option>
+          <option value="cardio">Cardiopathie</option>
+          <option value="diabete">Diabète</option>
+        </select>
+      </div>
+    </section>
+
+    <button id="generateRecommendationsMP" type="button">Générer les recommandations</button>
+  </form>
+  <div id="resultMP" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'mp';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultMP',
+        button: '#generateRecommendationsMP'
+      };
+
+      function init() {
+        document.querySelector(selectors.button)
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          histologie: document.getElementById('mp_histologie').value,
+          stage: document.getElementById('mp_stage').value,
+          ps: document.getElementById('mp_ps').value,
+          resceabilite: document.getElementById('mp_resceabilite').value,
+          pdl1: document.getElementById('mp_pdl1').value,
+          comorbidites: document.getElementById('mp_comorbidites').value
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+
+        // Pour les cas résécables
+        if (data.resceabilite === 'resceable') {
+          if (data.histologie === 'epithelioid' && (data.stage === 'I' || data.stage === 'II')) {
+            treatment += `<p>➔ Chirurgie (pleurectomie-décortication ou pneumonectomie extrapleurale) associée à une chimiothérapie néoadjuvante/adjuvante.</p>`;
+            treatment += `<p>➔ Approche multimodale incluant, selon avis multidisciplinaire, une radiothérapie complémentaire.</p>`;
+          } else {
+            treatment += `<p>➔ Pour les formes biphasique ou sarcomatoïde ou en stade avancé, la décision chirurgicale doit être discutée en réunion de concertation multidisciplinaire.</p>`;
+          }
+        }
+
+        // Pour les cas non résécables
+        if (data.resceabilite === 'nonresceable') {
+          if (data.ps === '0' || data.ps === '1') {
+            treatment += `<p>➔ Chimiothérapie de première ligne avec pemétrésate + cisplatine/carboplatine est recommandée.</p>`;
+            if (data.pdl1 === '≥50%') {
+              treatment += `<p>➔ Considérer l'immunothérapie (nivolumab ou pembrolizumab) chez certains patients sélectionnés.</p>`;
+            }
+          }
+          if (data.ps === '2') {
+            treatment += `<p>➔ Une approche palliative et des soins de support sont à envisager.</p>`;
+          }
+        }
+
+        // Prise en compte des comorbidités
+        if (data.comorbidites === 'bpcop') {
+          treatment += `<p>➔ La présence d'une BPCO sévère doit être prise en compte lors de la planification thérapeutique.</p>`;
+        }
+
+        // Surveillance
+        treatment += `<h4>Surveillance :</h4>`;
+        treatment += `<p>➔ Réaliser des TDM tous les 3 à 4 mois.</p>`;
+        treatment += `<p>➔ Évaluer la réponse selon les critères RECIST modifiés pour le mésothéliome.</p>`;
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.histologie && data.stage && data.ps && data.resceabilite &&
+               data.pdl1 && data.comorbidites;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+
+
+
+<div id="moduleCNBGC" class="module">
+  <h2>Carcinomes Neuroendocrines Bronchiques à Grandes Cellules</h2>
+  <form data-module-form="cnbgc">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="cnbgc_stade">Stade TNM 8ème édition :</label>
+        <select id="cnbgc_stade" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I (T1-2 N0)</option>
+          <option value="II">II (T1-2 N1, T3 N0)</option>
+          <option value="IIIA">IIIA (T1-3 N2)</option>
+          <option value="IIIB">IIIB (T3-4 N3)</option>
+          <option value="IV">IV (M1a/b)</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="cnbgc_ps">Performance Status (PS) :</label>
+        <select id="cnbgc_ps" required>
+          <option value="">--Sélectionner--</option>
+          <option value="0">PS 0</option>
+          <option value="1">PS 1</option>
+          <option value="2">PS 2</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="cnbgc_combiné">Composante NSCLC associée :</label>
+        <select id="cnbgc_combiné" required>
+          <option value="">--Sélectionner--</option>
+          <option value="oui">Oui</option>
+          <option value="non">Non</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 2 : Biomarqueurs -->
+    <section class="form-section">
+      <h3>Biomarqueurs</h3>
+      <div class="input-group">
+        <label for="cnbgc_pdl1">Expression PD-L1 (TPS) :</label>
+        <select id="cnbgc_pdl1" required>
+          <option value="">--Sélectionner--</option>
+          <option value="<1%">&lt;1%</option>
+          <option value="1-49%">1-49%</option>
+          <option value="≥50%">≥50%</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 3 : Options Thérapeutiques et Paramètres Complémentaires -->
+    <section class="form-section">
+      <h3>Paramètres Complémentaires</h3>
+      <div class="input-group">
+        <label for="cnbgc_metastases">Métastases :</label>
+        <select id="cnbgc_metastases" required>
+          <option value="">--Sélectionner--</option>
+          <option value="cerebrales">Métastases cérébrales</option>
+          <option value="osseuses">Métastases osseuses</option>
+          <option value="hepatiques">Métastases hépatiques</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="cnbgc_comorbidites">Comorbidités :</label>
+        <select id="cnbgc_comorbidites" required>
+          <option value="">--Sélectionner--</option>
+          <option value="BPCO">BPCO</option>
+          <option value="cardio">Cardiopathie</option>
+          <option value="diabete">Diabète</option>
+        </select>
+      </div>
+    </section>
+
+    <button id="generateCNBGC" type="button">Générer les recommandations</button>
+  </form>
+  <div id="resultCNBGC" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'cnbgc';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultCNBGC',
+        button: '#generateCNBGC'
+      };
+
+      function init() {
+        document.querySelector(selectors.button)
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          stade: document.getElementById('cnbgc_stade').value,
+          ps: document.getElementById('cnbgc_ps').value,
+          combine: document.getElementById('cnbgc_combiné').value,
+          pdl1: document.getElementById('cnbgc_pdl1').value,
+          metastases: document.getElementById('cnbgc_metastases').value,
+          comorbidites: document.getElementById('cnbgc_comorbidites').value
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+        
+        // Gestion des métastases cérébrales
+        if (data.metastases === 'cerebrales') {
+          treatment += '<p>➔ Radiothérapie encéphalique en conditions stéréotaxiques</p>';
+        }
+
+        // Adaptation selon comorbidités
+        if (data.comorbidites === 'BPCO') {
+          treatment += '<p>➔ Éviter le pembrolizumab en cas de BPCO sévère</p>';
+        }
+
+        // Traitement en fonction du stade et de la présence d'une composante NSCLC
+        if (['I', 'II'].includes(data.stade)) {
+          treatment += '<p>➔ Chirurgie (lobectomie + curage ganglionnaire)</p>';
+          treatment += '<p>➔ Chimiothérapie adjuvante en fonction des facteurs de récidive</p>';
+        } else if (data.stade === 'IIIA') {
+          treatment += '<p>➔ Approche multimodale avec chirurgie et chimiothérapie et/ou radiothérapie</p>';
+          if (data.pdl1 === '≥50%') {
+            treatment += '<p>➔ Considérer une consolidation par immunothérapie (Durvalumab) pendant 1 an</p>';
+          }
+        } else if (['IIIB', 'IV'].includes(data.stade)) {
+          treatment += '<p>➔ Chimiothérapie à base de cisplatine/étoposide</p>';
+          if (data.pdl1 === '≥50%') {
+            treatment += '<p>➔ Envisager une immunothérapie (Pembrolizumab) en première ligne</p>';
+          }
+        }
+
+        // Option en cas de composante NSCLC associée
+        if (data.combine === 'oui') {
+          treatment += '<p>➔ Adopter également les recommandations de prise en charge du NSCLC</p>';
+        }
+
+        // Surveillance
+        treatment += '<h4>Surveillance :</h4>';
+        treatment += '<p>➔ TDM thoraco-abdominale tous les 3-6 mois</p>';
+        treatment += '<p>➔ Évaluation de la réponse selon RECIST 1.1</p>';
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.stade && data.ps && data.combine && data.pdl1 &&
+               data.metastases && data.comorbidites;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = '<div class="recommendation">' + content + '</div>';
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+
+
+<!-- Module : Cancer Bronchique Non à Petites Cellules -->
+<div id="moduleCBNPC" class="module">
+  <h2>Cancer Bronchique Non à Petites Cellules</h2>
+  <form data-module-form="cbnpc">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="cnp_histologie">Type histologique :</label>
+        <select id="cnp_histologie" required>
+          <option value="">--Sélectionner--</option>
+          <option value="adeno">Adénocarcinome</option>
+          <option value="squameux">Carcinome épidermoïde</option>
+          <option value="large">Carcinome à grandes cellules</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="cnp_stade">Stade TNM 8ème édition :</label>
+        <select id="cnp_stade" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I (T1-2a N0)</option>
+          <option value="II">II (T1-2b N1, T3 N0)</option>
+          <option value="IIIA">IIIA (T1-3 N2)</option>
+          <option value="IIIB">IIIB (T3-4 N3)</option>
+          <option value="IV">IV (M1a/b)</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="cnp_ps">Performance Status (PS) :</label>
+        <select id="cnp_ps" required>
+          <option value="">--Sélectionner--</option>
+          <option value="0">PS 0</option>
+          <option value="1">PS 1</option>
+          <option value="2">PS 2</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 2 : Biomarqueurs Moléculaires -->
+    <section class="form-section">
+      <h3>Biomarqueurs</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="cnp_egfr">Mutation EGFR</label>
+        <label><input type="checkbox" id="cnp_alk">Réarrangement ALK</label>
+        <label><input type="checkbox" id="cnp_ros1">Réarrangement ROS1</label>
+      </div>
+      
+      <div class="input-group">
+        <label for="cnp_pdl1">Expression PD-L1 (TPS) :</label>
+        <select id="cnp_pdl1" required>
+          <option value="">--Sélectionner--</option>
+          <option value="<1%">&lt;1%</option>
+          <option value="1-49%">1-49%</option>
+          <option value="≥50%">≥50%</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 3 : Options Thérapeutiques -->
+    <section class="form-section">
+      <h3>Paramètres Complémentaires</h3>
+      <div class="input-group">
+        <label for="cnp_metastases">Métastases :</label>
+        <select id="cnp_metastases" required>
+          <option value="">--Sélectionner--</option>
+          <option value="cerebrales">Métastases cérébrales</option>
+          <option value="osseuses">Métastases osseuses</option>
+          <option value="hepatiques">Métastases hépatiques</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="cnp_comorbidites">Comorbidités :</label>
+        <select id="cnp_comorbidites" required>
+          <option value="">--Sélectionner--</option>
+          <option value="BPCO">BPCO</option>
+          <option value="cardio">Cardiopathie</option>
+          <option value="diabete">Diabète</option>
+        </select>
+      </div>
+    </section>
+
+    <button id="generateRecommendations" type="button">Générer les recommandations</button>
+  </form>
+  <div id="resultCBNPC" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'cbnpc';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultCBNPC',
+        button: '#generateRecommendations'
+      };
+
+      function init() {
+        document.querySelector(selectors.button)
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          histo: document.getElementById('cnp_histologie').value,
+          stade: document.getElementById('cnp_stade').value,
+          ps: document.getElementById('cnp_ps').value,
+          biomarqueurs: {
+            egfr: document.getElementById('cnp_egfr').checked,
+            alk: document.getElementById('cnp_alk').checked,
+            ros1: document.getElementById('cnp_ros1').checked
+          },
+          pdl1: document.getElementById('cnp_pdl1').value,
+          metastases: document.getElementById('cnp_metastases').value,
+          comorbidites: document.getElementById('cnp_comorbidites').value
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+        
+        // Gestion des métastases cérébrales
+        if (data.metastases === 'cerebrales') {
+          treatment += `<p>➔ Radiothérapie encéphalique en conditions stéréotaxiques</p>`;
+        }
+
+        // Adaptation selon comorbidités
+        if (data.comorbidites === 'BPCO') {
+          treatment += `<p>➔ Éviter le pembrolizumab en cas de BPCO sévère</p>`;
+        }
+
+        // Stades précoces
+        if (['I', 'II'].includes(data.stade)) {
+          treatment += `<p>➔ Chirurgie lobectomie + curage ganglionnaire</p>`;
+        }
+        
+        // Stade III
+        if (data.stade === 'IIIA') {
+          treatment += `<p>➔ Radiochimiothérapie concomitante (cisplatine/étoposide)</p>`;
+          if (data.pdl1 === '≥50%') {
+            treatment += `<p>➔ Durvalumab en consolidation pendant 1 an</p>`;
+          }
+        }
+        
+        // Stade IV
+        if (data.stade === 'IV') {
+          if (data.biomarqueurs.egfr) {
+            treatment += `<p>➔ Inhibiteur de tyrosine kinase (Osimertinib)</p>`;
+          } else if (data.pdl1 === '≥50%') {
+            treatment += `<p>➔ Immunothérapie première ligne (Pembrolizumab)</p>`;
+          } else {
+            treatment += `<p>➔ Chimiothérapie à base de sels de platine</p>`;
+          }
+        }
+
+        // Surveillance
+        treatment += `<h4>Surveillance :</h4>`;
+        treatment += `<p>➔ TDM thoraco-abdominale tous les 3-6 mois</p>`;
+        treatment += `<p>➔ Évaluation de la réponse selon RECIST 1.1</p>`;
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.histo && data.stade && data.ps && data.pdl1 &&
+               data.metastases && data.comorbidites;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+
+</div>
+<!-- Module : Cancer Bronchique à Petites Cellules -->
+<div id="moduleSCLC" class="module">
+  <h2>Cancer Bronchique à Petites Cellules</h2>
+  <form data-module-form="sclc">
+    <!-- Section 1 : Stade et Évaluation Initiale -->
+    <section class="form-section">
+      <h3>Stadification</h3>
+      <div class="input-group">
+        <label for="sclc_stade">Classification VALG :</label>
+        <select id="sclc_stade" required>
+          <option value="">--Sélectionner--</option>
+          <option value="limite">Stade limité</option>
+          <option value="etendu">Stade étendu</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="sclc_ps">Performance Status (ECOG) :</label>
+        <select id="sclc_ps" required>
+          <option value="">--Sélectionner--</option>
+          <option value="0">0 : Actif sans restriction</option>
+          <option value="1">1 : Restriction légère</option>
+          <option value="2">2 : Autonome >50% temps éveillé</option>
+          <option value="3">3 : Alité >50% temps</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 2 : Facteurs Pronostiques -->
+    <section class="form-section">
+      <h3>Facteurs Pronostiques</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="sclc_met_cerebrales">Métastases cérébrales</label>
+        <label><input type="checkbox" id="sclc_syndrome_paraneoplasique">Syndrome paranéoplasique</label>
+        <label><input type="checkbox" id="sclc_ldh_elevee">LDH élevée</label>
+      </div>
+      
+      <div class="input-group">
+        <label for="sclc_reponse">Réponse initiale :</label>
+        <select id="sclc_reponse">
+          <option value="">--Sélectionner--</option>
+          <option value="rc">Réponse complète</option>
+          <option value="rp">Réponse partielle (>50%)</option>
+          <option value="sd">Maladie stable</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 3 : Options Thérapeutiques -->
+    <section class="form-section">
+      <h3>Traitement</h3>
+      <div class="input-group">
+        <label>Protocole de 1ère ligne :</label>
+        <div class="radio-group">
+          <label><input type="radio" name="sclc_traitement" value="EP">EP (Étoposide-Cisplatine)</label>
+          <label><input type="radio" name="sclc_traitement" value="EC">EC (Étoposide-Carboplatine)</label>
+          <label><input type="radio" name="sclc_traitement" value="immuno">Chimiothérapie + Atezolizumab</label>
+        </div>
+      </div>
+      
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="sclc_radiotherapie">Radiothérapie thoracique</label>
+        <label><input type="checkbox" id="sclc_pci">Irradiation prophylactique cérébrale (PCI)</label>
+      </div>
+    </section>
+
+    <button type="button">Générer le plan de traitement</button>
+  </form>
+  <div id="resultSCLC" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'sclc';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultSCLC'
+      };
+
+      function init() {
+        document.querySelector(selectors.form)
+          .querySelector('button')
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          stade: document.getElementById('sclc_stade').value,
+          ps: document.getElementById('sclc_ps').value,
+          met_cerebrales: document.getElementById('sclc_met_cerebrales').checked,
+          traitement: document.querySelector('input[name="sclc_traitement"]:checked')?.value,
+          pci: document.getElementById('sclc_pci').checked,
+          reponse: document.getElementById('sclc_reponse').value
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+        
+        // Stade limité
+        if(data.stade === 'limite') {
+          treatment += `<p>➔ Chimioradiothérapie concomitante (4-6 cycles EP/EC)</p>`;
+          treatment += `<p>➔ Radiothérapie thoracique (45 Gy en 30 fractions)</p>`;
+          if(Number(data.ps) < 2) {
+            treatment += `<p>➔ PCI (25 Gy en 10 fractions) si réponse ≥PR</p>`;
+          }
+        }
+        // Stade étendu
+        else {
+          treatment += `<p>➔ Chimiothérapie systémique (4-6 cycles EP/EC)</p>`;
+          if(data.traitement === 'immuno') {
+            treatment += `<p>➔ Maintenance par Atezolizumab si PS ≤2</p>`;
+          }
+          if(data.met_cerebrales) {
+            treatment += `<p>➔ Radiothérapie cérébrale (20 Gy en 5 fractions)</p>`;
+          }
+        }
+
+        // Gestion des récidives
+        treatment += `<h4>Deuxième ligne :</h4>`;
+        if(data.reponse === 'rc' && data.pci) {
+          treatment += `<p>➔ Topotecan IV ou oral</p>`;
+        } else {
+          treatment += `<p>➔ Réchallenge par platine si intervalle libre >6 mois</p>`;
+        }
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.stade && data.ps && data.traitement;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+
+
+
+
+  <footer>
+    <p style="font-size: 0.9em; text-align: center;" style="font-size: 0.9em;">Outils innovants et aides personnalisées pour la pneumologie.</p>
+    <p style="font-size: 0.9em; text-align: center;"Ce document est fourni à titre informatif.</p>
+  </footer>
+</body>
+</html>
