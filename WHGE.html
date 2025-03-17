@@ -8319,80 +8319,86 @@ function generateSIBOPlan() {
   </form>
 
   <div id="resultHPylori" class="recommendation-box"></div>
+<script>
+  function generateRecommendation() {
+    // Récupération des valeurs
+    const methode = document.getElementById('methode_diagnostic').value;
+    const resistance = document.querySelector('input[name="resistance"]:checked')?.value;
+    const echecs = parseInt(document.getElementById('echecs').value);
+    const insuffRenale = document.getElementById('insuffisance_renale').checked;
+    const allergiePenicillin = document.getElementById('allergie_penicillin').checked;
+    const olgaStage = document.getElementById('olga_stage').value;
+    const hasDysplasie = document.getElementById('dysplasie').checked;
 
-  <script>
-    function generateRecommendation() {
-      // Récupération des valeurs
-      const methode = document.getElementById('methode_diagnostic').value;
-      const resistance = document.querySelector('input[name="resistance"]:checked')?.value;
-      const echecs = parseInt(document.getElementById('echecs').value);
-      const insuffRenale = document.getElementById('insuffisance_renale').checked;
-      const allergiePenicillin = document.getElementById('allergie_penicillin').checked;
-      const olgaStage = document.getElementById('olga_stage').value;
-      const hasDysplasie = document.getElementById('dysplasie').checked;
-
-      let recommendation = '<h3>Stratégie thérapeutique 2024</h3>';
+    let recommendation = '<h3>Stratégie thérapeutique 2024</h3>';
+    
+    // Arbre décisionnel thérapeutique
+    recommendation += '<div class="treatment-plan">';
+    
+    if(echecs === 0) {
+      recommendation += '<div class="first-line">';
+      recommendation += '<h4>Première intention :</h4>';
       
-      // Arbre décisionnel thérapeutique
-      recommendation += '<div class="treatment-plan">';
+      if(!insuffRenale) {
+        recommendation += '<strong>Quadrithérapie bismuthée (Pylera®) 10 jours</strong><br>';
+        recommendation += '➤ 3 gélules/jour (4 prises quotidiennes)<br>';
+        recommendation += '• Alternative idéale en cas d\'allergie aux bêta-lactamines<br>';
+      } else {
+        recommendation += '<div class="alert-warning">Contre-indication Pylera® :<br>Alternative nécessaire (clairance <30 ml/min)</div>';
+      }
       
-      if(echecs === 0) {
-        recommendation += '<div class="first-line">';
-        recommendation += '<h4>Première intention :</h4>';
-        
-        if(!insuffRenale) {
-          recommendation += '<strong>Quadrithérapie bismuthée (Pylera®) 10 jours</strong><br>';
-          recommendation += '➤ 3 gélules/jour (4 prises quotidiennes)<br>';
-          recommendation += '• Alternative idéale en cas d\'allergie aux bêta-lactamines<br>';
-        } else {
-          recommendation += '<div class="alert-warning">Contre-indication Pylera® :<br>Alternative nécessaire (clairance <30 ml/min)</div>';
-        }
-        
-        recommendation += '<div class="alternative">';
-        recommendation += '<h5>Alternative si Pylera® indisponible ou contre indication:</h5>';
-        
-        if(allergiePenicillin) {
-          // Protocole spécifique allergie pénicilline
-          recommendation += 'Quadrithérapie adaptée 14 jours :<br>';
-          recommendation += '➤ Pantoprazole 40mg x2/j + ';
-          recommendation += 'Lévofloxacine 500mg x1/j + ';
-          recommendation += 'Clarithromycine 500mg x2/j + ';
-          recommendation += 'Métronidazole 500mg x2/j';
-        } else {
-          recommendation += 'Quadrithérapie concomitante 14 jours :<br>';
-          recommendation += '➤ Pantoprazole 40mg x2/j + ';
-          recommendation += 'Amoxicilline 1g x3/j + ';
-          recommendation += 'Clarithromycine 500mg x2/j + ';
-          recommendation += 'Métronidazole 500mg x2/j';
-        }
-        
-        recommendation += '</div></div>';
+      recommendation += '<div class="alternative">';
+      recommendation += '<h5>Alternative si Pylera® indisponible ou contre indication:</h5>';
+      
+      // Correction: si résistance à la clarithromycine, éviter la quadrithérapie concomitante incluant clarithromycine
+      if (resistance === 'clarithro') {
+        recommendation += 'Quadrithérapie alternative 14 jours (sans clarithromycine) :<br>';
+        recommendation += '➤ Pantoprazole 40mg x2/j + ';
+        recommendation += 'Amoxicilline 1g x3/j + ';
+        recommendation += 'Métronidazole 500mg x2/j + ';
+        recommendation += 'Tétracycline 500mg x4/j';
+      } else if(allergiePenicillin) {
+        recommendation += 'Quadrithérapie adaptée 14 jours :<br>';
+        recommendation += '➤ Pantoprazole 40mg x2/j + ';
+        recommendation += 'Lévofloxacine 500mg x1/j + ';
+        recommendation += 'Clarithromycine 500mg x2/j + ';
+        recommendation += 'Métronidazole 500mg x2/j';
       } else {
-        recommendation += '<div class="rescue-therapy">';
-        recommendation += '<h4>Traitement de rattrapage :</h4>';
-        recommendation += '➤ Quadrithérapie haute dose avec Rifabutine 300mg/j<br>';
-        recommendation += '➤ Avis obligatoire RCP GEFH<br>';
-        recommendation += '➤ Options expérimentales :<br>';
-        recommendation += '- Dual therapy rabéprazole/amoxicilline haute dose<br>';
-        recommendation += '- Nouveaux inhibiteurs de la pompe à protons (TAK-438)';
-        recommendation += '</div>';
+        recommendation += 'Quadrithérapie concomitante 14 jours :<br>';
+        recommendation += '➤ Pantoprazole 40mg x2/j + ';
+        recommendation += 'Amoxicilline 1g x3/j + ';
+        recommendation += 'Clarithromycine 500mg x2/j + ';
+        recommendation += 'Métronidazole 500mg x2/j';
       }
-
-      // Surveillance
-      recommendation += '<div class="follow-up">';
-      recommendation += '<h4>Surveillance :</h4>';
-      recommendation += '<ul>';
-      if(olgaStage === 'III' || olgaStage === 'IV') {
-        recommendation += '<li>Endoscopie haute définition avec chromoendoscopie annuelle</li>';
-        recommendation += `<li>Biopsies cartographiques (protocol Seattle modifié) : ${hasDysplasie ? '12 biopsies' : '8 biopsies'}</li>`;
-      } else {
-        recommendation += '<li>Contrôle par test respiratoire 8 semaines post-traitement</li>';
-      }
-      recommendation += '</ul></div>';
-
-      document.getElementById('resultHPylori').innerHTML = recommendation;
+      
+      recommendation += '</div></div>';
+    } else {
+      recommendation += '<div class="rescue-therapy">';
+      recommendation += '<h4>Traitement de rattrapage :</h4>';
+      recommendation += '➤ Quadrithérapie haute dose avec Rifabutine 300mg/j<br>';
+      recommendation += '➤ Avis obligatoire RCP GEFH<br>';
+      recommendation += '➤ Options expérimentales :<br>';
+      recommendation += '- Dual therapy rabéprazole/amoxicilline haute dose<br>';
+      recommendation += '- Nouveaux inhibiteurs de la pompe à protons (TAK-438)';
+      recommendation += '</div>';
     }
-  </script>
+
+    // Surveillance
+    recommendation += '<div class="follow-up">';
+    recommendation += '<h4>Surveillance :</h4>';
+    recommendation += '<ul>';
+    if(olgaStage === 'III' || olgaStage === 'IV') {
+      recommendation += '<li>Endoscopie haute définition avec chromoendoscopie annuelle</li>';
+      recommendation += `<li>Biopsies cartographiques (protocol Seattle modifié) : ${hasDysplasie ? '12 biopsies' : '8 biopsies'}</li>`;
+    } else {
+      recommendation += '<li>Contrôle par test respiratoire 8 semaines post-traitement</li>';
+    }
+    recommendation += '</ul></div>';
+
+    document.getElementById('resultHPylori').innerHTML = recommendation;
+  }
+</script>
+
 
   <style>
     .module {
