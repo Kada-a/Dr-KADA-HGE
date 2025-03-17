@@ -8350,8 +8350,10 @@ function generateSIBOPlan() {
       recommendation += '<div class="alternative">';
       recommendation += '<h5>Alternative si Pylera® indisponible ou contre indication:</h5>';
       
-      // Correction: si résistance à la clarithromycine, éviter la quadrithérapie concomitante incluant clarithromycine
-      if (resistance === 'clarithro') {
+      // Nouvelle condition : en cas d'allergie et de résistance à la clarithromycine
+      if (resistance === 'clarithro' && allergiePenicillin) {
+        recommendation += 'Traitement orienté par l’évaluation de la sensibilité aux antibiotiques.';
+      } else if (resistance === 'clarithro') {
         recommendation += 'Quadrithérapie alternative 14 jours (sans clarithromycine) :<br>';
         recommendation += '➤ Pantoprazole 40mg x2/j + ';
         recommendation += 'Amoxicilline 1g x3/j + ';
@@ -8398,6 +8400,7 @@ function generateSIBOPlan() {
     document.getElementById('resultHPylori').innerHTML = recommendation;
   }
 </script>
+
 
 
   <style>
