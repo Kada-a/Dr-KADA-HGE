@@ -146,6 +146,7 @@
     <button onclick="showModule('moduleColopathie')">Colopathie fonctionnelle</button>
     <button onclick="showModule('moduleCoeliaque')">Maladie Cœliaque</button>
     <button onclick="showModule('moduleMICI')">MICI</button>
+    <button onclick="showModule('moduleColiteAigueGrave')">Colite Aigue Grave</button> 
     <button onclick="showModule('moduleColiteUlcerueuse')">colite ulcéreuse</button>
     <button onclick="showModule('moduleColiteMicroscopique')">Colites Microcytaires</button>
     <button onclick="showModule('moduleSIBO')">SIBO</button>	
@@ -7913,7 +7914,259 @@ function generateColitePlan() {
       }
     }
   </script>
+		
+<!-- Module: Colite aiguë grave : Diagnostic et Prise en charge  -->
+<div id="moduleColiteAigueGrave" class="module">
+  <h3>Colite aiguë grave : Diagnostic et Prise en charge (FMC Gastro 2024)</h3>
+  <form id="formColiteAigueGrave">
+    
+    <!-- Section 1 : Critères de gravité (Truelove & Witts modifiés) -->
+    <section class="form-section">
+      <h3>Critères de gravité (Truelove & Witts modifiés)</h3>
+      <label for="cag_selles">Nombre de selles sanglantes/jour :</label>
+      <input type="number" id="cag_selles" min="0" required>
+      
+      <label for="cag_fc">Fréquence cardiaque (bpm) :</label>
+      <input type="number" id="cag_fc" required>
+      
+      <label for="cag_temp">Température (°C) :</label>
+      <input type="number" id="cag_temp" step="0.1" required>
+      
+      <label for="cag_hb">Hémoglobine (g/dL) :</label>
+      <input type="number" id="cag_hb" step="0.1" required>
+      
+      <label for="cag_crp">CRP (mg/L) :</label>
+      <input type="number" id="cag_crp" required>
+    </section>
+
+    <!-- Section 2 : Facteurs de risque associés -->
+    <section class="form-section">
+      <h3>Facteurs de risque associés</h3>
+      <label>
+        <input type="checkbox" id="cag_age_risk">
+        Âge > 50 ans
+      </label>
+      <label>
+        <input type="checkbox" id="cag_toxicite">
+        Signes de toxicité systémique
+      </label>
+      <label>
+        <input type="checkbox" id="cag_dilatation">
+        Dilatation colique à l'imagerie
+      </label>
+    </section>
+
+    <!-- Section 3 : Bilan complémentaire -->
+    <section class="form-section">
+      <h3>Bilan complémentaire</h3>
+      <label for="cag_ct">Radiologie (CT abdominal) :</label>
+      <select id="cag_ct">
+        <option value="normal">Normal</option>
+        <option value="epaisissement">Épaississement pariétal</option>
+        <option value="dilatation">Dilatation colique</option>
+      </select>
+      
+      <label for="cag_endoscopie">Endoscopie :</label>
+      <select id="cag_endoscopie">
+        <option value="non_realisee">Non réalisée</option>
+        <option value="ulcerations">Ulcerations profondes</option>
+        <option value="mucosa_denudee">Mucosa dénudée</option>
+      </select>
+    </section>
+
+    <!-- Section 4 : Traitements initiés -->
+    <section class="form-section">
+      <h3>Traitements initiés</h3>
+      <label>
+        <input type="checkbox" id="cag_steroides">
+        Corticoïdes IV (Hydrocortisone 400 mg/j ou Methylprednisolone 1 mg/kg/j)
+      </label>
+      <label>
+        <input type="checkbox" id="cag_biotherapie">
+        Biothérapie de rattrapage (Anti-TNFα / Vedolizumab)
+      </label>
+      <label>
+        <input type="checkbox" id="cag_antibio">
+        Antibiothérapie (si suspicion d'infection)
+      </label>
+    </section>
+
+    <!-- Section 5 : Commentaires globaux -->
+    <section class="form-section">
+      <h3>Commentaires globaux</h3>
+      <textarea id="cag_global_comments" rows="3" placeholder="Vos remarques générales sur la colite aiguë grave..."></textarea>
+    </section>
+    
+    <button type="button" onclick="generateColiteAiguePlan()">Générer la conduite à tenir</button>
+  </form>
   
+  <div id="resultColiteAigue" class="result"></div>
+</div>
+
+<script>
+function generateColiteAiguePlan() {
+  // Récupération des critères de gravité
+  const selles = parseInt(document.getElementById('cag_selles').value) || 0;
+  const fc = parseInt(document.getElementById('cag_fc').value) || 0;
+  const temp = parseFloat(document.getElementById('cag_temp').value) || 0;
+  const hb = parseFloat(document.getElementById('cag_hb').value) || 0;
+  const crp = parseInt(document.getElementById('cag_crp').value) || 0;
+  
+  // Récupération des facteurs de risque
+  const ageRisk = document.getElementById('cag_age_risk').checked;
+  const toxicite = document.getElementById('cag_toxicite').checked;
+  const dilatation = document.getElementById('cag_dilatation').checked;
+  
+  // Récupération du bilan complémentaire
+  const ctResult = document.getElementById('cag_ct').value;
+  const endoscopyResult = document.getElementById('cag_endoscopie').value;
+  
+  // Récupération des traitements initiés
+  const steroids = document.getElementById('cag_steroides').checked;
+  const biotherapie = document.getElementById('cag_biotherapie').checked;
+  const antibio = document.getElementById('cag_antibio').checked;
+  
+  // Récupération des commentaires globaux
+  const globalComments = document.getElementById('cag_global_comments').value.trim() || "Aucun commentaire supplémentaire.";
+  
+  // Détermination de la sévérité (critères simplifiés)
+  let severity = "Modérée";
+  if (selles >= 6 || fc > 90 || temp > 37.8 || hb < 10.5 || crp > 30) {
+    severity = "Grave";
+  }
+  
+  // Construction du rapport
+  let report = `<h4>Conduite à tenir </h4>`;
+  report += `<p><strong>Critères de gravité :</strong><br>
+              Selles sanglantes/jour : ${selles}<br>
+              Fréquence cardiaque : ${fc} bpm<br>
+              Température : ${temp} °C<br>
+              Hémoglobine : ${hb} g/dL<br>
+              CRP : ${crp} mg/L</p>`;
+  
+  report += `<p><strong>Facteurs de risque associés :</strong><br>`;
+  if (ageRisk) report += "Âge > 50 ans<br>";
+  if (toxicite) report += "Signes de toxicité systémique<br>";
+  if (dilatation) report += "Dilatation colique à l'imagerie<br>";
+  report += `</p>`;
+  
+  report += `<p><strong>Bilan complémentaire :</strong><br>
+             Radiologie (CT abdominal) : ${ctResult}<br>
+             Endoscopie : ${endoscopyResult}</p>`;
+  
+  // Proposition de prise en charge
+  let planText = `<h4>Proposition de prise en charge :</h4>`;
+  if (severity === "Grave") {
+    planText += `<p><strong>Prise en charge hospitalière obligatoire</strong></p>
+                  <ul>
+                    <li>Administration immédiate de corticoïdes IV à dose forte (ex. Hydrocortisone 400 mg/j ou équivalent).</li>
+                    <li>Monitorage strict avec bilans biologiques (2 fois/jour) et contrôle radiologique (Rx abdominale quotidienne).</li>
+                    <li>Évaluation de la réponse à J3 :
+                        <ul>
+                          <li>Si amélioration : relais en voie per os dès J3.</li>
+                          <li>Si absence d'amélioration : envisager la mise en place d'une biothérapie (ex. Anti-TNFα) ou l'administration de ciclosporine.</li>
+                        </ul>
+                    </li>
+                    <li>Mesures de support : correction hydroélectrolytique, nutrition parentérale si nécessaire, thromboprophylaxie.</li>
+                  </ul>`;
+    
+    if (dilatation) {
+      planText += `<p class="warning"><strong>Attention :</strong> Dilatation colique détectée (> seuil critique).<br>
+                     - Mettre en place une sonde de décompression rectale.<br>
+                     - Positionnement latéral de sécurité recommandé.<br>
+                     - En cas de perforation, intervention chirurgicale en urgence.</p>`;
+    }
+  } else {
+    planText += `<p><strong>Prise en charge ambulatoire possible</strong> si le patient est stable et compliant.</p>
+                 <ul>
+                   <li>Administration de corticoïdes per os (ex. Prednisone 1 mg/kg/j).</li>
+                   <li>Surveillance rapprochée avec contact quotidien.</li>
+                   <li>Régime sans résidu strict.</li>
+                   <li>Arrêt des anti-inflammatoires et antidiarrhéiques.</li>
+                 </ul>`;
+  }
+  
+  // Examens complémentaires à réaliser
+  let examText = `<h4>Examens complémentaires à réaliser :</h4>
+                  <ul>
+                    <li>Bilan infectieux complet (ECBU, hémocultures, PCR pour C. difficile).</li>
+                    <li>Dosage quotidien de la CRP.</li>
+                    <li>Surveillance radiologique (CT ou IRM) en cas d'aggravation clinique.</li>
+                  </ul>`;
+  
+  // Ordonnance type et conseils
+  let ordonnance = `<h4>Ordonnance type et Conseils :</h4>
+                    <ul>
+                      <li>Corticoïdes IV (ex. Hydrocortisone 400 mg/j ou Methylprednisolone 1 mg/kg/j) avec ajustement selon la réponse.</li>
+                      <li>Antibiothérapie à initier en cas de suspicion d'infection secondaire.</li>
+                      <li>Soins de support : hydratation, nutrition (voie IV ou entérale) adaptée.</li>
+                      <li>Surveillance clinique rapprochée (contrôle quotidien des paramètres vitaux et bilans biologiques).</li>
+                    </ul>`;
+  
+  // Assemblage final du rapport
+  const finalReport = report + planText + examText + ordonnance +
+                      `<br><strong>Commentaires Globaux :</strong><br>${globalComments}`;
+  
+  document.getElementById('resultColiteAigue').innerHTML = finalReport;
+}
+</script>
+
+<style>
+  /* Styles pour le module */
+  .module {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .form-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #00539C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #003f7f;
+  }
+  .result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eef;
+    border-radius: 5px;
+  }
+  .warning {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 3px;
+  }
+</style>  
   <!-- Module: Gestion de la colite microscopique -->
 <div id="moduleColiteMicroscopique" class="module">
   <h3>Gestion de la colite microscopique</h3>
@@ -7989,7 +8242,7 @@ function generateMicroscopicColitisPlan() {
   // Algorithme simple basé sur la fréquence et l'urgence des symptômes
   if(parseInt(frequency) >= 4 || urgency === "moderate" || urgency === "severe") {
     planText += "• Prescription de budésonide (ex. 9 mg/jour pendant 8 semaines, avec réduction progressive) pour prise en charge active.<br>";
-    planText += "• Évaluation des facteurs déclenchants (ex. usage d'anti-inflammatoires, modifications alimentaires).<br>";
+    planText += "• Évaluation des facteurs déclenchants (ex. usage AINS, les IPP, et la fluoxétine).<br>";
   } else {
     planText += "• Gestion conservatrice avec modifications alimentaires et, si nécessaire, loperamide.<br>";
   }
