@@ -114,89 +114,84 @@
       </div>
       <label>Autres antécédents : <input type="text" id="autresAntecedents"></label>
     </section>
-    <!-- Section : Constantes Vitales -->
-    <section class="form-section">
-      <h3>Constantes Vitales</h3>
-      <div class="input-group">
-        <label>Tension Artérielle (mmHg) : <input type="text" id="tension" placeholder="Ex : 120/80" required></label>
-        <label>Fréquence Cardiaque (bpm) : <input type="number" id="frequenceCardiaque" min="0" max="200" required></label>
-        <label>Température (°C) : <input type="number" id="temperature" step="0.1" min="30" max="45" required></label>
-        <label>Saturation en Oxygène (%) : <input type="number" id="saturation" min="0" max="100" required></label>
-      </div>
-    </section>
+<!-- Section : Signes Fonctionnels -->
+<section class="form-section" id="sectionSignes">
+  <h3>Signes Fonctionnels</h3>
+  <div class="grid-4">
+    <fieldset>
+      <legend>Cardio-vasculaire</legend>
+      <label><input type="checkbox" id="douleurThoracique"> Douleur thoracique</label>
+      <label><input type="checkbox" id="palpitations"> Palpitations</label>
+      <label><input type="checkbox" id="syncope"> Syncope</label>
+      <label>
+        <input type="checkbox" id="dyspneeNYHA"> Essoufflement
+      </label>
+      <select id="nyhaSelect" style="display:none;">
+        <option value="">... Sélectionner le stade NYHA ...</option>
+        <option value="NYHA I">NYHA I</option>
+        <option value="NYHA II">NYHA II</option>
+        <option value="NYHA III">NYHA III</option>
+        <option value="NYHA IV">NYHA IV</option>
+      </select>
+    </fieldset>
 
-    <!-- Section : Signes Fonctionnels -->
-    <section class="form-section" id="sectionSignes">
-      <h3>Signes Fonctionnels</h3>
-      <div class="grid-4">
-        <div>
-          <h4>Cardio-vasculaire</h4>
-          <label><input type="checkbox" id="douleurThoracique"> Douleur thoracique</label>
-          <label><input type="checkbox" id="palpitations"> Palpitations</label>
-          <label><input type="checkbox" id="syncope"> Syncope</label>
-          <label>
-            <input type="checkbox" id="dyspneeNYHA"> Essoufflement
-          </label>
-          <select id="nyhaSelect" style="display:none;">
-            <option value="">... Sélectionner le stade NYHA ...</option>
-            <option value="NYHA I">NYHA I</option>
-            <option value="NYHA II">NYHA II</option>
-            <option value="NYHA III">NYHA III</option>
-            <option value="NYHA IV">NYHA IV</option>
-          </select>
-        </div>
-        <div>
-          <h4>Respiratoire</h4>
-          <label><input type="checkbox" id="dyspnee"> Dyspnée</label>
-          <label><input type="checkbox" id="toux"> Toux</label>
-          <label><input type="checkbox" id="hemoptysie"> Hémoptysie</label>
-        </div>
-        <div>
-          <h4>Neurologique</h4>
-          <label><input type="checkbox" id="vertiges"> Vertiges</label>
-          <label><input type="checkbox" id="troublesMemoire"> Troubles de la mémoire</label>
-          <label><input type="checkbox" id="paresthesies"> Paresthésies</label>
-        </div>
-        <div>
-          <h4>Abdominal</h4>
-          <label><input type="checkbox" id="douleursAbdominales"> Douleurs abdominales</label>
-          <label><input type="checkbox" id="nausees"> Nausées/Vomissements</label>
-          <label><input type="checkbox" id="hématémèse"> Hématémèse</label>
-          <label><input type="checkbox" id="constipation"> Constipation</label>
-          <label><input type="checkbox" id="diarrhee"> Diarrhée</label>
-          <label><input type="checkbox" id="rectorragie"> Rectorragie</label>
-        </div>
-      </div>
-      <label>Autres signes fonctionnels : <input type="text" id="autresSignes"></label>
-    </section>
+    <fieldset>
+      <legend>Respiratoire</legend>
+      <label><input type="checkbox" id="dyspnee"> Dyspnée</label>
+      <label><input type="checkbox" id="toux"> Toux</label>
+      <label><input type="checkbox" id="hemoptysie"> Hémoptysie</label>
+    </fieldset>
 
-    <!-- Section : Examen Clinique -->
-    <section class="form-section" id="sectionExamen">
-      <h3>Examen Clinique</h3>
-      <div class="grid-4">
-        <div>
-          <h4>Cardio-vasculaire</h4>
-          <label><input type="checkbox" id="souffleCardiaque"> Souffle cardiaque</label>
-          <label><input type="checkbox" id="bruitsAnormaux"> Bruits cardiaques anormaux</label>
-        </div>
-        <div>
-          <h4>Respiratoire</h4>
-          <label><input type="checkbox" id="crepitants"> Crépitants</label>
-          <label><input type="checkbox" id="ronchis"> Ronchis</label>
-        </div>
-        <div>
-          <h4>Neurologique</h4>
-          <label><input type="checkbox" id="reflexes"> Réflexes diminués</label>
-          <label><input type="checkbox" id="troublesMarche"> Troubles de la marche</label>
-        </div>
-        <div>
-          <h4>Abdominal</h4>
-          <label><input type="checkbox" id="douleurPalpation"> Douleur à la palpation</label>
-          <label><input type="checkbox" id="masseAbdominale"> Masse abdominale</label>
-        </div>
-      </div>
-      <label>Autres observations cliniques : <input type="text" id="autresExamen"></label>
-    </section>
+    <fieldset>
+      <legend>Neurologique</legend>
+      <label><input type="checkbox" id="vertiges"> Vertiges</label>
+      <label><input type="checkbox" id="troublesMemoire"> Troubles de la mémoire</label>
+      <label><input type="checkbox" id="paresthesies"> Paresthésies</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Abdominal</legend>
+      <label><input type="checkbox" id="douleursAbdominales"> Douleurs abdominales</label>
+      <label><input type="checkbox" id="nausees"> Nausées/Vomissements</label>
+      <label><input type="checkbox" id="hématémèse"> Hématémèse</label>
+      <label><input type="checkbox" id="constipation"> Constipation</label>
+      <label><input type="checkbox" id="diarrhee"> Diarrhée</label>
+      <label><input type="checkbox" id="rectorragie"> Rectorragie</label>
+    </fieldset>
+  </div>
+  <label>Autres signes fonctionnels : <input type="text" id="autresSignes"></label>
+</section>
+
+<!-- Section : Examen Clinique -->
+<section class="form-section" id="sectionExamen">
+  <h3>Examen Clinique</h3>
+  <div class="grid-4">
+    <fieldset>
+      <legend>Cardio-vasculaire</legend>
+      <label><input type="checkbox" id="souffleCardiaque"> Souffle cardiaque</label>
+      <label><input type="checkbox" id="bruitsAnormaux"> Bruits cardiaques anormaux</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Respiratoire</legend>
+      <label><input type="checkbox" id="crepitants"> Crépitants</label>
+      <label><input type="checkbox" id="ronchis"> Ronchis</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Neurologique</legend>
+      <label><input type="checkbox" id="reflexes"> Réflexes diminués</label>
+      <label><input type="checkbox" id="troublesMarche"> Troubles de la marche</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Abdominal</legend>
+      <label><input type="checkbox" id="douleurPalpation"> Douleur à la palpation</label>
+      <label><input type="checkbox" id="masseAbdominale"> Masse abdominale</label>
+    </fieldset>
+  </div>
+  <label>Autres observations cliniques : <input type="text" id="autresExamen"></label>
+</section>
     
     <button type="button" id="btnGenererCR">Générer le Compte-Rendu</button>
   </form>
