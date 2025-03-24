@@ -1,1 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TGolfe</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 20px;
+            background: #f8f9fa;
+        }
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        select, button, input {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background: white;
+        }
+        #chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .indicator-checkboxes {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Marchés du Golfe</h1>
+        
+        <div class="controls">
+            <div>
+                <label>Symbole 1:</label>
+                <select id="symbol2">
+                    <option value="2222.SR">Saudi Aramco</option>
+                    <option value="1120.SR">Al Rajhi Bank</option>
+                    <option value="QNBK.QA">QNB Qatar</option>
+                </select>
+            </div>
+            
+            <div>
+               <label for="symbol2">Symbole 2:</label>
+				<select id="symbol2">
+				<option value="">-- Comparer avec --</option>
+				<option value="EMAAR.DU">Emaar Dubai</option>
+				<option value="STC.SR">STC Saudi</option>
+				</select>
+            </div>
 
+            <div>
+                 <label for="interval">Intervalle :</label>
+				<select id="interval">
+					<option value="5min">5 minutes</option>
+					<option value="15min">15 minutes</option>
+					<option value="30min">30 minutes</option>
+					<option value="60min">1 heure</option>
+    </select>
+            </div>
+
+            <div class="indicator-checkboxes">
+                <label>
+                    <input type="checkbox" id="sma"> SMA 20
+                </label>
+                <label>
+                    <input type="checkbox" id="rsi"> RSI 14
+                </label>
+            </div>
+        </div>
+
+        <div id="chart-container">
+            <canvas id="stockChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let chart;
+        let updateInterval;
+        const apiKey = 'P50V1LYN99V8IEDH'; // Obtenez sur alphavantage.co
+
+        const colors = {
+            primary: '#2962ff',
+            secondary: '#ff6d00',
+            volume: '#78909c',
+            sma: '#00c853',
+            rsi: '#d500f9'
+        };
+
+        async function initChart() {
+            const ctx = document.getElementById('stockChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: { datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { type: 'time' },
+                        y: { position: 'left', title: { display: true, text: 'Prix' } },
+                        yVolume: {
+                            position: 'right',
+                            grid: { display: false },
+                            title: { display: true, text: 'Volume' }
+                        }
+                    },
+                    plugins: {
+                        zoom: {
+                            zoom: { wheel: { enabled: true }, mode: 'x' }
+                        }
+                    }
+                }
+            });
+        }
+
+        async function fetchData(symbol, interval) {
+            try {
+                const response = await axios.get(
+                    `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`
+                );
+                
+                const data = response.data[`Time Series (${interval})`];
+                return Object.entries(data).map(([time, values]) => ({
+                    t: new Date(time),
+                    y: parseFloat(values['4. close']),
+                    v: parseFloat(values['5. volume'])
+                })).reverse();
+
+            } catch (error) {
+                console.error('Erreur:', error);
+                return [];
+            }
+        }
+
+        async function fetchIndicator(symbol, functionName, interval, options) {
+            try {
+                const response = await axios.get(
+                    `https://www.alphavantage.co/query?function=${functionName}&symbol=${symbol}&interval=${interval}&time_period=${options.timePeriod}&series_type=close&apikey=${apiKey}`
+                );
+                
+                const data = response.data[`Technical Analysis: ${functionName}`];
+                return Object.entries(data).map(([time, values]) => ({
+                    t: new Date(time),
+                    y: parseFloat(values[functionName])
+                })).reverse();
+
+            } catch (error) {
+                console.error('Erreur indicateur:', error);
+                return [];
+            }
+        }
+
+        function updateChart(data) {
+            chart.data.datasets = [];
+
+            // Ajout des données principales
+            data.forEach((stockData, index) => {
+                const color = index === 0 ? colors.primary : colors.secondary;
+                
+                // Prix
+                chart.data.datasets.push({
+                    label: `${stockData.symbol} - Prix`,
+                    data: stockData.prices,
+                    borderColor: color,
+                    yAxisID: 'y',
+                    tension: 0.1
+                });
+
+                // Volume
+                chart.data.datasets.push({
+                    label: `${stockData.symbol} - Volume`,
+                    data: stockData.prices.map(p => ({ x: p.t, y: p.v })),
+                    type: 'bar',
+                    backgroundColor: colors.volume,
+                    yAxisID: 'yVolume',
+                    hidden: true
+                });
+
+                // Indicateurs
+                if(stockData.sma) {
+                    chart.data.datasets.push({
+                        label: `${stockData.symbol} - SMA 20`,
+                        data: stockData.sma,
+                        borderColor: colors.sma,
+                        borderDash: [5,5],
+                        yAxisID: 'y'
+                    });
+                }
+
+                if(stockData.rsi) {
+                    chart.data.datasets.push({
+                        label: `${stockData.symbol} - RSI 14`,
+                        data: stockData.rsi,
+                        borderColor: colors.rsi,
+                        yAxisID: 'y'
+                    });
+                }
+            });
+
+            chart.update();
+        }
+
+        async function loadData() {
+            const interval = document.getElementById('interval').value;
+            const symbols = [
+                document.getElementById('symbol1').value,
+                document.getElementById('symbol2').value
+            ].filter(Boolean);
+
+            const showSMA = document.getElementById('sma').checked;
+            const showRSI = document.getElementById('rsi').checked;
+
+            const allData = await Promise.all(symbols.map(async symbol => {
+                const prices = await fetchData(symbol, interval);
+                const sma = showSMA ? await fetchIndicator(symbol, 'SMA', interval, { timePeriod: 20 }) : null;
+                const rsi = showRSI ? await fetchIndicator(symbol, 'RSI', interval, { timePeriod: 14 }) : null;
+                
+                return { symbol, prices, sma, rsi };
+            }));
+
+            updateChart(allData);
+        }
+
+        // Configuration initiale
+        window.onload = async () => {
+            await initChart();
+            loadData();
+            updateInterval = setInterval(loadData, 300000); // Actualisation toutes les 5 minutes
+
+            // Gestion des événements
+            document.querySelectorAll('select, input').forEach(element => {
+                element.addEventListener('change', () => {
+                    clearInterval(updateInterval);
+                    loadData();
+                    updateInterval = setInterval(loadData, 300000);
+                });
+            });
+        };
+    </script>
+</body>
+</html>
