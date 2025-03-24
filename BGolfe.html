@@ -1,182 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Marché Temps Réel</title>
-    <style>
-        body { font-family: sans-serif; }
-        #market-dashboard { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1000px; margin: 20px auto; }
-        .market-section { border: 1px solid #ccc; padding: 15px; }
-        .market-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .market-table th, .market-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        .market-table th { background-color: #f0f0f0; }
-        .stock-chart { height: 150px; border: 1px solid #eee; margin-top: 5px;}
-        .positive-change { color: green; }
-        .negative-change { color: red; }
-        .error-message { color: red; font-weight: bold; }
-        .loading-message { font-style: italic; color: grey; }
-        .data-value { text-align: right; }
-        .data-table-container { position: relative; }
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TGolfe - Gulf Markets</title>
+  <!-- Load Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Date adapter for time scales -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <!-- Load Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 20px;
+      background: #f8f9fa;
+    }
+    .controls {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    select, button, input {
+      padding: 10px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      background: #fff;
+    }
+    /* Ensure the chart container has a fixed height */
+    #chart-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 500px;  /* Added fixed height */
+    }
+    /* Make sure the canvas takes the full container height */
+    #stockChart {
+      width: 100%;
+      height: 100%;
+    }
+    .indicator-checkboxes {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
-    <h1>Marché Temps Réel </h1>
-    <p><strong><p class="error-message" id="api-error-message" style="display:none;">Erreur lors de la récupération des données du marché. Veuillez vérifier la console JavaScript pour plus de détails.</p>
-
-    <div id="market-dashboard">
-        <div class="market-section">
-            <h2>Top 10 Actions Mondiales</h2>
-            <div class="data-table-container">
-                <div class="loading-overlay" id="top-global-stocks-loading" style="display:none;">
-                    <div class="loading-spinner"></div>
-                </div>
-                <table class="market-table">
-                    <thead>
-                        <tr>
-                            <th>Symbole</th>
-                            <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Variation (%)</th>
-                            <th>Graphique</th>
-                        </tr>
-                    </thead>
-                    <tbody id="top-global-stocks">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="market-section">
-            <h2>Bourse du Qatar (QSE)</h2>
-             <div class="data-table-container">
-                <div class="loading-overlay" id="qatar-stock-exchange-loading" style="display:none;">
-                    <div class="loading-spinner"></div>
-                </div>
-                <table class="market-table">
-                    <thead>
-                        <tr>
-                            <th>Symbole</th>
-                            <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Variation (%)</th>
-                            <th>Graphique</th>
-                        </tr>
-                    </thead>
-                    <tbody id="qatar-stock-exchange">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="market-section">
-            <h2>Bourse d'Arabie Saoudite (Tadawul)</h2>
-             <div class="data-table-container">
-                <div class="loading-overlay" id="saudi-stock-exchange-loading" style="display:none;">
-                    <div class="loading-spinner"></div>
-                </div>
-                <table class="market-table">
-                    <thead>
-                        <tr>
-                            <th>Symbole</th>
-                            <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Variation (%)</th>
-                            <th>Graphique</th>
-                        </tr>
-                    </thead>
-                    <tbody id="saudi-stock-exchange">
-                    </tbody>
-                </table>
-            </div>
-
-    <script>
-        const apiKey = 't84SFJwRoBlas_6mIjM3lAOfwoCAVw4j'; // Remplacez par votre clé API Polygon
-        const baseUrl = 'https://api.polygon.io/v2/aggs/ticker/';
-        const apiErrorMessage = document.getElementById('api-error-message');
-
-        const stockSymbols = {
-            'top-global-stocks': [
-                { symbol: "MSFT", name: "Microsoft" },
-                { symbol: "AAPL", name: "Apple" },
-                { symbol: "GOOGL", name: "Alphabet" },
-                { symbol: "AMZN", name: "Amazon" },
-                { symbol: "META", name: "Meta Platforms" }
-            ],
-            'qatar-stock-exchange': [
-                { symbol: "QNBK.QA", name: "Qatar National Bank" },
-                { symbol: "CBQK.QA", name: "Commercial Bank" }
-            ],
-            'saudi-stock-exchange': [
-                { symbol: "2222.SR", name: "Saudi Aramco" },
-                { symbol: "1120.SR", name: "Saudi National Bank" }
-            ]
-        };
-
-        async function fetchMarketData(symbols, exchange, tableId) {
-            const data = {};
-
-            showLoading(tableId); // Afficher l'indicateur de chargement
-
-            for (const symbol of symbols) {
-                try {
-                    const response = await fetch(`${baseUrl}${symbol.symbol}/prev?adjusted=true&apiKey=${apiKey}`);
-                    if (!response.ok) {
-                        throw new Error(`Erreur API pour ${symbol.symbol}: ${response.status} ${response.statusText}`);
-                    }
-                    const jsonData = await response.json();
-                    if (jsonData.results && jsonData.results.length > 0) {
-                        data[symbol.symbol] = parseApiResponse(jsonData.results[0]);
-                    } else {
-                        console.warn(`Aucune donnée pour ${symbol.symbol}:`, jsonData);
-                        data[symbol.symbol] = null;
-                    }
-                } catch (error) {
-                    console.error("Erreur lors de la récupération des données pour", symbol.symbol, error);
-                    apiErrorMessage.style.display = 'block';
-                    hideLoading(tableId);
-                    return null;
-                }
+  <div class="container">
+    <h1>Gulf Markets</h1>
+    
+    <div class="controls">
+      <div>
+        <label for="symbol1">Symbol 1:</label>
+        <select id="symbol1">
+          <option value="2222.SR">Saudi Aramco</option>
+          <option value="1120.SR">Al Rajhi Bank</option>
+          <option value="QNBK.QA">QNB Qatar</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="symbol2">Symbol 2:</label>
+        <select id="symbol2">
+          <option value="">-- Compare with --</option>
+          <option value="EMAAR.DU">Emaar Dubai</option>
+          <option value="STC.SR">STC Saudi</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="interval">Interval:</label>
+        <select id="interval">
+          <option value="5min">5 minutes</option>
+          <option value="15min">15 minutes</option>
+          <option value="30min">30 minutes</option>
+          <option value="60min">1 hour</option>
+        </select>
+      </div>
+      
+      <div class="indicator-checkboxes">
+        <label>
+          <input type="checkbox" id="sma"> SMA 20
+        </label>
+        <label>
+          <input type="checkbox" id="rsi"> RSI 14
+        </label>
+      </div>
+    </div>
+    
+    <div id="chart-container">
+      <canvas id="stockChart"></canvas>
+    </div>
+  </div>
+  
+  <script>
+    let chart;
+    let updateInterval;
+    const apiKey = 'P50V1LYN99V8IEDH'; // Check that your API key is valid
+    
+    const colors = {
+      primary: '#2962ff',
+      secondary: '#ff6d00',
+      volume: '#78909c',
+      sma: '#00c853',
+      rsi: '#d500f9'
+    };
+    
+    async function initChart() {
+      const ctx = document.getElementById('stockChart').getContext('2d');
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: { datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { 
+              type: 'time',
+              time: { tooltipFormat: 'PP HH:mm' }
+            },
+            y: { 
+              position: 'left', 
+              title: { display: true, text: 'Price' }
+            },
+            yVolume: {
+              position: 'right',
+              grid: { display: false },
+              title: { display: true, text: 'Volume' }
             }
-            hideLoading(tableId);
-            return data;
+          },
+          plugins: {
+            zoom: {
+              zoom: { wheel: { enabled: true }, mode: 'x' }
+            }
+          }
         }
-
-        function parseApiResponse(quoteData) {
-            return {
-                price: quoteData.c, // Prix de clôture
-                changePercent: ((quoteData.c - quoteData.o) / quoteData.o * 100).toFixed(2) // Pourcentage de changement
-            };
+      });
+    }
+    
+    async function fetchData(symbol, interval) {
+      try {
+        const response = await axios.get(
+          `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`
+        );
+        console.log(`Response for ${symbol}:`, response.data);
+        const timeSeries = response.data[`Time Series (${interval})`];
+        if (!timeSeries) {
+          console.error('No data returned for symbol:', symbol, response.data);
+          return [];
         }
-
-        // Les autres fonctions restent inchangées
-
-        // Mise à jour initiale et rafraîchissement périodique
-        updateMarketData();
-        setInterval(updateMarketData, 60000); // Rafraîchir toutes les minutes
-    </script>
+        return Object.entries(timeSeries).map(([time, values]) => ({
+          t: new Date(time),
+          y: parseFloat(values['4. close']),
+          v: parseFloat(values['5. volume'])
+        })).reverse();
+      } catch (error) {
+        console.error('Error fetching data for symbol:', symbol, error);
+        return [];
+      }
+    }
+    
+    async function fetchIndicator(symbol, functionName, interval, options) {
+      try {
+        const response = await axios.get(
+          `https://www.alphavantage.co/query?function=${functionName}&symbol=${symbol}&interval=${interval}&time_period=${options.timePeriod}&series_type=close&apikey=${apiKey}`
+        );
+        console.log(`Indicator response for ${symbol} (${functionName}):`, response.data);
+        const indicatorData = response.data[`Technical Analysis: ${functionName}`];
+        if (!indicatorData) {
+          console.error('No indicator data returned for symbol:', symbol, response.data);
+          return [];
+        }
+        return Object.entries(indicatorData).map(([time, values]) => ({
+          t: new Date(time),
+          y: parseFloat(values[functionName])
+        })).reverse();
+      } catch (error) {
+        console.error(`Error fetching ${functionName} indicator for symbol:`, symbol, error);
+        return [];
+      }
+    }
+    
+    function updateChart(data) {
+      chart.data.datasets = [];
+    
+      data.forEach((stockData, index) => {
+        const color = index === 0 ? colors.primary : colors.secondary;
+        
+        // Price dataset
+        chart.data.datasets.push({
+          label: `${stockData.symbol} - Price`,
+          data: stockData.prices,
+          borderColor: color,
+          yAxisID: 'y',
+          tension: 0.1,
+          fill: false
+        });
+    
+        // Volume dataset (hidden by default)
+        chart.data.datasets.push({
+          label: `${stockData.symbol} - Volume`,
+          data: stockData.prices.map(p => ({ x: p.t, y: p.v })),
+          type: 'bar',
+          backgroundColor: colors.volume,
+          yAxisID: 'yVolume',
+          hidden: true
+        });
+    
+        // SMA indicator dataset
+        if (stockData.sma && stockData.sma.length > 0) {
+          chart.data.datasets.push({
+            label: `${stockData.symbol} - SMA 20`,
+            data: stockData.sma,
+            borderColor: colors.sma,
+            borderDash: [5, 5],
+            yAxisID: 'y',
+            fill: false
+          });
+        }
+    
+        // RSI indicator dataset
+        if (stockData.rsi && stockData.rsi.length > 0) {
+          chart.data.datasets.push({
+            label: `${stockData.symbol} - RSI 14`,
+            data: stockData.rsi,
+            borderColor: colors.rsi,
+            yAxisID: 'y',
+            fill: false
+          });
+        }
+      });
+    
+      chart.update();
+    }
+    
+    async function loadData() {
+      const interval = document.getElementById('interval').value;
+      const symbol1 = document.getElementById('symbol1').value;
+      const symbol2 = document.getElementById('symbol2').value;
+      const symbols = [symbol1, symbol2].filter(Boolean);
+    
+      const showSMA = document.getElementById('sma').checked;
+      const showRSI = document.getElementById('rsi').checked;
+    
+      // Attempt to fetch API data
+      const allData = await Promise.all(symbols.map(async symbol => {
+        const prices = await fetchData(symbol, interval);
+        const sma = showSMA ? await fetchIndicator(symbol, 'SMA', interval, { timePeriod: 20 }) : null;
+        const rsi = showRSI ? await fetchIndicator(symbol, 'RSI', interval, { timePeriod: 14 }) : null;
+        return { symbol, prices, sma, rsi };
+      }));
+    
+      // Check if data is empty and use fallback dummy data for testing
+      const isDataEmpty = allData.every(stock => stock.prices.length === 0);
+      if (isDataEmpty) {
+        console.warn("No data returned from API, using fallback dummy data for testing.");
+        const dummyTime = new Date();
+        const dummyPrices = Array.from({ length: 10 }, (_, i) => ({
+          t: new Date(dummyTime.getTime() + i * 60000),
+          y: 100 + i,
+          v: 1000 + i * 10
+        }));
+        allData.push({
+          symbol: "DUMMY",
+          prices: dummyPrices,
+          sma: null,
+          rsi: null
+        });
+      }
+    
+      updateChart(allData);
+    }
+    
+    window.onload = async () => {
+      await initChart();
+      loadData();
+      updateInterval = setInterval(loadData, 300000); // Refresh every 5 minutes
+    
+      document.querySelectorAll('select, input').forEach(element => {
+        element.addEventListener('change', () => {
+          clearInterval(updateInterval);
+          loadData();
+          updateInterval = setInterval(loadData, 300000);
+        });
+      });
+    };
+  </script>
 </body>
 </html>
