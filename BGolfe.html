@@ -7,7 +7,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <style>
-        /* Styles précédents conservés */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        #chart-container { height: 600px; margin-top: 20px; }
+        .connection-status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .connected { background: #d4edda; color: #155724; }
+        .disconnected { background: #f8d7da; color: #721c24; }
     </style>
 </head>
 <body>
@@ -19,14 +28,15 @@
     </div>
 
     <script>
-        const POLYGON_API_KEY = 't84SFJwRoBlas 6mIj3lAOfwoCAVw4j'; // Remplacer par votre clé
+        // Configuration (À MODIFIER)
+        const POLYGON_API_KEY = 't84SFJwRoBlas6mIj3lAOfwoCAVw4j'; // Retirer l'espace dans la clé
+        const GULF_SYMBOLS = ['T:2222.SR', 'T:QNBK.QA', 'T:EMAAR.DU'];
+        
         let chart;
         let ws;
         const dataCache = new Map();
 
-        // Configuration des symboles du Golfe
-        const GULF_SYMBOLS = ['T:2222.SR', 'T:QNBK.QA', 'T:EMAAR.DU'];
-
+        // Initialisation du graphique
         async function initChart() {
             const ctx = document.getElementById('stockChart').getContext('2d');
             chart = new Chart(ctx, {
@@ -34,58 +44,58 @@
                 data: { datasets: [] },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     scales: {
-                        x: { type: 'time' },
+                        x: { type: 'time', time: { unit: 'minute' } },
                         y: { beginAtZero: false }
                     }
                 }
             });
         }
 
+        // Connexion WebSocket
         function connectWebSocket() {
             ws = new WebSocket('wss://socket.polygon.io/stocks');
 
             ws.onopen = () => {
                 console.log('WebSocket connected');
-                document.getElementById('connectionStatus').className = 'connected';
-                document.getElementById('connectionStatus').textContent = 'Connected';
+                updateStatus('Connected', 'connected');
                 
                 // Authentification
-               // Dans la fonction connectWebSocket()
-				ws.onopen = () => {
-			// D'abord l'authentification
-				ws.send(JSON.stringify({
-				action: "auth",
-				params: POLYGON_API_KEY
-				}));
-    
-				// Ensuite l'abonnement après un court délai
-				setTimeout(() => {
-				ws.send(JSON.stringify({
-					action: "subscribe",
-					params: GULF_SYMBOLS.join(',')
-					}));
-				}, 1000);
-				};
+                ws.send(JSON.stringify({
+                    action: "auth",
+                    params: POLYGON_API_KEY
+                }));
+
+                // Abonnement après authentification
+                setTimeout(() => {
+                    ws.send(JSON.stringify({
+                        action: "subscribe",
+                        params: GULF_SYMBOLS.join(',')
+                    }));
+                }, 1000);
+            };
 
             ws.onmessage = (event) => {
-                const messages = JSON.parse(event.data);
-                messages.forEach(msg => {
-                    if(msg.ev === 'status') {
-                        console.log('Status:', msg.message);
-                    }
-                    else if(msg.ev === 'T') { // Trade event
-                        handleTradeMessage(msg);
-                    }
-                });
+                console.log('Message reçu:', event.data);
+                try {
+                    const messages = JSON.parse(event.data);
+                    messages.forEach(msg => {
+                        if(msg.ev === 'status') {
+                            console.log('Status:', msg.message);
+                        }
+                        else if(msg.ev === 'T') {
+                            handleTradeMessage(msg);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Erreur de parsing:', error);
+                }
             };
-			ws.onmessage = (event) => {
-			console.log('Raw message:', event.data);
-			
-};
+
             ws.onerror = (error) => {
                 console.error('WebSocket error:', error);
-                handleReconnection();
+                updateStatus('Connection error', 'disconnected');
             };
 
             ws.onclose = () => {
@@ -97,7 +107,7 @@
         function handleTradeMessage(trade) {
             const symbol = trade.sym;
             const price = trade.p;
-            const timestamp = trade.t;
+            const timestamp = new Date(trade.t);
 
             if(!dataCache.has(symbol)) {
                 dataCache.set(symbol, {
@@ -113,40 +123,35 @@
                 });
             }
 
-            const newPoint = { x: new Date(timestamp), y: price };
+            const newPoint = { x: timestamp, y: price };
             const symbolData = dataCache.get(symbol);
             symbolData.data.push(newPoint);
 
-            // Garder seulement les 100 derniers points
-            if(symbolData.data.length > 100) {
-                symbolData.data.shift();
-            }
+            // Garder les 100 derniers points
+            if(symbolData.data.length > 100) symbolData.data.shift();
 
             chart.update();
         }
 
+        function updateStatus(text, status) {
+            const statusElement = document.getElementById('connectionStatus');
+            statusElement.textContent = text;
+            statusElement.className = `connection-status ${status}`;
+        }
+
         function handleReconnection() {
-            document.getElementById('connectionStatus').className = 'disconnected';
-            document.getElementById('connectionStatus').textContent = 'Reconnecting...';
+            updateStatus('Reconnecting...', 'disconnected');
             setTimeout(connectWebSocket, 5000);
         }
 
         function getRandomColor() {
-            return '#' + Math.floor(Math.random()*16777215).toString(16);
+            return `hsl(${Math.random() * 360}, 70%, 50%)`;
         }
 
         // Initialisation
         window.onload = async () => {
             await initChart();
             connectWebSocket();
-
-            // Subscribe après authentification réussie
-            setTimeout(() => {
-                ws.send(JSON.stringify({
-                    action: "subscribe",
-                    params: GULF_SYMBOLS.join(',')
-                }));
-            }, 1000);
         };
     </script>
 </body>
