@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gulf Markets Live</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <style>
+    /* Styles précédents conservés */
+    .connection-status {
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .connected { background: #c8e6c9; }
+    .disconnected { background: #ffcdd2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="connection-status" id="connectionStatus">Connecting...</div>
+    <!-- Conserver les contrôles précédents -->
+    <div id="chart-container">
+      <canvas id="stockChart"></canvas>
+    </div>
+  </div>
 
+  <script>
+    const SYMBOLS = {
+      'SAUDI': ['2222.SR', '1120.SR', 'STC.SR'],
+      'QATAR': ['QNBK.QA', 'IQCD.QA'],
+      'UAE': ['EMAAR.DU', 'DFM.DU']
+    };
+
+    let chart;
+    let ws;
+    const dataCache = new Map();
+    const colorPool = ['#2962ff', '#ff6d00', '#00c853', '#d500f9', '#7b1fa2'];
+
+    async function initChart() {
+      const ctx = document.getElementById('stockChart').getContext('2d');
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: { datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { 
+              type: 'time',
+              time: { tooltipFormat: 'PP HH:mm' }
+            },
+            y: { 
+              position: 'left', 
+              title: { display: true, text: 'Price (USD)' }
+            }
+          },
+          plugins: {
+            streaming: {
+              duration: 300000, // 5 minutes
+              refresh: 1000,
+              pause: false,
+              ttl: 600000
+            }
+          }
+        }
+      });
+    }
+
+    ffunction initPolygonWebSocket() {
+  const ws = new WebSocket('wss://socket.polygon.io/stocks');
+  
+  ws.onopen = () => {
+    ws.send(JSON.stringify({
+      action: "auth",
+      params: "t84SFJwRoBlas 6mIj3lAOfwoCAVw4j"
+    }));
+    
+    ws.send(JSON.stringify({
+      action: "subscribe",
+      params: "T.*" // Toutes les transactions
+    }));
+  };
+
+  ws.onmessage = (event) => {
+    const message = JSON.parse(event.data);
+    message.forEach(handleTradeEvent);
+  };
+}
+
+function handleTradeEvent(event) {
+  if (event.ev === 'T') { // Événement de transaction
+    updateChartData({
+      symbol: event.sym,
+      price: event.p,
+      time: event.t
+    });
+  }
+}
+
+    function subscribeToSymbols() {
+      const symbols = [...SYMBOLS.SAUDI, ...SYMBOLS.QATAR, ...SYMBOLS.UAE];
+      const subscribeMessage = {
+        subscribe: symbols.map(symbol => `${symbol.replace('.', '-')}`)
+      };
+      ws.send(JSON.stringify(subscribeMessage));
+    }
+
+    function handleReconnection() {
+      document.getElementById('connectionStatus').className = 'connection-status disconnected';
+      document.getElementById('connectionStatus').textContent = 'Reconnecting...';
+      setTimeout(initWebSocket, 3000);
+    }
+
+    function updateChartData(tradeData) {
+      const symbol = tradeData.id.replace('-', '.');
+      if (!dataCache.has(symbol)) {
+        dataCache.set(symbol, {
+          data: [],
+          color: colorPool[dataCache.size % colorPool.length]
+        });
+        
+        chart.data.datasets.push({
+          label: symbol,
+          data: [],
+          borderColor: dataCache.get(symbol).color,
+          fill: false
+        });
+      }
+
+      const newDataPoint = {
+        x: new Date(tradeData.time),
+        y: tradeData.price
+      };
+
+      const symbolData = dataCache.get(symbol);
+      symbolData.data.push(newDataPoint);
+      
+      // Garder seulement les 200 derniers points
+      if (symbolData.data.length > 200) {
+        symbolData.data.shift();
+      }
+
+      chart.update({
+        preservation: true
+      });
+    }
+
+    // Initialisation
+    window.onload = async () => {
+      await initChart();
+      initWebSocket();
+      
+      // Gestion de la visibilité des séries
+      document.getElementById('symbol1').addEventListener('change', (e) => {
+        const symbol = e.target.value;
+        chart.data.datasets.forEach(ds => {
+          ds.hidden = ds.label !== symbol;
+        });
+        chart.update();
+      });
+    };
+  </script>
+</body>
+</html>
