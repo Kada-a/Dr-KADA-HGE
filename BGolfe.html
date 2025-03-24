@@ -57,18 +57,21 @@
                 }));
             };
 
-            ws.onmessage = (event) => {
-                const messages = JSON.parse(event.data);
-                messages.forEach(msg => {
-                    if(msg.ev === 'status') {
-                        console.log('Status:', msg.message);
-                    }
-                    else if(msg.ev === 'T') { // Trade event
-                        handleTradeMessage(msg);
-                    }
-                });
+         ws.onopen = () => {
+    // D'abord l'authentification
+    ws.send(JSON.stringify({
+        action: "auth",
+        params: POLYGON_API_KEY
+    }));
+    
+    // Ensuite l'abonnement après un court délai
+            setTimeout(() => {
+            ws.send(JSON.stringify({
+            action: "subscribe",
+            params: GULF_SYMBOLS.join(',')
+                }));
+                }, 1000);
             };
-
             ws.onerror = (error) => {
                 console.error('WebSocket error:', error);
                 handleReconnection();
