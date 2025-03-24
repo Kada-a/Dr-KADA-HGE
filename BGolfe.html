@@ -155,6 +155,12 @@
             await initChart();
             connectWebSocket();
         };
+            // proxy dans votre connexion WebSocket
+const ws = new WebSocket('wss://socket.polygon.io/stocks', {
+    headers: {
+        'Origin': 'https://github.com/Kada-a/Dr-KADA-HGE' // Remplacez par votre domaine
+    }
+});
     </script>
 </body>
 </html>
