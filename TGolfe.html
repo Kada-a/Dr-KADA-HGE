@@ -6,7 +6,7 @@
   <title>TGolfe - Gulf Markets</title>
   <!-- Load Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Load a date adapter for time scales (Chart.js needs this for time parsing) -->
+  <!-- Date adapter for time scales -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
   <!-- Load Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -20,7 +20,7 @@
       background: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -32,11 +32,18 @@
       border-radius: 5px;
       background: #fff;
     }
+    /* Ensure the chart container has a fixed height */
     #chart-container {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 500px;  /* Added fixed height */
+    }
+    /* Make sure the canvas takes the full container height */
+    #stockChart {
+      width: 100%;
+      height: 100%;
     }
     .indicator-checkboxes {
       display: flex;
@@ -96,7 +103,7 @@
   <script>
     let chart;
     let updateInterval;
-    const apiKey = 'P50V1LYN99V8IEDH'; // Obtain your API key from alphavantage.co
+    const apiKey = 'P50V1LYN99V8IEDH'; // Make sure your API key is valid
     
     const colors = {
       primary: '#2962ff',
@@ -145,7 +152,7 @@
         );
         const timeSeries = response.data[`Time Series (${interval})`];
         if (!timeSeries) {
-          console.error('No data returned for symbol:', symbol);
+          console.error('No data returned for symbol:', symbol, response.data);
           return [];
         }
         return Object.entries(timeSeries).map(([time, values]) => ({
@@ -166,7 +173,7 @@
         );
         const indicatorData = response.data[`Technical Analysis: ${functionName}`];
         if (!indicatorData) {
-          console.error('No indicator data returned for symbol:', symbol);
+          console.error('No indicator data returned for symbol:', symbol, response.data);
           return [];
         }
         return Object.entries(indicatorData).map(([time, values]) => ({
