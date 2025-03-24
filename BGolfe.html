@@ -74,6 +74,8 @@
                         params: GULF_SYMBOLS.join(',')
                     }));
                 }, 1000);
+                     ws.onmessage = (event) => {
+    console.log('Raw message:', event.data);
             };
 
             ws.onmessage = (event) => {
@@ -103,7 +105,7 @@
                 handleReconnection();
             };
         }
-
+   
         function handleTradeMessage(trade) {
             const symbol = trade.sym;
             const price = trade.p;
