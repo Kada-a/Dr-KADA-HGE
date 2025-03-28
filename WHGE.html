@@ -8881,11 +8881,10 @@ button { padding: 10px 20px; background: #007bff; color: white; border: none; bo
 button:hover { background: #0056b3; }
 </style>
 </div>
-<!-- Module: Prise en charge de l'Hépatite alcoolique aiguë -->
+<!-- Module Hépatite alcoolique aiguë -->
 <div id="moduleAlcoolique" class="module">
   <h3>Prise en charge de l'Hépatite alcoolique aiguë</h3>
   <form id="formAlcoolique">
-    
     <!-- Section 1 : Informations du patient -->
     <section class="form-section">
       <h3>Informations du patient</h3>
@@ -8948,147 +8947,88 @@ button:hover { background: #0056b3; }
       <textarea id="aa_comments" rows="3" placeholder="Entrez vos remarques supplémentaires..."></textarea>
     </section>
     
-    <button type="button" onclick="generateAlcooliquePlan()">Générer la conduite à tenir</button>
+    <button type="button" id="btnAlcoolique">Générer la conduite à tenir</button>
   </form>
   
   <div id="resultAlcoolique" class="result"></div>
 </div>
 
 <script>
-function generateAlcooliquePlan() {
-  // Récupération des informations du patient
-  const age = document.getElementById('aa_age').value;
-  const sexe = document.getElementById('aa_sexe').value;
-  const alcool = document.getElementById('aa_alcool').value;
+(function(){
+  function generateAlcooliquePlan() {
+    const age = document.getElementById('aa_age').value;
+    const sexe = document.getElementById('aa_sexe').value;
+    const alcool = document.getElementById('aa_alcool').value;
 
-  // Récupération des paramètres biologiques
-  const bilirubine = parseFloat(document.getElementById('aa_bilirubine').value) || 0;
-  const ptPatient = parseFloat(document.getElementById('aa_pt_patient').value) || 0;
-  const ptControl = parseFloat(document.getElementById('aa_pt_control').value) || 0;
-  const albumine = parseFloat(document.getElementById('aa_albumine').value) || 0;
-  const ast = parseFloat(document.getElementById('aa_ast').value) || 0;
-  const alt = parseFloat(document.getElementById('aa_alt').value) || 0;
+    const bilirubine = parseFloat(document.getElementById('aa_bilirubine').value) || 0;
+    const ptPatient = parseFloat(document.getElementById('aa_pt_patient').value) || 0;
+    const ptControl = parseFloat(document.getElementById('aa_pt_control').value) || 0;
+    const albumine = parseFloat(document.getElementById('aa_albumine').value) || 0;
+    const ast = parseFloat(document.getElementById('aa_ast').value) || 0;
+    const alt = parseFloat(document.getElementById('aa_alt').value) || 0;
 
-  // Récupération des critères cliniques
-  const enceph = document.getElementById('aa_encéphalopathie').checked;
-  const fievre = document.getElementById('aa_fievre').checked;
-  const saignement = document.getElementById('aa_saignement').checked;
+    const enceph = document.getElementById('aa_encéphalopathie').checked;
+    const fievre = document.getElementById('aa_fievre').checked;
+    const saignement = document.getElementById('aa_saignement').checked;
 
-  // Calcul du score de Maddrey discriminant function (DF)
-  // DF = 4.6 * (PT_patient - PT_control) + bilirubine (mg/dL)
-  const df = 4.6 * (ptPatient - ptControl) + bilirubine;
-  
-  // Construction du résumé
-  let summary = `<h4>Résumé de l'Hépatite Alcoolique Aiguë</h4>`;
-  summary += `<p>Patient : ${age} ans, ${sexe}, consommation d'alcool : ${alcool} g/j</p>`;
-  summary += `<p>Paramètres biologiques : Bilirubine = ${bilirubine} mg/dL, PT du patient = ${ptPatient} sec, PT de référence = ${ptControl} sec, Albumine = ${albumine} g/dL, AST = ${ast} U/L, ALT = ${alt} U/L</p>`;
-  summary += `<p>Score de Maddrey (DF) = ${df.toFixed(1)}</p>`;
-  summary += `<p>Critères cliniques : ${enceph ? "Encéphalopathie présente, " : ""}${fievre ? "Fièvre, " : ""}${saignement ? "Saignements, " : ""}</p>`;
-  
-  // Proposition de prise en charge
-  let planText = `<h4>Proposition de prise en charge :</h4>`;
-  
-  if (df >= 32) {
-    planText += `<p><strong>Hépatite sévère détectée (DF ≥ 32)</strong></p>`;
-    planText += `<ul>
-                    <li>Prise en charge hospitalière obligatoire.</li>
-                    <li>Administration de corticoïdes IV (ex. Methylprednisolone 1 mg/kg/j ou Hydrocortisone 400 mg/j) pendant 28 jours.</li>
-                    <li>Contrôle biologique quotidien (bilirubine, PT, CRP) et suivi clinique rapproché.</li>
-                    <li>Relais en voie orale dès amélioration constatée (évaluation à J3-J7).</li>
-                    <li>Mesures de support : correction hydroélectrolytique, nutrition adaptée et thromboprophylaxie.</li>
-                 </ul>`;
-    if (enceph || fievre || saignement) {
-      planText += `<p class="warning"><strong>Attention :</strong> Signes de défaillance multi-organique détectés. Surveillance en unité de soins intensifs recommandée.</p>`;
+    // Calcul du score de Maddrey (DF)
+    const df = 4.6 * (ptPatient - ptControl) + bilirubine;
+
+    let summary = `<h4>Résumé de l'Hépatite Alcoolique Aiguë</h4>`;
+    summary += `<p>Patient : ${age} ans, ${sexe}, consommation d'alcool : ${alcool} g/j</p>`;
+    summary += `<p>Paramètres biologiques : Bilirubine = ${bilirubine} mg/dL, PT du patient = ${ptPatient} sec, PT de référence = ${ptControl} sec, Albumine = ${albumine} g/dL, AST = ${ast} U/L, ALT = ${alt} U/L</p>`;
+    summary += `<p>Score de Maddrey (DF) = ${df.toFixed(1)}</p>`;
+    summary += `<p>Critères cliniques : ${enceph ? "Encéphalopathie présente, " : ""}${fievre ? "Fièvre, " : ""}${saignement ? "Saignements, " : ""}</p>`;
+
+    let planText = `<h4>Proposition de prise en charge :</h4>`;
+    if (df >= 32) {
+      planText += `<p><strong>Hépatite sévère détectée (DF ≥ 32)</strong></p>`;
+      planText += `<ul>
+                      <li>Prise en charge hospitalière obligatoire.</li>
+                      <li>Administration de corticoïdes IV pendant 28 jours.</li>
+                      <li>Contrôle biologique quotidien et suivi clinique rapproché.</li>
+                      <li>Relais en voie orale dès amélioration (évaluation à J3-J7).</li>
+                      <li>Support nutritionnel et prophylaxie thromboprophylactique.</li>
+                    </ul>`;
+      if (enceph || fievre || saignement) {
+        planText += `<p class="warning"><strong>Attention :</strong> Signes de défaillance multi-organique détectés. Surveillance en USI recommandée.</p>`;
+      }
+    } else {
+      planText += `<p><strong>Hépatite modérée (DF < 32)</strong> – prise en charge ambulatoire possible si le patient est stable.</p>`;
+      planText += `<ul>
+                      <li>Traitement par corticoïdes par voie orale.</li>
+                      <li>Suivi rapproché en consultation.</li>
+                      <li>Conseils stricts de sevrage alcoolique et prise en charge nutritionnelle.</li>
+                    </ul>`;
+      if (saignement) {
+        planText += `<p class="warning"><strong>Attention :</strong> La présence de saignements digestifs ou cutanés nécessite une prise en charge hospitalière. Il est recommandé de réaliser une œsogastroscopie afin de rechercher des signes d'hypertension portale.</p>`;
+      }
     }
-  } else {
-    planText += `<p><strong>Hépatite modérée (DF < 32)</strong> – prise en charge ambulatoire possible si le patient est stable.</p>`;
-    planText += `<ul>
-                    <li>Traitement par corticoïdes par voie orale (ex. Prednisone 40 mg/j).</li>
-                    <li>Suivi rapproché en consultation (toutes les 48-72 heures).</li>
-                    <li>Conseils stricts de sevrage alcoolique et prise en charge nutritionnelle.</li>
-                 </ul>`;
+
+    let examText = `<h4>Examens complémentaires à réaliser :</h4>
+                    <ul>
+                      <li>Bilan hépatique complet (ALT, AST, bilirubine, albumine, PT).</li>
+                      <li>Bilan infectieux (hémocultures, ECBU, PCR virale si nécessaire).</li>
+                      <li>Imagerie hépatique en cas de doute sur l'évolution.</li>
+                    </ul>`;
+
+    let ordonnance = `<h4>Ordonnance type et Conseils :</h4>
+                      <ul>
+                        <li>${df >= 32 ? "Administration IV de corticoïdes avec relais per os" : "Traitement par voie orale (Prednisone)"}.</li>
+                        <li>Support nutritionnel et mesures de sevrage alcoolique.</li>
+                        <li>Support hydratation et correction électrolytique.</li>
+                      </ul>`;
+
+    const finalReport = summary + planText + examText + ordonnance +
+                          `<br><strong>Commentaires Globaux :</strong><br>${document.getElementById('aa_comments').value.trim() || "Aucun commentaire supplémentaire."}`;
+
+    document.getElementById('resultAlcoolique').innerHTML = finalReport;
   }
   
-  // Examens complémentaires à réaliser
-  let examText = `<h4>Examens complémentaires à réaliser :</h4>
-                  <ul>
-                    <li>Bilan hépatique complet (ALT, AST, bilirubine, albumine, PT).</li>
-                    <li>Bilan infectieux (hémocultures, ECBU, PCR virale si suspicion d'infection).</li>
-                    <li>Imagerie hépatique (échographie ou scanner) en cas de doute sur l'évolution.</li>
-                  </ul>`;
-  
-  // Ordonnance type et conseils
-  let ordonnance = `<h4>Ordonnance type et Conseils :</h4>
-                    <ul>
-                      <li>Corticoïdes : ${df >= 32 ? "Administration IV avec relais per os après amélioration" : "Traitement par voie orale (Prednisone)"}.</li>
-                      <li>Mise en place d'une prise en charge nutritionnelle et de support pour le sevrage alcoolique.</li>
-                      <li>Mesures de support : hydratation, correction électrolytique, prophylaxie thromboprophylactique.</li>
-                    </ul>`;
-  
-  // Assemblage final du rapport
-  const finalReport = summary + planText + examText + ordonnance +
-                      `<br><strong>Commentaires Globaux :</strong><br>${document.getElementById('aa_comments').value.trim() || "Aucun commentaire supplémentaire."}`;
-  
-  document.getElementById('resultAlcoolique').innerHTML = finalReport;
-}
+  document.getElementById('btnAlcoolique').addEventListener('click', generateAlcooliquePlan);
+})();
 </script>
 
-<style>
-  /* Styles pour le module */
-  #moduleAlcoolique {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fdfdfd;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  .form-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 5px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  input[type="number"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-  }
-  button {
-    padding: 10px 20px;
-    background-color: #00539C;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #003f7f;
-  }
-  .result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #eef;
-    border-radius: 5px;
-  }
-  .warning {
-    color: #721c24;
-    background-color: #f8d7da;
-    padding: 10px;
-    border-radius: 3px;
-  }
-</style>
 <footer>
 	<p style="font-size: 0.9em; text-align: center;">Outils d'aide personnalisée, libres et innovants pour la gastro-entérologie.</p>	
       <p style="font-size: 0.9em; text-align: center;">développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
