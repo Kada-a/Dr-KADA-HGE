@@ -205,6 +205,7 @@
     <button onclick="showModule('moduleGynecoReport')">Compte‑Rendu Gynécologique</button>
     <button onclick="showModule('moduleColposcopy')">Colposcopie & Caractérisation Cervicale</button>
     <button onclick="showModule('modulePregnancyFollowUp')">Suivi de Grossesse</button>
+    <button onclick="showModule('moduleHepGrossesse')">Foie et Grossesse</button>
     <button onclick="showModule('modulePelvicPain')">Douleurs Pelviennes Chroniques</button>
     <button onclick="showModule('modulePeripartumCM')">Cardiomyopathie du Péripartum</button>
     <button onclick="showModule('moduleMenopause')">Ménopause</button>
@@ -1643,7 +1644,305 @@ Protocole de Suivi:
       })();
     </script>
   </div>
+  <!-- Module: Prise en charge des Maladies Hépatiques de la Grossesse -->
+<div id="moduleHepGrossesse" class="module">
+  <h3>Prise en charge des Maladies Hépatiques de la Grossesse</h3>
+  <form id="formHepGrossesse">
+  <!-- Section 4 : Critères Diagnostiques -->
+<section class="form-section">
+  <h3>Critères Diagnostiques (Références Scientifiques)</h3>
   
+  <div class="diagnostic-criteria">
+    <!-- ICP -->
+    <details class="criteria-card">
+      <summary>Cholestase intra-hépatique gravidique (ICP)</summary>
+      <div class="criteria-content">
+        <h4>Critères Majeurs (SMFM 2022) :</h4>
+        <ul>
+          <li>Prurit palmo-plantaire ≥2 semaines</li>
+          <li>Acides biliaires sériques >10 µmol/L</li>
+          <li>ALT >40 U/L ou AST >40 U/L</li>
+          <li>Absence d'autre cause hépatobiliaire</li>
+        </ul>
+        <p class="severity-note">Forme sévère si : Acides biliaires >40 µmol/L ou ALT/AST >200 U/L</p>
+      </div>
+    </details>
+
+    <!-- HELLP -->
+    <details class="criteria-card">
+      <summary>Syndrome HELLP (Critères Mississippi)</summary>
+      <div class="criteria-content">
+        <h4>Triade Obligatoire :</h4>
+        <div class="criteria-grid">
+          <div>
+            <h5>Hémolyse</h5>
+            <ul>
+              <li>LDH >600 U/L</li>
+              <li>Bilirubine indirecte >1.2 mg/dL</li>
+              <li>Haptoglobine <0.5 g/L</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Enzymes Hépatiques</h5>
+            <ul>
+              <li>AST ≥70 U/L</li>
+              <li>ALT ≥70 U/L</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Plaquettes</h5>
+            <ul>
+              <li>Classe 1 : <50 000/mm³</li>
+              <li>Classe 2 : 50-100 000/mm³</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- AFLP -->
+    <details class="criteria-card">
+      <summary>Stéatose hépatique aiguë gravidique(AFLP - Swansea)</summary>
+      <div class="criteria-content">
+        <h4>Critères Majeurs (≥6/11 requis) :</h4>
+        <div class="criteria-grid">
+          <div>
+            <ul>
+              <li>Vomissements persistants</li>
+              <li>Douleur abdominale</li>
+              <li>Encéphalopathie</li>
+              <li>Glycémie <4 mmol/L</li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>Bilirubine >1.2 mg/dL</li>
+              <li>Leucocytes >11 000/mm³</li>
+              <li>ASCAT >42 U/L</li>
+              <li>LDH >600 U/L</li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>INR >1.5</li>
+              <li>Créatinine >1.1 mg/dL</li>
+              <li>Ascite échographique</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<style>
+.diagnostic-criteria {
+  margin: 1rem 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.criteria-card {
+  border-bottom: 1px solid #eee;
+  padding: 1rem;
+}
+
+.criteria-card summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.criteria-content {
+  padding: 1rem;
+  background: #fff;
+  border-left: 4px solid #2196F3;
+  margin-top: 0.5rem;
+}
+
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.severity-note {
+  color: #d32f2f;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #ffebee;
+  border-radius: 4px;
+}
+</style>  
+    <!-- Section 1 : Informations Obstétricales -->
+    <section class="form-section">
+      <h3>Informations Obstétricales</h3>
+      <div class="grid-container">
+        <div class="input-group">
+          <label for="hg_age">Âge maternel (ans) :</label>
+          <input type="number" id="hg_age" min="15" max="50" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_gestationalAge">Âge gestationnel (SA) :</label>
+          <input type="number" id="hg_gestationalAge" min="12" max="42" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_parity">Parité :</label>
+          <select id="hg_parity" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="≥3">≥3</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 : Biomarqueurs Hépatiques -->
+    <section class="form-section">
+      <h3>Biomarqueurs Hépatiques</h3>
+      <div class="grid-container">
+        <div class="input-group">
+          <label for="hg_bileAcids">Acides biliaires (µmol/L) :</label>
+          <input type="number" id="hg_bileAcids" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_platelets">Plaquettes (10³/mm³) :</label>
+          <input type="number" id="hg_platelets" min="20" max="500" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_alt">ALT (U/L) :</label>
+          <input type="number" id="hg_alt" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_ast">AST (U/L) :</label>
+          <input type="number" id="hg_ast" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_ldh">LDH (U/L) :</label>
+          <input type="number" id="hg_ldh" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_glucose">Glycémie (mmol/L) :</label>
+          <input type="number" step="0.1" id="hg_glucose" required>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 : Évaluation Clinique -->
+    <section class="form-section">
+      <h3>Critères Cliniques (Swansea/AFLP)</h3>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" id="hg_prurit"> Prurit palmo-plantaire</label>
+        <label><input type="checkbox" id="hg_vomiting"> Vomissements persistants</label>
+        <label><input type="checkbox" id="hg_abdominalPain"> Douleur abdominale</label>
+        <label><input type="checkbox" id="hg_encephalopathy"> Encéphalopathie</label>
+        <label><input type="checkbox" id="hg_ascites"> Ascite</label>
+        <label><input type="checkbox" id="hg_oliguria"> Oligurie</label>
+      </div>
+    </section>
+
+    <!-- Section 4 : Examens Complémentaires -->
+    <section class="form-section">
+      <h3>Examens Obligatoires</h3>
+      <div class="grid-container">
+        <div class="input-group">
+          <label for="hg_creatinine">Créatinine (µmol/L) :</label>
+          <input type="number" id="hg_creatinine" required>
+        </div>
+        <div class="input-group">
+          <label for="hg_inr">INR :</label>
+          <input type="number" step="0.01" id="hg_inr" required>
+        </div>
+      </div>
+    </section>
+
+    <button type="button" class="cta-button" onclick="generatePlan()">Générer le Plan</button>
+  </form>
+
+  <div id="resultHepGrossesse" class="result-container"></div>
+</div>
+
+<script>
+function generatePlan() {
+  // Collecte des données
+  const clinicalData = {
+    bileAcids: parseFloat(document.getElementById('hg_bileAcids').value),
+    platelets: parseFloat(document.getElementById('hg_platelets').value),
+    ALT: parseFloat(document.getElementById('hg_alt').value),
+    AST: parseFloat(document.getElementById('hg_ast').value),
+    LDH: parseFloat(document.getElementById('hg_ldh').value),
+    glucose: parseFloat(document.getElementById('hg_glucose').value),
+    creatinine: parseFloat(document.getElementById('hg_creatinine').value),
+    INR: parseFloat(document.getElementById('hg_inr').value),
+    symptoms: {
+      pruritus: document.getElementById('hg_prurit').checked,
+      vomiting: document.getElementById('hg_vomiting').checked,
+      abdominalPain: document.getElementById('hg_abdominalPain').checked,
+      encephalopathy: document.getElementById('hg_encephalopathy').checked,
+      ascites: document.getElementById('hg_ascites').checked,
+      oliguria: document.getElementById('hg_oliguria').checked
+    }
+  };
+
+  // Analyse selon les critères scientifiques
+  let diagnosis = [];
+  
+  // Critères ICP
+  if(clinicalData.bileAcids > 10 && clinicalData.symptoms.pruritus) {
+    diagnosis.push({
+      type: 'ICP',
+      severity: clinicalData.bileAcids > 40 ? 'Sévère' : 'Modérée',
+      management: 'AUDC 20 mg/kg/j + surveillance fœtale quotidienne'
+    });
+  }
+
+  // Critères HELLP (Mississippi Class 1)
+  if(clinicalData.platelets < 100000 && clinicalData.AST > 70 && clinicalData.LDH > 600) {
+    diagnosis.push({
+      type: 'HELLP',
+      management: 'Corticothérapie IV + accouchement sous 48h'
+    });
+  }
+
+  // Critères AFLP (Swansea ≥6 critères)
+  let swanseaScore = 0;
+  if(clinicalData.symptoms.vomiting) swanseaScore++;
+  if(clinicalData.symptoms.abdominalPain) swanseaScore++;
+  if(clinicalData.symptoms.encephalopathy) swanseaScore++;
+  if(clinicalData.glucose < 4) swanseaScore++;
+  if(clinicalData.creatinine > 90) swanseaScore++;
+  if(clinicalData.INR > 1.5) swanseaScore++;
+  if(clinicalData.symptoms.ascites) swanseaScore++;
+  
+  if(swanseaScore >= 6) {
+    diagnosis.push({
+      type: 'AFLP',
+      management: 'Réanimation intensive + accouchement immédiat'
+    });
+  }
+
+  // Génération du rapport
+  let report = `<h4>Diagnostic(s) suspecté(s) :</h4><ul>`;
+  diagnosis.forEach(d => {
+    report += `<li><strong>${d.type}</strong> : ${d.management}</li>`;
+  });
+  report += `</ul>`;
+
+  // Recommandations EBM
+  report += `<h4>Recommandations :</h4><ul>
+    <li>ICP : Accouchement à 36-37 SA si acides biliaires >40 µmol/L</li>
+    <li>HELLP : Magnésium IV si TA >160/110 mmHg</li>
+    <li>AFLP : Contrôle glycémique horaire + transfusion si fibrinogène <1.5 g/L</li>
+  </ul>`;
+
+  document.getElementById('resultHepGrossesse').innerHTML = report;
+}
+</script>
   <footer>
     <p style="font-size: 0.9em; text-align: center;" style="font-size: 0.9em;">Outils innovants et aides personnalisées pour la gynécologie.</p>
     <p style="font-size: 0.9em; text-align: center;"Ce document est fourni à titre informatif.</p>
