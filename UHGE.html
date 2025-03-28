@@ -1101,147 +1101,154 @@
     })();
   </script>
   
-  <!-- Module Hépatite alcoolique aiguë -->
-  <div id="moduleAlcoolique" class="module">
-    <h3>Prise en charge de l'Hépatite alcoolique aiguë</h3>
-    <form id="formAlcoolique">
-      <!-- Section 1 : Informations du patient -->
-      <section class="form-section">
-        <h3>Informations du patient</h3>
-        <label for="aa_age">Âge :</label>
-        <input type="number" id="aa_age" placeholder="Entrez l'âge" min="0" required>
-        
-        <label for="aa_sexe">Sexe :</label>
-        <select id="aa_sexe" required>
-           <option value="">--Sélectionner--</option>
-           <option value="Homme">Homme</option>
-           <option value="Femme">Femme</option>
-        </select>
-        
-        <label for="aa_alcool">Consommation d'alcool (en g/j) :</label>
-        <input type="number" id="aa_alcool" placeholder="Ex. 80" required>
-      </section>
+<!-- Module Hépatite alcoolique aiguë -->
+<div id="moduleAlcoolique" class="module">
+  <h3>Prise en charge de l'Hépatite alcoolique aiguë</h3>
+  <form id="formAlcoolique">
+    <!-- Section 1 : Informations du patient -->
+    <section class="form-section">
+      <h3>Informations du patient</h3>
+      <label for="aa_age">Âge :</label>
+      <input type="number" id="aa_age" placeholder="Entrez l'âge" min="0" required>
       
-      <!-- Section 2 : Paramètres biologiques -->
-      <section class="form-section">
-        <h3>Paramètres biologiques</h3>
-        <label for="aa_bilirubine">Bilirubine totale (mg/dL) :</label>
-        <input type="number" id="aa_bilirubine" step="0.1" placeholder="Ex. 10" required>
-        
-        <label for="aa_pt_patient">Temps de prothrombine du patient (sec) :</label>
-        <input type="number" id="aa_pt_patient" step="0.1" placeholder="Ex. 18" required>
-        
-        <label for="aa_pt_control">Temps de prothrombine normal (sec) :</label>
-        <input type="number" id="aa_pt_control" step="0.1" placeholder="Ex. 12" required>
-        
-        <label for="aa_albumine">Albumine (g/dL) :</label>
-        <input type="number" id="aa_albumine" step="0.1" placeholder="Ex. 2.5" required>
-        
-        <label for="aa_ast">AST (U/L) :</label>
-        <input type="number" id="aa_ast" placeholder="Ex. 150" required>
-        
-        <label for="aa_alt">ALT (U/L) :</label>
-        <input type="number" id="aa_alt" placeholder="Ex. 80" required>
-      </section>
+      <label for="aa_sexe">Sexe :</label>
+      <select id="aa_sexe" required>
+         <option value="">--Sélectionner--</option>
+         <option value="Homme">Homme</option>
+         <option value="Femme">Femme</option>
+      </select>
       
-      <!-- Section 3 : Évaluation clinique -->
-      <section class="form-section">
-        <h3>Évaluation clinique</h3>
-        <label>
-          <input type="checkbox" id="aa_encéphalopathie">
-          Présence d'encéphalopathie
-        </label>
-        <label>
-          <input type="checkbox" id="aa_fievre">
-          Fièvre (>38°C)
-        </label>
-        <label>
-          <input type="checkbox" id="aa_saignement">
-          Saignements (digestifs ou cutanés)
-        </label>
-      </section>
-      
-      <!-- Section 4 : Commentaires globaux -->
-      <section class="form-section">
-        <h3>Commentaires globaux</h3>
-        <textarea id="aa_comments" rows="3" placeholder="Entrez vos remarques supplémentaires..."></textarea>
-      </section>
-      
-      <button type="button" id="btnAlcoolique">Générer la conduite à tenir</button>
-    </form>
+      <label for="aa_alcool">Consommation d'alcool (en g/j) :</label>
+      <input type="number" id="aa_alcool" placeholder="Ex. 80" required>
+    </section>
     
-    <div id="resultAlcoolique" class="result"></div>
-  </div>
-  <script>
-    (function(){
-      function generateAlcooliquePlan() {
-        const age = document.getElementById('aa_age').value;
-        const sexe = document.getElementById('aa_sexe').value;
-        const alcool = document.getElementById('aa_alcool').value;
+    <!-- Section 2 : Paramètres biologiques -->
+    <section class="form-section">
+      <h3>Paramètres biologiques</h3>
+      <label for="aa_bilirubine">Bilirubine totale (mg/dL) :</label>
+      <input type="number" id="aa_bilirubine" step="0.1" placeholder="Ex. 10" required>
+      
+      <label for="aa_pt_patient">Temps de prothrombine du patient (sec) :</label>
+      <input type="number" id="aa_pt_patient" step="0.1" placeholder="Ex. 18" required>
+      
+      <label for="aa_pt_control">Temps de prothrombine normal (sec) :</label>
+      <input type="number" id="aa_pt_control" step="0.1" placeholder="Ex. 12" required>
+      
+      <label for="aa_albumine">Albumine (g/dL) :</label>
+      <input type="number" id="aa_albumine" step="0.1" placeholder="Ex. 2.5" required>
+      
+      <label for="aa_ast">AST (U/L) :</label>
+      <input type="number" id="aa_ast" placeholder="Ex. 150" required>
+      
+      <label for="aa_alt">ALT (U/L) :</label>
+      <input type="number" id="aa_alt" placeholder="Ex. 80" required>
+    </section>
+    
+    <!-- Section 3 : Évaluation clinique -->
+    <section class="form-section">
+      <h3>Évaluation clinique</h3>
+      <label>
+        <input type="checkbox" id="aa_encéphalopathie">
+        Présence d'encéphalopathie
+      </label>
+      <label>
+        <input type="checkbox" id="aa_fievre">
+        Fièvre (>38°C)
+      </label>
+      <label>
+        <input type="checkbox" id="aa_saignement">
+        Saignements (digestifs ou cutanés)
+      </label>
+    </section>
+    
+    <!-- Section 4 : Commentaires globaux -->
+    <section class="form-section">
+      <h3>Commentaires globaux</h3>
+      <textarea id="aa_comments" rows="3" placeholder="Entrez vos remarques supplémentaires..."></textarea>
+    </section>
+    
+    <button type="button" id="btnAlcoolique">Générer la conduite à tenir</button>
+  </form>
   
-        const bilirubine = parseFloat(document.getElementById('aa_bilirubine').value) || 0;
-        const ptPatient = parseFloat(document.getElementById('aa_pt_patient').value) || 0;
-        const ptControl = parseFloat(document.getElementById('aa_pt_control').value) || 0;
-        const albumine = parseFloat(document.getElementById('aa_albumine').value) || 0;
-        const ast = parseFloat(document.getElementById('aa_ast').value) || 0;
-        const alt = parseFloat(document.getElementById('aa_alt').value) || 0;
-  
-        const enceph = document.getElementById('aa_encéphalopathie').checked;
-        const fievre = document.getElementById('aa_fievre').checked;
-        const saignement = document.getElementById('aa_saignement').checked;
-  
-        const df = 4.6 * (ptPatient - ptControl) + bilirubine;
-  
-        let summary = `<h4>Résumé de l'Hépatite Alcoolique Aiguë</h4>`;
-        summary += `<p>Patient : ${age} ans, ${sexe}, consommation d'alcool : ${alcool} g/j</p>`;
-        summary += `<p>Paramètres biologiques : Bilirubine = ${bilirubine} mg/dL, PT du patient = ${ptPatient} sec, PT de référence = ${ptControl} sec, Albumine = ${albumine} g/dL, AST = ${ast} U/L, ALT = ${alt} U/L</p>`;
-        summary += `<p>Score de Maddrey (DF) = ${df.toFixed(1)}</p>`;
-        summary += `<p>Critères cliniques : ${enceph ? "Encéphalopathie présente, " : ""}${fievre ? "Fièvre, " : ""}${saignement ? "Saignements, " : ""}</p>`;
-  
-        let planText = `<h4>Proposition de prise en charge :</h4>`;
-        if (df >= 32) {
-          planText += `<p><strong>Hépatite sévère détectée (DF ≥ 32)</strong></p>`;
-          planText += `<ul>
-                          <li>Prise en charge hospitalière obligatoire.</li>
-                          <li>Administration de corticoïdes IV pendant 28 jours.</li>
-                          <li>Contrôle biologique quotidien et suivi clinique rapproché.</li>
-                          <li>Relais en voie orale dès amélioration (évaluation à J3-J7).</li>
-                          <li>Support nutritionnel et prophylaxie thromboprophylactique.</li>
-                        </ul>`;
-          if (enceph || fievre || saignement) {
-            planText += `<p class="warning"><strong>Attention :</strong> Signes de défaillance multi-organique détectés. Surveillance en USI recommandée.</p>`;
-          }
-        } else {
-          planText += `<p><strong>Hépatite modérée (DF < 32)</strong> – prise en charge ambulatoire possible si le patient est stable.</p>`;
-          planText += `<ul>
-                          <li>Traitement par corticoïdes par voie orale.</li>
-                          <li>Suivi rapproché en consultation.</li>
-                          <li>Conseils stricts de sevrage alcoolique et prise en charge nutritionnelle.</li>
-                        </ul>`;
-        }
-  
-        let examText = `<h4>Examens complémentaires à réaliser :</h4>
-                        <ul>
-                          <li>Bilan hépatique complet (ALT, AST, bilirubine, albumine, PT).</li>
-                          <li>Bilan infectieux (hémocultures, ECBU, PCR virale si nécessaire).</li>
-                          <li>Imagerie hépatique en cas de doute sur l'évolution.</li>
-                        </ul>`;
-  
-        let ordonnance = `<h4>Ordonnance type et Conseils :</h4>
-                          <ul>
-                            <li>${df >= 32 ? "Administration IV de corticoïdes avec relais per os" : "Traitement par voie orale (Prednisone)"}.</li>
-                            <li>Support nutritionnel et mesures de sevrage alcoolique.</li>
-                            <li>Support hydratation et correction électrolytique.</li>
-                          </ul>`;
-  
-        const finalReport = summary + planText + examText + ordonnance +
-                            `<br><strong>Commentaires Globaux :</strong><br>${document.getElementById('aa_comments').value.trim() || "Aucun commentaire supplémentaire."}`;
-  
-        document.getElementById('resultAlcoolique').innerHTML = finalReport;
+  <div id="resultAlcoolique" class="result"></div>
+</div>
+
+<script>
+(function(){
+  function generateAlcooliquePlan() {
+    const age = document.getElementById('aa_age').value;
+    const sexe = document.getElementById('aa_sexe').value;
+    const alcool = document.getElementById('aa_alcool').value;
+
+    const bilirubine = parseFloat(document.getElementById('aa_bilirubine').value) || 0;
+    const ptPatient = parseFloat(document.getElementById('aa_pt_patient').value) || 0;
+    const ptControl = parseFloat(document.getElementById('aa_pt_control').value) || 0;
+    const albumine = parseFloat(document.getElementById('aa_albumine').value) || 0;
+    const ast = parseFloat(document.getElementById('aa_ast').value) || 0;
+    const alt = parseFloat(document.getElementById('aa_alt').value) || 0;
+
+    const enceph = document.getElementById('aa_encéphalopathie').checked;
+    const fievre = document.getElementById('aa_fievre').checked;
+    const saignement = document.getElementById('aa_saignement').checked;
+
+    // Calcul du score de Maddrey (DF)
+    const df = 4.6 * (ptPatient - ptControl) + bilirubine;
+
+    let summary = `<h4>Résumé de l'Hépatite Alcoolique Aiguë</h4>`;
+    summary += `<p>Patient : ${age} ans, ${sexe}, consommation d'alcool : ${alcool} g/j</p>`;
+    summary += `<p>Paramètres biologiques : Bilirubine = ${bilirubine} mg/dL, PT du patient = ${ptPatient} sec, PT de référence = ${ptControl} sec, Albumine = ${albumine} g/dL, AST = ${ast} U/L, ALT = ${alt} U/L</p>`;
+    summary += `<p>Score de Maddrey (DF) = ${df.toFixed(1)}</p>`;
+    summary += `<p>Critères cliniques : ${enceph ? "Encéphalopathie présente, " : ""}${fievre ? "Fièvre, " : ""}${saignement ? "Saignements, " : ""}</p>`;
+
+    let planText = `<h4>Proposition de prise en charge :</h4>`;
+    if (df >= 32) {
+      planText += `<p><strong>Hépatite sévère détectée (DF ≥ 32)</strong></p>`;
+      planText += `<ul>
+                      <li>Prise en charge hospitalière obligatoire.</li>
+                      <li>Administration de corticoïdes IV pendant 28 jours.</li>
+                      <li>Contrôle biologique quotidien et suivi clinique rapproché.</li>
+                      <li>Relais en voie orale dès amélioration (évaluation à J3-J7).</li>
+                      <li>Support nutritionnel et prophylaxie thromboprophylactique.</li>
+                    </ul>`;
+      if (enceph || fievre || saignement) {
+        planText += `<p class="warning"><strong>Attention :</strong> Signes de défaillance multi-organique détectés. Surveillance en USI recommandée.</p>`;
       }
-      document.getElementById('btnAlcoolique').addEventListener('click', generateAlcooliquePlan);
-    })();
-  </script>
+    } else {
+      planText += `<p><strong>Hépatite modérée (DF < 32)</strong> – prise en charge ambulatoire possible si le patient est stable.</p>`;
+      planText += `<ul>
+                      <li>Traitement par corticoïdes par voie orale.</li>
+                      <li>Suivi rapproché en consultation.</li>
+                      <li>Conseils stricts de sevrage alcoolique et prise en charge nutritionnelle.</li>
+                    </ul>`;
+      if (saignement) {
+        planText += `<p class="warning"><strong>Attention :</strong> La présence de saignements digestifs ou cutanés nécessite une prise en charge hospitalière. Il est recommandé de réaliser une œsogastroscopie afin de rechercher des signes d'hypertension portale.</p>`;
+      }
+    }
+
+    let examText = `<h4>Examens complémentaires à réaliser :</h4>
+                    <ul>
+                      <li>Bilan hépatique complet (ALT, AST, bilirubine, albumine, PT).</li>
+                      <li>Bilan infectieux (hémocultures, ECBU, PCR virale si nécessaire).</li>
+                      <li>Imagerie hépatique en cas de doute sur l'évolution.</li>
+                    </ul>`;
+
+    let ordonnance = `<h4>Ordonnance type et Conseils :</h4>
+                      <ul>
+                        <li>${df >= 32 ? "Administration IV de corticoïdes avec relais per os" : "Traitement par voie orale (Prednisone)"}.</li>
+                        <li>Support nutritionnel et mesures de sevrage alcoolique.</li>
+                        <li>Support hydratation et correction électrolytique.</li>
+                      </ul>`;
+
+    const finalReport = summary + planText + examText + ordonnance +
+                          `<br><strong>Commentaires Globaux :</strong><br>${document.getElementById('aa_comments').value.trim() || "Aucun commentaire supplémentaire."}`;
+
+    document.getElementById('resultAlcoolique').innerHTML = finalReport;
+  }
+  
+  document.getElementById('btnAlcoolique').addEventListener('click', generateAlcooliquePlan);
+})();
+</script>
+
   
   <!-- Module Produits Caustiques (Static content) -->
   <div id="moduleProduitsCaustiques" class="module">
