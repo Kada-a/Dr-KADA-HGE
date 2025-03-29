@@ -131,7 +131,7 @@
     <button onclick="showModule('moduleCholangiocarcinomeIntrahep')">Cholangiocarcinome intrahépatique</button>		
     <button onclick="showModule('moduleCholangiocarcinomeExtrahep')">Cholangiocarcinome extrahépatique</button>	
     <button onclick="showModule('moduleDrainageBiliaire')">Drainage Biliaire</button>	
-	<button onclick="showModule('moduleAlcoolique')">Hépatite alcoolique aiguë</button>
+    <button onclick="showModule('moduleAlcoolique')">Hépatite alcoolique aiguë</button>
     <button onclick="showModule('moduleHyperferritin')">Hyperferritinémie</button>
     <button onclick="showModule('moduleLiverTests')">Tests hépatiques perturbés</button>
     <button onclick="showModule('moduleHepatiteB')">Hépatite B</button> 
@@ -9059,17 +9059,19 @@ function generateAlcooliquePlan() {
 <!-- Module: Prise en charge des Maladies Hépatiques de la Grossesse -->
 <div id="moduleHepGrossesse" class="module">
   <h3>Prise en charge des Maladies Hépatiques de la Grossesse</h3>
+<p>Bilanv: NFS, plaquettes, ionogramme, urée, créatinine, glycémie, uricémie, TP, acides biliaires à jeun (si prurit), Sérologies virales : HAV, HBV, HCV, HEV, CMV,EBV,HIV, 
+Bilan auto immun, fibrinogène, Haptoglobine, BU, Protéinurie, ECBU et Echographie doppler hépatique</p>
   <form id="formHepGrossesse">
   <!-- Section 4 : Critères Diagnostiques -->
 <section class="form-section">
-  <h3>Critères Diagnostiques (Références Scientifiques)</h3>
+  <h3>Critères Diagnostiques</h3>
   
   <div class="diagnostic-criteria">
     <!-- ICP -->
     <details class="criteria-card">
       <summary>Cholestase intra-hépatique gravidique (ICP)</summary>
       <div class="criteria-content">
-        <h4>Critères Majeurs (SMFM 2022) :</h4>
+        <h4>Critères Majeurs :</h4>
         <ul>
           <li>Prurit palmo-plantaire ≥2 semaines</li>
           <li>Acides biliaires sériques >10 µmol/L</li>
@@ -9114,7 +9116,7 @@ function generateAlcooliquePlan() {
 
     <!-- AFLP -->
     <details class="criteria-card">
-      <summary>Stéatose hépatique aiguë gravidique(AFLP - Swansea)</summary>
+      <summary>Stéatose hépatique aiguë gravidique(AFLP)</summary>
       <div class="criteria-content">
         <h4>Critères Majeurs (≥6/11 requis) :</h4>
         <div class="criteria-grid">
@@ -9247,7 +9249,7 @@ function generateAlcooliquePlan() {
 
     <!-- Section 3 : Évaluation Clinique -->
     <section class="form-section">
-      <h3>Critères Cliniques (Swansea/AFLP)</h3>
+      <h3>Critères Cliniques (AFLP)</h3>
       <div class="checkbox-grid">
         <label><input type="checkbox" id="hg_prurit"> Prurit palmo-plantaire</label>
         <label><input type="checkbox" id="hg_vomiting"> Vomissements persistants</label>
@@ -9357,7 +9359,7 @@ function generatePlan() {
 </script>
 <footer>
       
-      <p style="font-size: 0.9em; text-align: center;">développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
+      <p style="font-size: 0.9em; text-align: center;">Développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
     <p style="font-size: 0.9em; text-align: center;"> </p>
 
    
