@@ -143,6 +143,7 @@
     <button onclick="showModule('moduleCholangiocarcinomeIntrahep')">Cholangiocarcinome intrahépatique</button>		
     <button onclick="showModule('moduleCholangiocarcinomeExtrahep')">Cholangiocarcinome extrahépatique</button>	
     <button onclick="showModule('moduleDrainageBiliaire')">Drainage Biliaire</button>	
+    <button onclick="showModule('moduleTumeursBenignes')">Tumeurs bénignes du foie</button>
     <button onclick="showModule('moduleLymphomes')">Le lymphome digestif</button>
     <button onclick="showModule('moduleTNE')">TNE</button>
     <button onclick="showModule('moduleAnus')">Cancer de l'anus</button>
@@ -9029,6 +9030,248 @@ button:hover { background: #0056b3; }
 })();
 </script>
 
+<!-- Module : Tumeurs bénignes du foie -->
+<div id="moduleTumeursBenignes" class="module">
+  <h3>Prise en charge des Tumeurs bénignes du foie</h3>
+  
+  <!-- Navigation par onglets pour sélectionner le type de tumeur -->
+  <div class="tab-container">
+    <button class="tab-link active" onclick="openTumorTab(event, 'moduleFNH')">Hyperplasie nodulaire focale</button>
+    <button class="tab-link" onclick="openTumorTab(event, 'moduleAdenomes')">Adénomes du foie</button>
+  </div>
+  
+  <!-- Module Hyperplasie Nodulaire Focale (FNH) -->
+  <div id="moduleFNH" class="module active" style="display:block;">
+    <h4>Hyperplasie nodulaire focale</h4>
+    <form id="formFNH">
+      <!-- Informations Patient -->
+      <section class="form-section">
+        <h4>Informations Patient</h4>
+        <div class="grid-container">
+          <div class="input-group">
+            <label for="fnh_age">Âge :</label>
+            <input type="number" id="fnh_age" min="0" required>
+          </div>
+          <div class="input-group">
+            <label for="fnh_gender">Sexe :</label>
+            <select id="fnh_gender" required>
+              <option value="F">Féminin</option>
+              <option value="M">Masculin</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Caractéristiques radiologiques -->
+      <section class="form-section">
+        <h4>Caractéristiques radiologiques</h4>
+        <div class="grid-container">
+          <div class="input-group">
+            <label for="fnh_size">Taille de la lésion (cm) :</label>
+            <input type="number" step="0.1" id="fnh_size" required>
+          </div>
+          <div class="input-group">
+            <label for="fnh_number">Nombre de lésions :</label>
+            <input type="number" id="fnh_number" min="1" required>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Symptomatologie -->
+      <section class="form-section">
+        <h4>Symptomatologie</h4>
+        <div class="input-group">
+          <label>
+            <input type="checkbox" id="fnh_symptoms">
+            Présence de symptômes (douleur, inconfort)
+          </label>
+        </div>
+      </section>
+      
+      <button type="button" class="cta-button" onclick="generateFNHPlan()">Générer le Plan de prise en charge FNH</button>
+    </form>
+    <div id="resultFNH" class="result-container"></div>
+  </div>
+  
+  <!-- Module Adénomes du foie -->
+  <div id="moduleAdenomes" class="module" style="display:none;">
+    <h4>Adénomes du foie</h4>
+    <form id="formAdenomes">
+      <!-- Informations Patient -->
+      <section class="form-section">
+        <h4>Informations Patient</h4>
+        <div class="grid-container">
+          <div class="input-group">
+            <label for="aden_age">Âge :</label>
+            <input type="number" id="aden_age" min="0" required>
+          </div>
+          <div class="input-group">
+            <label for="aden_gender">Sexe :</label>
+            <!-- Déclenche la vérification de l'affichage en cas de changement -->
+            <select id="aden_gender" onchange="updateContraceptiveVisibility()" required>
+              <option value="F">Féminin</option>
+              <option value="M">Masculin</option>
+            </select>
+          </div>
+          <!-- Ce champ est réservé aux patientes afin de préciser leur statut ménopausique -->
+          <div class="input-group" id="aden_menopause_container">
+            <label for="aden_menopause">Statut ménopausique :</label>
+            <select id="aden_menopause" onchange="updateContraceptiveVisibility()" required>
+              <option value="non">Pré-ménopausée</option>
+              <option value="oui">Ménopausée</option>
+            </select>
+          </div>
+          <!-- Ce champ ne s'affiche que pour les femmes non ménopausées -->
+          <div class="input-group" id="aden_oc_container">
+            <label for="aden_oc">Utilisation de contraceptifs oraux :</label>
+            <select id="aden_oc" required>
+              <option value="oui">Oui</option>
+              <option value="non">Non</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Caractéristiques radiologiques -->
+      <section class="form-section">
+        <h4>Caractéristiques radiologiques</h4>
+        <div class="grid-container">
+          <div class="input-group">
+            <label for="aden_size">Taille de la lésion principale (cm) :</label>
+            <input type="number" step="0.1" id="aden_size" required>
+          </div>
+          <div class="input-group">
+            <label for="aden_number">Nombre de lésions :</label>
+            <input type="number" id="aden_number" min="1" required>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Symptomatologie et facteurs de risque -->
+      <section class="form-section">
+        <h4>Symptomatologie et facteurs de risque</h4>
+        <div class="input-group">
+          <label>
+            <input type="checkbox" id="aden_symptoms">
+            Présence de symptômes (douleur, signes d'hémorragie)
+          </label>
+        </div>
+        <div class="input-group">
+          <label for="aden_risk">Autres facteurs de risque (ex. obésité, syndrome métabolique) :</label>
+          <textarea id="aden_risk" rows="2" placeholder="Décrire les facteurs de risque..."></textarea>
+        </div>
+      </section>
+      
+      <button type="button" class="cta-button" onclick="generateAdenomaPlan()">Générer le Plan de prise en charge des adénomes</button>
+    </form>
+    <div id="resultAdenomes" class="result-container"></div>
+  </div>
+  
+  <!-- Script de gestion des onglets et génération des plans -->
+  <script>
+    // Fonction de gestion des onglets internes
+    function openTumorTab(evt, moduleId) {
+      var modules = document.querySelectorAll('#moduleTumeursBenignes > .module');
+      modules.forEach(function(module) {
+        module.style.display = "none";
+      });
+      var tablinks = document.querySelectorAll('#moduleTumeursBenignes .tab-link');
+      tablinks.forEach(function(link) {
+        link.classList.remove("active");
+      });
+      document.getElementById(moduleId).style.display = "block";
+      evt.currentTarget.classList.add("active");
+    }
+    
+    // Fonction pour mettre à jour l'affichage du champ "Utilisation de contraceptifs oraux"
+    // Ce champ doit être masqué si le patient est de sexe masculin
+    // ou s'il est une patiente ménopausée.
+    function updateContraceptiveVisibility() {
+      var gender = document.getElementById('aden_gender').value;
+      var menopauseContainer = document.getElementById('aden_menopause_container');
+      var ocContainer = document.getElementById('aden_oc_container');
+      
+      if (gender === "M") {
+        // Pour les hommes, masquer le champ du statut ménopausique et celui des contraceptifs.
+        menopauseContainer.style.display = "none";
+        ocContainer.style.display = "none";
+        document.getElementById('aden_oc').required = false;
+      } else {
+        // Pour les femmes, afficher le champ du statut ménopausique
+        menopauseContainer.style.display = "block";
+        // Récupérer le statut ménopausique
+        var menopauseStatus = document.getElementById('aden_menopause').value;
+        if (menopauseStatus === "oui") {
+          // Si la patiente est ménopausée, masquer le champ des contraceptifs.
+          ocContainer.style.display = "none";
+          document.getElementById('aden_oc').required = false;
+        } else {
+          // Si la patiente n'est pas ménopausée, afficher le champ.
+          ocContainer.style.display = "block";
+          document.getElementById('aden_oc').required = true;
+        }
+      }
+    }
+    
+    // Appel initial pour s'assurer que les champs s'affichent correctement dès le chargement
+    document.addEventListener("DOMContentLoaded", function() {
+      updateContraceptiveVisibility();
+    });
+    
+    // Génération du plan pour Hyperplasie Nodulaire Focale
+    function generateFNHPlan() {
+      var age = document.getElementById('fnh_age').value;
+      var gender = document.getElementById('fnh_gender').value;
+      var size = parseFloat(document.getElementById('fnh_size').value) || 0;
+      var number = document.getElementById('fnh_number').value;
+      var symptoms = document.getElementById('fnh_symptoms').checked;
+      
+      var report = "<h4>Plan de prise en charge pour Hyperplasie nodulaire focale</h4>";
+      report += "<p><strong>Patient :</strong> " + age + " ans, " + (gender === "F" ? "féminin" : "masculin") + "</p>";
+      report += "<p><strong>Caractéristiques radiologiques :</strong> Lésion de " + size + " cm, nombre de lésions : " + number + ".</p>";
+      if(symptoms){
+        report += "<p>Présence de symptômes : une évaluation clinique approfondie (complément par IRM) est recommandée.</p>";
+      } else {
+        report += "<p>Les lésions sont asymptomatiques. Une surveillance régulière par imagerie (échographie ou IRM) tous les 6 à 12 mois est préconisée.</p>";
+      }
+      report += "<p><em></em></p>";
+      
+      document.getElementById('resultFNH').innerHTML = report;
+    }
+    
+    // Génération du plan pour Adénomes du foie
+    function generateAdenomaPlan() {
+      var age = document.getElementById('aden_age').value;
+      var gender = document.getElementById('aden_gender').value;
+      var size = parseFloat(document.getElementById('aden_size').value) || 0;
+      var number = document.getElementById('aden_number').value;
+      var symptoms = document.getElementById('aden_symptoms').checked;
+      var risk = document.getElementById('aden_risk').value;
+      
+      var report = "<h4>Plan de prise en charge pour Adénomes du foie</h4>";
+      report += "<p><strong>Patient :</strong> " + age + " ans, " + (gender === "F" ? "féminin" : "masculin") + "</p>";
+      report += "<p><strong>Caractéristiques radiologiques :</strong> Lésion principale de " + size + " cm, nombre de lésions : " + number + ".</p>";
+      
+      // Afficher l'utilisation de contraceptifs uniquement pour les femmes non ménopausées
+      if (gender === "F" && document.getElementById('aden_oc_container').style.display !== "none") {
+        var oc = document.getElementById('aden_oc').value;
+        report += "<p><strong>Utilisation de contraceptifs oraux :</strong> " + oc + "</p>";
+      }
+      
+      if(symptoms || size >= 5){
+        report += "<p>Le risque de complications (hémorragie ou transformation maligne) est accru en présence de symptômes ou pour une lésion de grande taille (>5 cm). Une prise en charge chirurgicale ou par ablation interventionnelle peut être envisagée.</p>";
+      } else {
+        report += "<p>En l'absence de symptômes et pour des lésions de petite taille, la prise en charge initiale est conservatrice (arrêt des contraceptifs oraux et surveillance par imagerie).</p>";
+      }
+      if(risk.trim() !== ""){
+        report += "<p><strong>Facteurs de risque additionnels :</strong> " + risk + "</p>";
+      }
+      report += "<p><em></em></p>";
+      
+      document.getElementById('resultAdenomes').innerHTML = report;
+    }
+  </script>
+</div>
      
 <footer>	
       <p style="font-size: 0.9em; text-align: center;">Développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
