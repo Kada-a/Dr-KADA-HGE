@@ -144,6 +144,7 @@
     <button onclick="showModule('moduleCholangiocarcinomeExtrahep')">Cholangiocarcinome extrahépatique</button>	
     <button onclick="showModule('moduleDrainageBiliaire')">Drainage Biliaire</button>	
     <button onclick="showModule('moduleTumeursBenignes')">Tumeurs bénignes du foie</button>
+    <button onclick="showModule('moduleKystiques')">lésions kystiques hépatiques</button>
     <button onclick="showModule('moduleLymphomes')">Le lymphome digestif</button>
     <button onclick="showModule('moduleTNE')">TNE</button>
     <button onclick="showModule('moduleAnus')">Cancer de l'anus</button>
@@ -9272,7 +9273,138 @@ button:hover { background: #0056b3; }
     }
   </script>
 </div>
-     
+    <!--  Prise en charge des lésions kystiques hépatiques -->
+<div id="moduleKystiques" class="module">
+  <h2>Prise en charge des lésions kystiques hépatiques</h2>
+  <!-- Onglets pour séparer les sous-modules -->
+  <div class="tab-container">
+    <button class="tab-link active" onclick="showKystiquesSubmodule(event, 'nonInfectieux')">Lésions non infectieuses</button>
+    <button class="tab-link" onclick="showKystiquesSubmodule(event, 'infectieux')">Lésions infectieuses</button>
+  </div>
+  
+  <!-- Sous-module : Lésions non infectieuses -->
+  <div id="nonInfectieux" class="submodule active" style="display:block;">
+    <h3>Lésions kystiques hépatiques non infectieuses</h3>
+    <p>
+      Ces lésions regroupent principalement les kystes simples, les hamartomes biliaires (microkystes) et la polykystose hépatique. Elles sont souvent découvertes fortuitement à l’imagerie.
+    </p>
+    
+    <h4>Arbre décisionnel</h4>
+    <ul>
+      <li>
+        <strong>Imagerie :</strong> Utiliser l’échographie (puis scanner/IRM si besoin) pour déterminer :
+        <ul>
+          <li>Aspect anéchogène, paroi fine → kyste simple</li>
+          <li>Présence de cloisons internes, végétations → suspicion de tumeur kystique (ex. cystadénome)</li>
+          <li>Multiplicité des lésions → penser à une polykystose</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Indication de ponction :</strong>
+        <ul>
+          <li>Non recommandée pour un kyste simple asymptomatique</li>
+          <li>Peut être envisagée en cas de kyste symptomatique ou à aspect complexe après discussion multidisciplinaire</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Traitement chirurgical :</strong>
+        <ul>
+          <li>Fenestration ou résection en cas de kyste volumineux ou de suspicion de tumeur</li>
+        </ul>
+      </li>
+    </ul>
+    
+    <!-- Détail selon l'âge -->
+    <details>
+      <summary><strong>Adultes</strong></summary>
+      <ul>
+        <li>Kyste simple asymptomatique : surveillance sans traitement</li>
+        <li>Kyste symptomatique ou volumineux : ponction-aspiration avec sclérose ou fenestration chirurgicale</li>
+        <li>Suspicion de tumeur kystique (cystadénome/cystadénocarcinome) : résection chirurgicale</li>
+      </ul>
+    </details>
+    
+    <details>
+      <summary><strong>Pédiatrie</strong></summary>
+      <ul>
+        <li>Les kystes isolés sont rares avant 10 ans</li>
+        <li>Recherche d’éventuelles malformations ou syndromes associés (ex. ARPKD)</li>
+        <li>Approche conservatrice en l'absence de complications majeures</li>
+      </ul>
+    </details>
+  </div>
+  
+  <!-- Sous-module : Lésions infectieuses -->
+  <div id="infectieux" class="submodule" style="display:none;">
+    <h3>Lésions kystiques hépatiques infectieuses</h3>
+    <p>
+      Ces lésions incluent principalement le kyste hydatique (échinococcose), les abcès amibiens et pyogéniques. Le diagnostic repose sur le contexte clinique, l’imagerie et les sérologies.
+    </p>
+    
+    <h4>Arbre décisionnel</h4>
+    <ul>
+      <li>
+        <strong>Contexte clinique & imagerie :</strong>
+        <ul>
+          <li>Fièvre, syndrome inflammatoire et antécédents épidémiologiques → suspecter une origine infectieuse</li>
+          <li>Imagerie : présence de cloisons, niveau hydro-aérique ou gaz → oriente vers un abcès ou kyste hydatique</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Examens complémentaires :</strong>
+        <ul>
+          <li>Sérologies (Echinococcus, Entamoeba) selon la suspicion</li>
+          <li>Prélèvements microbiologiques en cas d’abcès (hémocultures, analyse du pus)</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Traitement :</strong>
+        <ul>
+          <li>Abcès pyogénique : Drainage percutané et antibiothérapie ciblée</li>
+          <li>Abcès amibien : Traitement par métronidazole, drainage en cas de grande taille ou de non-amélioration</li>
+          <li>Kyste hydatique : Traitement antiparasitaire (albendazole) et PAIR (Ponction, Aspiration, Injection, Ré-aspiration) ou chirurgie en cas de complication</li>
+        </ul>
+      </li>
+    </ul>
+    
+    <!-- Détail selon l'âge -->
+    <details>
+      <summary><strong>Adultes</strong></summary>
+      <ul>
+        <li>Drainage percutané en première intention pour les abcès</li>
+        <li>Traitement médical (antibiotiques ou antiparasitaires) avec prise en charge interventionnelle si nécessaire</li>
+      </ul>
+    </details>
+    
+    <details>
+      <summary><strong>Pédiatrie</strong></summary>
+      <ul>
+        <li>Évaluation similaire aux adultes avec adaptation des dosages</li>
+        <li>Drainage adapté aux nourrissons, souvent avec une approche moins invasive</li>
+        <li>Suivi rapproché et prise en charge multidisciplinaire</li>
+      </ul>
+    </details>
+  </div>
+</div>
+
+<!-- Script de gestion des onglets dans le module -->
+<script>
+  function showKystiquesSubmodule(evt, submoduleId) {
+    var submodules = document.getElementsByClassName("submodule");
+    for (var i = 0; i < submodules.length; i++) {
+      submodules[i].style.display = "none";
+      submodules[i].classList.remove("active");
+    }
+    var tablinks = document.getElementsByClassName("tab-link");
+    for (var i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(submoduleId).style.display = "block";
+    document.getElementById(submoduleId).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+</script>
+  
 <footer>	
       <p style="font-size: 0.9em; text-align: center;">Développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
     <p style="font-size: 0.9em; text-align: center;"> </p>
