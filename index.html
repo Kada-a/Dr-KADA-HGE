@@ -65,63 +65,8 @@
 </head>
 <body>
 
-  <h2>Web HGE</h2>
-    <p>À partir de notes personnelles, je vous présente ce travail, conçu sous la forme d'une page hypertexte intégrant des algorithmes de prise en charge pour diverses situations en hépatogastro-entérologie. 
-      J'espère que cette initiative sera adoptée et se révélera utile pour tous.</p>
+  <a href="https://kadawebhge.fr/index.html" target="_blank">Visitez notre nouveau site</a>
 
-  <!-- Lien de navigation sous forme de texte -->
-  
-  <p class="nav-link" data-target="Tube digestif.html">Tube digestif</p>
-  <p class="nav-link" data-target="FoieVoiesBiliaires.html">Foie et Voies Biliaires</p>
-  <p class="nav-link" data-target="Pancréas.html">Pancréas</p>
-  <p class="nav-link" data-target="Cancer.html">Cancer Digestif</p>
-  <p class="nav-link" data-target="UHGE.html">Urgence en HGE</p>
-  <p class="nav-link" data-target="WHGE.html">HGE</p>
-  <p class="nav-link" data-target="foiegrossesse.html">Foie et Grossesse</p>
-
-  <!-- Splash Page d'introduction -->
-  <div id="splash">
-    <div id="splashContent">
-      <h2>Disclaimer</h2>
-      <p>
-        Les informations présentées sur ce site sont fournies à titre informatif et ne remplacent en aucun cas un avis médical personnalisé.
-      </p>
-      <p>
-        En continuant, vous acceptez que ce contenu soit utilisé uniquement à des fins d'information et que vous assumez l'entière responsabilité de son utilisation dans votre pratique.
-      </p>
-      <label>
-        <input type="checkbox" id="acceptConditions"> J'accepte les conditions d'utilisation
-      </label>
-      <br>
-      <button id="continueButton">Continuer</button>
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      let targetUrl = ""; // Variable pour stocker l'URL de redirection
-
-      // Ajout d'un événement sur le lien de navigation
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function () {
-          targetUrl = this.getAttribute('data-target');
-          // Affichage du splash
-          document.getElementById('splash').style.display = "flex";
-        });
-      });
-
-      // Gestion de l'événement sur le bouton "Continuer" du splash
-      document.getElementById('continueButton').addEventListener('click', function () {
-        const checkbox = document.getElementById("acceptConditions");
-        if (checkbox.checked) {
-          // Redirection vers l'URL cible
-          window.location.href = targetUrl;
-        } else {
-          alert("Veuillez accepter les conditions d'utilisation pour continuer.");
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
