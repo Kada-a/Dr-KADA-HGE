@@ -1,1 +1,2102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Foie et Grossesse</title>
+ 
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header, footer {
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    nav button {
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background-color: #003f7f;
+    }
+    .module {
+      display: none;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #c3d8f0;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .module h2 {
+      color: #00539C;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eef;
+      border-radius: 4px;
+    }
+    /* Styles pour la connexion/inscription */
+    #loginContainer, #registerContainer {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    form > div {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 15px;
+      background: #00539C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #003f7f;
+    }
+    .hidden { display: none; }
+  </style>
+  	<style>
+    .module {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .selection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 25px;
+    }
+    .input-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+    .recommend-btn {
+      background: #2c3e50;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+      margin: 15px 0;
+    }
+    .recommend-btn:hover {
+      background: #34495e;
+    }
+    .protocol-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    .protocol-card h4 {
+      color: #2980b9;
+      margin: 0 0 10px 0;
+      font-size: 1.4em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f6f6;
+    }
+    .effets {
+      background: #fdebd0;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+    .surveillance {
+      background: #d5f5e3;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+    .premed {
+      color: #16a085;
+      padding: 10px;
+      background-color: #e8f6f3;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+  </style>
+   <style>
+    a {
+      margin-right: 20px; /* Ajustez la valeur selon vos besoins */
+    }
+  </style>
+</head>
+<body>
+   <a href="index.html">Retour à l'accueil</a>
+   <a href="Tube digestif.html">Tube digestif</a>
+   <a href="FoieVoiesBiliaires.html">Foie et Voies Biliaires</a>
+   <a href="Pancréas.html">Pancréas</a>   
+   <a href="Cancer.html">Cancer Digestif</a>
+   <a href="UHGE.html">Urgence en HGE</a>
+<script>
+    // Fonction pour afficher le module sélectionné et masquer les autres
+    function showModule(moduleId) {
+      var modules = document.getElementsByClassName('module');
+      for (var i = 0; i < modules.length; i++) {
+        modules[i].style.display = 'none';
+      }
+      document.getElementById(moduleId).style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    
+  </script>
+  <header>
+ <footer>	
+      <p style="font-size: 0.9em; text-align: center;">Disclaimer : Ce document est fourni à titre informatif.</p>
+    </footer>    
+    
+  </header>
+  
+  <!-- Barre de Navigation -->
+  <nav>
+    
+    <button onclick="showModule('moduleHepGrossesse')">Foie et Grossesse</button>
+  </nav>
+  
+  <!-- Module : Cancer de la Vulve -->
+<div id="moduleVulve" class="module">
+  <h2>Cancer de la Vulve</h2>
+  <form data-module-form="cancer_vulve">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="vulve_histo">Type histologique :</label>
+        <select id="vulve_histo" required>
+          <option value="">--Sélectionner--</option>
+          <option value="squameux">Carcinome épidermoïde (80-90%)</option>
+          <option value="melanome">Mélanome (5-10%)</option>
+          <option value="adeno">Adénocarcinome</option>
+          <option value="basal">Carcinome basocellulaire</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="vulve_figo">Stade FIGO 2021 :</label>
+        <select id="vulve_figo" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I : Tumeur ≤2 cm limitée à la vulve</option>
+          <option value="II">II : Tumeur >2 cm limitée à la vulve</option>
+          <option value="III">III : Extension aux structures adjacentes</option>
+          <option value="IVA">IVA : Atteinte urinaire/rectale ou osseuse</option>
+          <option value="IVB">IVB : Métastases à distance</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="vulve_taille">Taille tumorale (mm) :</label>
+        <input type="number" id="vulve_taille" min="1" max="150" required>
+      </div>
+    </section>
+
+    <!-- Section 2 : Extension Locorégionale -->
+    <section class="form-section">
+      <h3>Extension Locorégionale</h3>
+      <div class="input-group">
+        <label for="vulve_enfoui">Envahissement en profondeur :</label>
+        <select id="vulve_enfoui" required>
+          <option value="">--Sélectionner--</option>
+          <option value="<1mm">&lt;1 mm</option>
+          <option value="1-5mm">1-5 mm</option>
+          <option value=">5mm">&gt;5 mm</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="vulve_ganglion">Statut ganglionnaire :</label>
+        <select id="vulve_ganglion" required>
+          <option value="">--Sélectionner--</option>
+          <option value="N0">N0</option>
+          <option value="N1a">N1a (1-2 ganglions &lt;5 mm)</option>
+          <option value="N1b">N1b (1 ganglion ≥5 mm)</option>
+          <option value="N2">N2 (≥3 ganglions ou ENE)</option>
+        </select>
+      </div>
+      
+      <div class="checkbox-group">
+        <h4>Extension locale :</h4>
+        <label><input type="checkbox" name="extension_vulve" value="urethre"> Urètre</label>
+        <label><input type="checkbox" name="extension_vulve" value="vagina"> Vagina</label>
+        <label><input type="checkbox" name="extension_vulve" value="anus"> Anus</label>
+      </div>
+    </section>
+
+    <!-- Section 3 : Facteurs Pronostiques -->
+    <section class="form-section">
+      <h3>Facteurs Pronostiques</h3>
+      <div class="input-group">
+        <label for="vulve_hpv">Statut HPV/p16 :</label>
+        <select id="vulve_hpv" required>
+          <option value="">--Sélectionner--</option>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+      </div>
+      
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="pronostic_vulve" value="LVI"> Invasion lymphovasculaire</label>
+        <label><input type="checkbox" name="pronostic_vulve" value="PNI"> Invasion périnerveuse</label>
+        <label><input type="checkbox" name="pronostic_vulve" value="diff"> Différenciation médiocre</label>
+      </div>
+    </section>
+
+    <!-- Section 4 : Options Thérapeutiques -->
+    <section class="form-section">
+      <h3>Options Thérapeutiques</h3>
+      <div class="input-group">
+        <label for="vulve_resection">Marges de résection :</label>
+        <select id="vulve_resection" required>
+          <option value="">--Sélectionner--</option>
+          <option value="R0">Marges saines (>8 mm)</option>
+          <option value="R1">Marges compromises (1-8 mm)</option>
+          <option value="R2">Marges envahies</option>
+        </select>
+      </div>
+      
+      <div class="checkbox-group">
+        <h4>Traitements combinés :</h4>
+        <label><input type="checkbox" id="vulve_radio"> Radiothérapie</label>
+        <label><input type="checkbox" id="vulve_radiochimio"> Radiochimiothérapie</label>
+        <label><input type="checkbox" id="vulve_curieth"> Curiethérapie</label>
+      </div>
+    </section>
+
+    <button type="button">Générer la conduite à tenir</button>
+  </form>
+  <div id="resultVulve" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'cancer_vulve';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultVulve'
+      };
+
+      function init() {
+        document.querySelector(selectors.form)
+          .querySelector('button')
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          histo: document.getElementById('vulve_histo').value,
+          figo: document.getElementById('vulve_figo').value,
+          taille: document.getElementById('vulve_taille').value,
+          profondeur: document.getElementById('vulve_enfoui').value,
+          ganglions: document.getElementById('vulve_ganglion').value,
+          extension: [...document.querySelectorAll('[name="extension_vulve"]:checked')].map(c => c.value),
+          hpv: document.getElementById('vulve_hpv').value,
+          pronostic: [...document.querySelectorAll('[name="pronostic_vulve"]:checked')].map(c => c.value),
+          resection: document.getElementById('vulve_resection').value,
+          traitements: {
+            radio: document.getElementById('vulve_radio').checked,
+            radiochimio: document.getElementById('vulve_radiochimio').checked,
+            curie: document.getElementById('vulve_curieth').checked
+          }
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+        
+        // Tumeurs précoces (FIGO I-II)
+        if(['I','II'].includes(data.figo)) {
+          treatment += `<p>➔ Chirurgie première (vulvectomie partielle/radicale)</p>`;
+          if(data.ganglions === 'N0' && data.taille < 20) {
+            treatment += `<p>➔ Curage ganglionnaire inguinal homolatéral si lésion latérale</p>`;
+          }
+        }
+        
+        // Tumeurs localement avancées
+        if(data.figo === 'III' || data.extension.length > 0) {
+          treatment += `<p>➔ Radiochimiothérapie concomitante (Cisplatine hebdomadaire)</p>`;
+          if(data.resection === 'R0') {
+            treatment += `<p>➔ Chirurgie de rattrapage si réponse partielle</p>`;
+          }
+        }
+        
+        // Facteurs de mauvais pronostic
+        if(data.pronostic.includes('LVI') || data.resection === 'R1') {
+          treatment += `<h4>Traitement adjuvant :</h4>`;
+          treatment += `<p>➔ Radiothérapie locorégionale (45-50 Gy)</p>`;
+          if(data.hpv === 'negatif') {
+            treatment += `<p>➔ Chimio potentialisatrice (5-FU/Cisplatine)</p>`;
+          }
+        }
+
+        treatment += `<h4>Surveillance :</h4>`;
+        treatment += `<p>➔ Examen clinique mensuel les 2 premières années</p>`;
+        treatment += `<p>➔ Imagerie (IRM/TEP-TDM) si suspicion de récidive</p>`;
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.histo && data.figo && data.taille && 
+               data.profondeur && data.ganglions && 
+               data.hpv && data.resection;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+  
+  <!-- Module : Cancer de l'Ovaire -->
+<div id="moduleOvaire" class="module">
+  <h2>Cancer de l'Ovaire</h2>
+  <form data-module-form="ovaire">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="ovaire_type">Type tumoral :</label>
+        <select id="ovaire_type" required>
+          <option value="">--Sélectionner--</option>
+          <option value="borderline">Tumeur borderline</option>
+          <option value="HGSC">Carcinome séreux haut grade</option>
+          <option value="LGSC">Carcinome séreux bas grade</option>
+          <option value="endometrioide">Carcinome endométrioïde</option>
+          <option value="mucineux">Carcinome mucineux</option>
+          <option value="cellules_claires">Carcinome à cellules claires</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="ovaire_figo">Stade FIGO 2014 :</label>
+        <select id="ovaire_figo" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I : Limité aux ovaires</option>
+          <option value="II">II : Extension pelvienne</option>
+          <option value="III">III : Extension abdominale</option>
+          <option value="IV">IV : Métastases à distance</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="ovaire_residu">Maladie résiduelle :</label>
+        <select id="ovaire_residu" required>
+          <option value="">--Sélectionner--</option>
+          <option value="R0">Aucune maladie visible</option>
+          <option value="R1">Résidu ≤1 cm</option>
+          <option value="R2">Résidu >1 cm</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 2 : Biomarqueurs -->
+    <section class="form-section">
+      <h3>Biomarqueurs</h3>
+      <div class="input-group">
+        <label for="ovaire_brca">Statut BRCA :</label>
+        <select id="ovaire_brca" required>
+          <option value="">--Sélectionner--</option>
+          <option value="muté">BRCA muté</option>
+          <option value="sauvage">BRCA sauvage</option>
+          <option value="inconnu">Inconnu</option>
+        </select>
+      </div>
+      
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="ovaire_hrd">Statut HRD (Homologous Recombination Deficiency)</label>
+        <label><input type="checkbox" id="ovaire_msi">Instabilité microsatellitaire (MSI)</label>
+      </div>
+    </section>
+
+    <!-- Section 3 : Prise en Charge Chirurgicale -->
+    <section class="form-section">
+      <h3>Chirurgie</h3>
+      <div class="input-group">
+        <label for="ovaire_chirurgie">Type de chirurgie :</label>
+        <select id="ovaire_chirurgie" required>
+          <option value="">--Sélectionner--</option>
+          <option value="complete">Chirurgie complète (R0)</option>
+          <option value="intermediaire">Chirurgie intermédiaire</option>
+          <option value="neoadjuvant">Chimiothérapie néoadjuvante</option>
+        </select>
+      </div>
+      
+      <div class="checkbox-group">
+        <h4>Fertilité :</h4>
+        <label><input type="checkbox" id="ovaire_conservation">Conservation utérus/ovaire controlatéral</label>
+      </div>
+    </section>
+
+    <!-- Section 4 : Traitement Systémique -->
+    <section class="form-section">
+      <h3>Traitement Médical</h3>
+      <div class="input-group">
+        <label>Réponse à la chimiothérapie :</label>
+        <div class="checkbox-group">
+          <label><input type="radio" name="reponse" value="RC">Réponse complète</label>
+          <label><input type="radio" name="reponse" value="RP">Réponse partielle</label>
+          <label><input type="radio" name="reponse" value="SD">Maladie stable</label>
+        </div>
+      </div>
+      
+      <div class="checkbox-group">
+        <h4>Options de maintenance :</h4>
+        <label><input type="checkbox" id="maintenance_parpi">PARP inhibitor (Olaparib/Niraparib)</label>
+        <label><input type="checkbox" id="maintenance_beva">Bévacizumab</label>
+      </div>
+    </section>
+
+    <button type="button">Générer les recommandations</button>
+  </form>
+  <div id="resultOvaire" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'ovaire';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultOvaire'
+      };
+
+      function init() {
+        document.querySelector(selectors.form)
+          .querySelector('button')
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          type: document.getElementById('ovaire_type').value,
+          figo: document.getElementById('ovaire_figo').value,
+          residu: document.getElementById('ovaire_residu').value,
+          brca: document.getElementById('ovaire_brca').value,
+          hrd: document.getElementById('ovaire_hrd').checked,
+          chirurgie: document.getElementById('ovaire_chirurgie').value,
+          conservation: document.getElementById('ovaire_conservation').checked,
+          reponse: document.querySelector('input[name="reponse"]:checked')?.value,
+          maintenance: {
+            parpi: document.getElementById('maintenance_parpi').checked,
+            beva: document.getElementById('maintenance_beva').checked
+          }
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+        
+        // Tumeurs borderline
+        if(data.type === 'borderline') {
+          treatment += `<p>➔ Chirurgie conservatrice si possible (annexectomie unilatérale)</p>`;
+          treatment += `<p>➔ Stadification complète recommandée en cas de facteurs de risque</p>`;
+          treatment += `<p>➔ Surveillance rapprochée (échographie pelvienne trimestrielle)</p>`;
+          return treatment;
+        }
+
+        // Carcinomes invasifs
+        treatment += `<p>➔ Association chirurgie cytoréductrice + chimiothérapie adjuvante</p>`;
+        
+        if(data.figo === 'III' || data.figo === 'IV') {
+          treatment += `<p>➔ Protocole carboplatine AUC5-6 + paclitaxel 175 mg/m² (6 cycles)</p>`;
+          if(data.residu === 'R0' && data.brca === 'muté') {
+            treatment += `<p>➔ Maintenance par PARP inhibitor pendant 3 ans</p>`;
+          }
+        }
+        
+        if(data.hrd) {
+          treatment += `<p>➔ Bénéfice potentiel aux PARP inhibitors en 1ère ligne</p>`;
+        }
+
+        treatment += `<h4>Surveillance :</h4>`;
+        treatment += `<p>➔ Dosage du CA125 tous les 3 mois pendant 2 ans</p>`;
+        treatment += `<p>➔ TDM thoraco-abdomino-pelvien annuel</p>`;
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.type && data.figo && data.residu && data.brca && data.chirurgie;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+  
+<!-- Module : Sarcome de l'utérus -->
+<div id="moduleSarcomeUterus" class="module">
+  <h2>Sarcome de l'Utérus</h2>
+  <form data-module-form="sarcome_uterus">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="sarcome_uterus_histotype">Histotype :</label>
+        <select id="sarcome_uterus_histotype" required>
+          <option value="">--Sélectionner--</option>
+          <option value="LMS">Leiomyosarcome (LMS)</option>
+          <option value="ESS">Sarcome stromal endométrial (ESS)</option>
+          <option value="adenosarcome">Adénosarcome</option>
+          <option value="autres">Autres sarcomes indifférenciés</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="sarcome_uterus_grade">Grade FNCLCC :</label>
+        <select id="sarcome_uterus_grade" required>
+          <option value="">--Sélectionner--</option>
+          <option value="1">Grade 1</option>
+          <option value="2">Grade 2</option>
+          <option value="3">Grade 3</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="sarcome_uterus_size">Taille tumorale (cm) :</label>
+        <input type="number" id="sarcome_uterus_size" min="1" step="0.1">
+      </div>
+    </section>
+
+    <!-- Section 2 : Stadification -->
+    <section class="form-section">
+      <h3>Stadification (FIGO 2023)</h3>
+      <div class="input-group">
+        <label for="sarcome_uterus_stade">Stade :</label>
+        <select id="sarcome_uterus_stade" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I : Tumeur limitée à l'utérus</option>
+          <option value="II">II : Extension pelvienne</option>
+          <option value="III">III : Métastases abdominales</option>
+          <option value="IV">IV : Métastases à distance</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Section 3 : Critères Pronostiques -->
+    <section class="form-section">
+      <h3>Critères Pronostiques</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="pronostic" value="rupture"> Rupture tumorale</label>
+        <label><input type="checkbox" name="pronostic" value="necrose"> Nécrose >50%</label>
+        <label><input type="checkbox" name="pronostic" value="mitose"> Index mitotique élevé (>10/10 CGA)</label>
+      </div>
+    </section>
+
+    <!-- Section 4 : Biomarqueurs -->
+    <section class="form-section">
+      <h3>Biomarqueurs Spécifiques</h3>
+      <div class="input-group">
+        <label for="sarcome_uterus_hormonaux">Récepteurs hormonaux :</label>
+        <select id="sarcome_uterus_hormonaux">
+          <option value="">--Sélectionner--</option>
+          <option value="ER+">ER+</option>
+          <option value="PR+">PR+</option>
+          <option value="ER-PR-">ER-/PR-</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Marqueurs moléculaires :</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="moleculaire" value="FOXL2"> FOXL2 (ESS)</label>
+          <label><input type="checkbox" name="moleculaire" value="YWHAE"> YWHAE‑FAM22</label>
+          <label><input type="checkbox" name="moleculaire" value="PDGFR"> Délétion PDGFR</label>
+        </div>
+      </div>
+    </section>
+
+    <button type="button">Générer les recommandations</button>
+  </form>
+  <div id="resultSarcomeUterus" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'sarcome_uterus';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        histotype: '#sarcome_uterus_histotype',
+        grade: '#sarcome_uterus_grade',
+        stade: '#sarcome_uterus_stade',
+        result: '#resultSarcomeUterus'
+      };
+
+      function init() {
+        document.querySelector(selectors.form)
+          .querySelector('button')
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          histotype: document.querySelector(selectors.histotype).value,
+          grade: document.querySelector(selectors.grade).value,
+          stade: document.querySelector(selectors.stade).value,
+          taille: document.getElementById('sarcome_uterus_size').value,
+          pronostic: [...document.querySelectorAll('[name="pronostic"]:checked')].map(c => c.value),
+          hormonaux: document.getElementById('sarcome_uterus_hormonaux').value,
+          moleculaire: [...document.querySelectorAll('[name="moleculaire"]:checked')].map(c => c.value)
+        };
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let baseTreatment = "<h4>Prise en charge initiale :</h4>";
+        
+        // Traitement de base selon le stade
+        if (data.stade === 'I' || data.stade === 'II') {
+          baseTreatment += `<p>➔ Chirurgie première par hystérectomie totale avec annexectomie bilatérale</p>`;
+          if (data.histotype === 'ESS') baseTreatment += `<p>➔ Castration ovarienne recommandée</p>`;
+        } 
+        else if (data.stade === 'III' || data.stade === 'IV') {
+          baseTreatment += `<p>➔ Discussion en RCP multidisciplinaire<br>
+            ➔ Possibilité de chimiothérapie néoadjuvante (doxorubicine ± ifosfamide)</p>`;
+        }
+
+        // Traitements adjuvants
+        let adjuvant = "<h4>Traitement adjuvant :</h4>";
+        if (data.grade === '3' || data.pronostic.includes('rupture')) {
+          adjuvant += `<p>➔ Radiothérapie pelvienne à considérer<br>
+            ➔ Chimiothérapie adjuvante (6 cycles de gemcitabine/docetaxel)</p>`;
+        }
+        if (data.hormonaux.includes('+')) {
+          adjuvant += `<p>➔ Hormonothérapie (tamoxifène ou inhibiteurs de l'aromatase)</p>`;
+        }
+
+        // Suivi
+        const suivi = `<h4>Surveillance :</h4>
+          <p>➔ TDM thorax/abdomen/pelvis tous les 3-6 mois<br>
+          ➔ Surveillance gynécologique rapprochée</p>`;
+
+        return [baseTreatment, adjuvant, suivi].join('');
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+  
+  <!-- Module : Cancer du vagin -->
+<div id="moduleVagin" class="module">
+  <h2>Cancer du Vagin</h2>
+  <form data-module-form="cancer_vagin">
+    <!-- Section 1 : Caractéristiques Tumorales -->
+    <section class="form-section">
+      <h3>Caractéristiques Tumorales</h3>
+      <div class="input-group">
+        <label for="cancer_vagin_histo">Type histologique :</label>
+        <select id="cancer_vagin_histo" required>
+          <option value="">--Sélectionner--</option>
+          <option value="squameux">Carcinome épidermoïde (80-90%)</option>
+          <option value="adeno">Adénocarcinome</option>
+          <option value="melanome">Mélanome</option>
+          <option value="sarcome">Sarcome</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="cancer_vagin_figo">Stade FIGO (2021) :</label>
+        <select id="cancer_vagin_figo" required>
+          <option value="">--Sélectionner--</option>
+          <option value="I">I : Tumeur limitée à la paroi vaginale</option>
+          <option value="II">II : Extension au tissu sous-vaginal</option>
+          <option value="III">III : Extension à la paroi pelvienne</option>
+          <option value="IVA">IVA : Atteinte vésicale/rectale</option>
+          <option value="IVB">IVB : Métastases à distance</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="cancer_vagin_size">Taille tumorale (cm) :</label>
+        <input type="number" id="cancer_vagin_size" min="0.1" step="0.1">
+      </div>
+    </section>
+
+    <!-- Section 2 : Extension Tumorale -->
+    <section class="form-section">
+      <h3>Extension Tumorale</h3>
+      <div class="input-group">
+        <label for="cancer_vagin_localisation">Localisation :</label>
+        <select id="cancer_vagin_localisation" required>
+          <option value="">--Sélectionner--</option>
+          <option value="sup">Tiers supérieur</option>
+          <option value="moyen">Tiers moyen</option>
+          <option value="inf">Tiers inférieur</option>
+          <option value="circonferentiel">Atteinte circonférentielle</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="cancer_vagin_ganglionnaire">Envahissement ganglionnaire :</label>
+        <select id="cancer_vagin_ganglionnaire" required>
+          <option value="">--Sélectionner--</option>
+          <option value="N0">N0</option>
+          <option value="N1">N1 (pelvien ou inguinal)</option>
+        </select>
+      </div>
+      <div class="checkbox-group">
+        <h4>Extension locale :</h4>
+        <label><input type="checkbox" name="extension" value="vessie"> Atteinte vésicale</label>
+        <label><input type="checkbox" name="extension" value="rectum"> Atteinte rectale</label>
+        <label><input type="checkbox" name="extension" value="parametre"> Atteinte des paramètres</label>
+      </div>
+    </section>
+
+    <!-- Section 3 : Facteurs Pronostiques -->
+    <section class="form-section">
+      <h3>Facteurs Pronostiques</h3>
+      <div class="input-group">
+        <label for="cancer_vagin_hpv_status">Statut HPV/p16 :</label>
+        <select id="cancer_vagin_hpv_status" required>
+          <option value="">--Sélectionner--</option>
+          <option value="pos">Positif</option>
+          <option value="neg">Négatif</option>
+        </select>
+      </div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="pronostic" value="rupture"> Rupture capsulaire</label>
+        <label><input type="checkbox" name="pronostic" value="emboles"> Emboles vasculaires</label>
+        <label><input type="checkbox" name="pronostic" value="LVI"> Invasion lymphovasculaire</label>
+      </div>
+    </section>
+
+    <!-- Section 4 : Options Thérapeutiques -->
+    <section class="form-section">
+      <h3>Options Thérapeutiques</h3>
+      <div class="input-group">
+        <label for="cancer_vagin_resecable">Résécabilité :</label>
+        <select id="cancer_vagin_resecable" required>
+          <option value="">--Sélectionner--</option>
+          <option value="oui">Résécable avec marges saines</option>
+          <option value="non">Non résécable</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="cancer_vagin_preservation">Préservation d'organe :</label>
+        <select id="cancer_vagin_preservation" required>
+          <option value="">--Sélectionner--</option>
+          <option value="possible">Possible</option>
+          <option value="impossible">Impossible</option>
+        </select>
+      </div>
+    </section>
+
+    <button type="button">Générer la conduite à tenir</button>
+  </form>
+  <div id="resultVagin" class="result-container"></div>
+
+  <script>
+    (function() {
+      const moduleId = 'cancer_vagin';
+      const selectors = {
+        form: `[data-module-form="${moduleId}"]`,
+        result: '#resultVagin'
+      };
+
+      function init() {
+        document.querySelector(selectors.form)
+          .querySelector('button')
+          .addEventListener('click', calculateManagement);
+      }
+
+      function calculateManagement() {
+        const inputs = {
+          histo: document.getElementById('cancer_vagin_histo').value,
+          figo: document.getElementById('cancer_vagin_figo').value,
+          taille: document.getElementById('cancer_vagin_size').value,
+          localisation: document.getElementById('cancer_vagin_localisation').value,
+          ganglions: document.getElementById('cancer_vagin_ganglionnaire').value,
+          extension: [...document.querySelectorAll('[name="extension"]:checked')].map(c => c.value),
+          hpv: document.getElementById('cancer_vagin_hpv_status').value,
+          pronostic: [...document.querySelectorAll('[name="pronostic"]:checked')].map(c => c.value),
+          resecable: document.getElementById('cancer_vagin_resecable').value,
+          preservation: document.getElementById('cancer_vagin_preservation').value
+        };
+
+        if (!validateInputs(inputs)) {
+          alert('Veuillez remplir tous les champs obligatoires');
+          return;
+        }
+
+        const recommendations = generateRecommendation(inputs);
+        displayResults(recommendations);
+      }
+
+      function generateRecommendation(data) {
+        let treatment = '<h4>Stratégie thérapeutique :</h4>';
+        
+        // Traitement de base selon le stade et la résécabilité
+        if (data.figo === 'I' && data.resecable === 'oui') {
+          treatment += `<p>➔ Chirurgie première (vaginectomie partielle/radicale)</p>`;
+          if (data.preservation === 'possible') treatment += `<p>➔ Reconstruction vaginale envisageable</p>`;
+        } 
+        else if (data.figo === 'II' || data.figo === 'III') {
+          treatment += `<p>➔ Radiochimiothérapie concomitante (Cisplatine hebdomadaire)</p>
+                       <p>➔ Curiethérapie vaginale complémentaire</p>`;
+        }
+        else if (data.figo === 'IVA' || data.figo === 'IVB') {
+          treatment += `<p>➔ Traitement systémique (Chimiothérapie ± Immunothérapie)</p>
+                       <p>➔ Radiothérapie palliative si symptomatique</p>`;
+        }
+
+        // Traitements adjuvants
+        if (data.ganglions === 'N1' || data.pronostic.includes('LVI')) {
+          treatment += `<h4>Traitement adjuvant :</h4>
+                       <p>➔ Radiothérapie ganglionnaire</p>
+                       <p>➔ Chimio potentialisatrice si état général permis</p>`;
+        }
+
+        // Suivi
+        treatment += `<h4>Surveillance :</h4>
+          <p>➔ Examen clinique + frottis vaginal trimestriel</p>
+          <p>➔ Imagerie (IRM/TDM) tous les 6 mois pendant 2 ans</p>`;
+
+        return treatment;
+      }
+
+      function validateInputs(data) {
+        return data.histo && data.figo && data.localisation && data.ganglions && 
+               data.hpv && data.resecable && data.preservation;
+      }
+
+      function displayResults(content) {
+        const resultDiv = document.querySelector(selectors.result);
+        resultDiv.innerHTML = `<div class="recommendation">${content}</div>`;
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</div>
+
+
+  <!-- Module : Compte‑Rendu Gynécologique -->
+  <div id="moduleGynecoReport" class="module">
+    <h2>Compte‑Rendu Gynécologique</h2>
+    <form id="formGynecoReport">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="grAge">Âge :</label>
+        <input type="number" id="grAge" required>
+        
+        <label for="grWeight">Poids (kg) :</label>
+        <input type="number" id="grWeight" required oninput="updateBMI('grWeight','grHeight','grBMI')">
+        
+        <label for="grHeight">Taille (cm) :</label>
+        <input type="number" id="grHeight" required oninput="updateBMI('grWeight','grHeight','grBMI')">
+        
+        <label for="grBMI">IMC :</label>
+        <input type="number" id="grBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="consultReason">Motif de consultation :</label>
+      <textarea id="consultReason" rows="3" required></textarea>
+      
+      <label for="pregnancies">Nombre de grossesses antérieures :</label>
+      <input type="number" id="pregnancies" required>
+      
+      <label><input type="checkbox" id="followUpNeeded"> Nécessite un suivi rapproché</label>
+      
+      <button type="button" id="btnGyneco">Générer le Compte‑Rendu</button>
+    </form>
+    <div id="resultGynecoReport" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnGyneco").addEventListener("click", function(){
+          var age = document.getElementById("grAge").value;
+          var weight = document.getElementById("grWeight").value;
+          var height = document.getElementById("grHeight").value;
+          var bmi = document.getElementById("grBMI").value;
+          var reason = document.getElementById("consultReason").value;
+          var pregnancies = document.getElementById("pregnancies").value;
+          var followUp = document.getElementById("followUpNeeded").checked ? "Suivi rapproché" : "Suivi standard";
+          var report = "Compte‑Rendu Gynécologique\n\n" +
+                       "Âge : " + age + " ans\n" +
+                       "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                       "Motif de consultation : " + reason + "\n" +
+                       "Nombre de grossesses antérieures : " + pregnancies + "\n" +
+                       "Option : " + followUp;
+          document.getElementById("resultGynecoReport").innerHTML = "<pre>" + report + "</pre>";
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Colposcopie & Caractérisation Cervicale -->
+  <div id="moduleColposcopy" class="module">
+    <h2>Colposcopie & Caractérisation Cervicale</h2>
+    <form id="formColposcopy">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="colpoAge">Âge :</label>
+        <input type="number" id="colpoAge" required>
+        
+        <label for="colpoWeight">Poids (kg) :</label>
+        <input type="number" id="colpoWeight" required oninput="updateBMI('colpoWeight','colpoHeight','colpoBMI')">
+        
+        <label for="colpoHeight">Taille (cm) :</label>
+        <input type="number" id="colpoHeight" required oninput="updateBMI('colpoWeight','colpoHeight','colpoBMI')">
+        
+        <label for="colpoBMI">IMC :</label>
+        <input type="number" id="colpoBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="lesionType">Type de lésion cervicale :</label>
+      <select id="lesionType" required>
+        <option value="">--Sélectionner--</option>
+        <option value="hyperplasie">Hyperplasie</option>
+        <option value="dysplasie">Dysplasie</option>
+        <option value="invasion">Invasion suspecte</option>
+      </select>
+      
+      <label for="colpoTechnique">Technique utilisée :</label>
+      <select id="colpoTechnique" required>
+        <option value="">--Sélectionner--</option>
+        <option value="acide_acetique">Acide Acétique</option>
+        <option value="lumiere_verte">Lumière Verte</option>
+        <option value="NBI">NBI</option>
+      </select>
+      
+      <label for="colpoObservations">Observations :</label>
+      <textarea id="colpoObservations" rows="3" required></textarea>
+      
+      <label for="colpoConfidence">Niveau de confiance dans le diagnostic :</label>
+      <select id="colpoConfidence">
+        <option value="">--Sélectionner--</option>
+        <option value="faible">Faible</option>
+        <option value="moyen">Moyen</option>
+        <option value="élevé">Élevé</option>
+      </select>
+      
+      <button type="button" id="btnColposcopy">Générer le Rapport</button>
+    </form>
+    <div id="resultColposcopy" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnColposcopy").addEventListener("click", function(){
+          var age = document.getElementById("colpoAge").value;
+          var weight = document.getElementById("colpoWeight").value;
+          var height = document.getElementById("colpoHeight").value;
+          var bmi = document.getElementById("colpoBMI").value;
+          var lesion = document.getElementById("lesionType").value;
+          var technique = document.getElementById("colpoTechnique").value;
+          var observations = document.getElementById("colpoObservations").value;
+          var confidence = document.getElementById("colpoConfidence").value;
+          var report = "Rapport de Colposcopie\n\n" +
+                       "Âge : " + age + " ans\n" +
+                       "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                       "Type de lésion : " + lesion + "\n" +
+                       "Technique utilisée : " + technique + "\n" +
+                       "Observations : " + observations + "\n" +
+                       "Niveau de confiance : " + confidence;
+          document.getElementById("resultColposcopy").innerHTML = "<pre>" + report + "</pre>";
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Suivi de Grossesse -->
+  <div id="modulePregnancyFollowUp" class="module">
+    <h2>Suivi de Grossesse</h2>
+    <form id="formPregnancy">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="pregAge">Âge :</label>
+        <input type="number" id="pregAge" required>
+        
+        <label for="pregWeight">Poids (kg) :</label>
+        <input type="number" id="pregWeight" required oninput="updateBMI('pregWeight','pregHeight','pregBMI')">
+        
+        <label for="pregHeight">Taille (cm) :</label>
+        <input type="number" id="pregHeight" required oninput="updateBMI('pregWeight','pregHeight','pregBMI')">
+        
+        <label for="pregBMI">IMC :</label>
+        <input type="number" id="pregBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="lastPeriod">Date des dernières règles :</label>
+      <input type="date" id="lastPeriod" required>
+      
+      <label for="riskFactors">Facteurs de risque :</label>
+      <textarea id="riskFactors" rows="3"></textarea>
+      
+      <label for="ultrasoundFindings">Résultats échographiques :</label>
+      <textarea id="ultrasoundFindings" rows="3"></textarea>
+      
+      <label><input type="checkbox" id="highRiskPregnancy"> Grossesse à haut risque</label>
+      
+      <button type="button" id="btnPregnancy">Générer le Rapport</button>
+    </form>
+    <div id="resultPregnancy" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnPregnancy").addEventListener("click", function(){
+          var age = document.getElementById("pregAge").value;
+          var weight = document.getElementById("pregWeight").value;
+          var height = document.getElementById("pregHeight").value;
+          var bmi = document.getElementById("pregBMI").value;
+          var lastPeriod = document.getElementById("lastPeriod").value;
+          var gestAge = lastPeriod ? calculateGestationalAge(lastPeriod) : "Non calculé";
+          var risks = document.getElementById("riskFactors").value;
+          var ultrasound = document.getElementById("ultrasoundFindings").value;
+          var highRisk = document.getElementById("highRiskPregnancy").checked ? "Grossesse à haut risque" : "Grossesse standard";
+          var report = "Suivi de Grossesse\n\n" +
+                       "Âge : " + age + " ans, Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                       "Date des dernières règles : " + lastPeriod + "\n" +
+                       "Âge gestationnel calculé : " + gestAge + " semaines\n\n" +
+                       "Facteurs de risque : " + risks + "\n" +
+                       "Résultats échographiques : " + ultrasound + "\n" +
+                       "Option : " + highRisk;
+          document.getElementById("resultPregnancy").innerHTML = "<pre>" + report + "</pre>";
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Douleurs Pelviennes Chroniques -->
+  <div id="modulePelvicPain" class="module">
+    <h2>Évaluation des Douleurs Pelviennes Chroniques</h2>
+    <form id="formPelvicPain">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="pelvicAge">Âge :</label>
+        <input type="number" id="pelvicAge" required>
+        
+        <label for="pelvicWeight">Poids (kg) :</label>
+        <input type="number" id="pelvicWeight" required oninput="updateBMI('pelvicWeight','pelvicHeight','pelvicBMI')">
+        
+        <label for="pelvicHeight">Taille (cm) :</label>
+        <input type="number" id="pelvicHeight" required oninput="updateBMI('pelvicWeight','pelvicHeight','pelvicBMI')">
+        
+        <label for="pelvicBMI">IMC :</label>
+        <input type="number" id="pelvicBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <label for="painDuration">Durée de la douleur (en mois) :</label>
+      <input type="number" id="painDuration" required>
+      
+      <label for="painDescription">Description de la douleur :</label>
+      <textarea id="painDescription" rows="3" required></textarea>
+      
+      <label for="associatedSymptoms">Symptômes associés :</label>
+      <textarea id="associatedSymptoms" rows="3"></textarea>
+      
+      <label for="painType">Type de douleur :</label>
+      <select id="painType">
+        <option value="">--Sélectionner--</option>
+        <option value="aigue">Aiguë</option>
+        <option value="chronique">Chronique</option>
+        <option value="cyclique">Cyclique</option>
+      </select>
+      
+      <button type="button" id="btnPelvicPain">Générer la Conduite à Tenir</button>
+    </form>
+    <div id="resultPelvicPain" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnPelvicPain").addEventListener("click", function(){
+          var age = document.getElementById("pelvicAge").value;
+          var weight = document.getElementById("pelvicWeight").value;
+          var height = document.getElementById("pelvicHeight").value;
+          var bmi = document.getElementById("pelvicBMI").value;
+          var duration = document.getElementById("painDuration").value;
+          var description = document.getElementById("painDescription").value;
+          var symptoms = document.getElementById("associatedSymptoms").value;
+          var painType = document.getElementById("painType").value;
+          var report = "Évaluation des Douleurs Pelviennes Chroniques\n\n" +
+                       "Âge : " + age + " ans, Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                       "Durée de la douleur : " + duration + " mois\n" +
+                       "Description : " + description + "\n" +
+                       "Symptômes associés : " + symptoms + "\n" +
+                       "Type de douleur : " + painType;
+          document.getElementById("resultPelvicPain").innerHTML = "<pre>" + report + "</pre>";
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Cardiomyopathie du Péripartum -->
+  <div id="modulePeripartumCM" class="module">
+    <h2>Cardiomyopathie du Péripartum</h2>
+    <form id="formPeripartumCM">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="peripAge">Âge :</label>
+        <input type="number" id="peripAge" required>
+        
+        <label for="peripWeight">Poids (kg) :</label>
+        <input type="number" id="peripWeight" required oninput="updateBMI('peripWeight','peripHeight','peripBMI')">
+        
+        <label for="peripHeight">Taille (cm) :</label>
+        <input type="number" id="peripHeight" required oninput="updateBMI('peripWeight','peripHeight','peripBMI')">
+        
+        <label for="peripBMI">IMC :</label>
+        <input type="number" id="peripBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Évaluation Clinique et Paraclinique</legend>
+        <label for="deliveryDate">Date d'accouchement / Période postpartum :</label>
+        <input type="date" id="deliveryDate" required>
+        
+        <p>Signes Cliniques (cochez ceux présents) :</p>
+        <label><input type="checkbox" id="dyspnea"> Dyspnée</label>
+        <label><input type="checkbox" id="fatigue"> Fatigue importante</label>
+        <label><input type="checkbox" id="edema"> Œdème périphérique</label>
+        <label><input type="checkbox" id="orthopnea"> Orthopnée</label>
+        
+        <label for="lvef">Fraction d'éjection du VG (LVEF %) :</label>
+        <input type="number" id="lvef" step="0.1" placeholder="Ex: 35" required>
+        
+        <label for="severity">Sévérité selon la LVEF :</label>
+        <select id="severity">
+          <option value="">--Sélectionner--</option>
+          <option value="mild">LVEF > 45%</option>
+          <option value="moderate">LVEF 35-45%</option>
+          <option value="severe">LVEF < 35%</option>
+        </select>
+        
+        <p>Facteurs de Risque (cochez le cas échéant) :</p>
+        <label><input type="checkbox" id="preeclampsia"> Prééclampsie</label>
+        <label><input type="checkbox" id="multiparity"> Grossesse multiple</label>
+        <label><input type="checkbox" id="advancedMaternalAge"> Âge maternel avancé</label>
+        
+        <label for="treatment">Approche thérapeutique envisagée :</label>
+        <select id="treatment">
+          <option value="">--Sélectionner--</option>
+          <option value="aceInhibitors">Inhibiteurs de l'enzyme de conversion (postpartum)</option>
+          <option value="betaBlockers">Bêta-bloquants</option>
+          <option value="diuretics">Diurétiques</option>
+          <option value="other">Autres / Associées</option>
+        </select>
+        
+        <label for="observationsPerip">Observations complémentaires :</label>
+        <textarea id="observationsPerip" rows="3"></textarea>
+      </fieldset>
+      
+      <button type="button" id="btnPeripartum">Générer le Rapport</button>
+    </form>
+    <div id="resultPeripartum" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnPeripartum").addEventListener("click", function(){
+          var age = document.getElementById("peripAge").value;
+          var weight = document.getElementById("peripWeight").value;
+          var height = document.getElementById("peripHeight").value;
+          var bmi = document.getElementById("peripBMI").value;
+          var deliveryDate = document.getElementById("deliveryDate").value;
+          
+          var dyspnea = document.getElementById("dyspnea").checked ? "Dyspnée, " : "";
+          var fatigue = document.getElementById("fatigue").checked ? "Fatigue importante, " : "";
+          var edema = document.getElementById("edema").checked ? "Œdème périphérique, " : "";
+          var orthopnea = document.getElementById("orthopnea").checked ? "Orthopnée, " : "";
+          var clinicalSigns = dyspnea + fatigue + edema + orthopnea;
+          if (clinicalSigns.endsWith(", ")) {
+            clinicalSigns = clinicalSigns.slice(0, -2);
+          }
+          
+          var lvef = document.getElementById("lvef").value;
+          var severity = document.getElementById("severity").value;
+          
+          var preeclampsia = document.getElementById("preeclampsia").checked ? "Prééclampsie, " : "";
+          var multiparity = document.getElementById("multiparity").checked ? "Grossesse multiple, " : "";
+          var advancedMaternalAge = document.getElementById("advancedMaternalAge").checked ? "Âge maternel avancé, " : "";
+          var riskFactors = preeclampsia + multiparity + advancedMaternalAge;
+          if (riskFactors.endsWith(", ")) {
+            riskFactors = riskFactors.slice(0, -2);
+          }
+          
+          var treatment = document.getElementById("treatment").value;
+          var observations = document.getElementById("observationsPerip").value;
+          
+          var report = "Rapport de Cardiomyopathie du Péripartum\n\n" +
+                       "Informations Générales:\n" +
+                       "Âge : " + age + " ans\n" +
+                       "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                       "Date d'accouchement / Période postpartum : " + deliveryDate + "\n\n" +
+                       "Signes Cliniques : " + (clinicalSigns || "Aucun signe rapporté") + "\n\n" +
+                       "Échocardiographie:\n" +
+                       "Fraction d'éjection du VG : " + lvef + " %\n" +
+                       "Sévérité : " + severity + "\n\n" +
+                       "Facteurs de Risque : " + (riskFactors || "Aucun facteur coché") + "\n\n" +
+                       "Approche thérapeutique : " + (treatment || "Non spécifiée") + "\n\n" +
+                       "Observations complémentaires : " + observations + "\n\n" +
+                       "Selon le consensus de la SF-Gynécologie sur la Cardiomyopathie du Péripartum.";
+          
+          document.getElementById("resultPeripartum").innerHTML = "<pre>" + report + "</pre>";
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Cancer du Sein -->
+  <div id="moduleBreastCancer" class="module">
+    <h2>Prise en Charge du Cancer du Sein</h2>
+    <form id="formBreastCancer">
+      <fieldset>
+        <legend>Caractéristiques Tumorales</legend>
+        <label for="bcAge">Âge :</label>
+        <input type="number" id="bcAge" required>
+        
+        <label for="bcStage">Stade TNM :</label>
+        <select id="bcStage" required>
+          <option value="I">I</option>
+          <option value="IIA">IIA</option>
+          <option value="IIB">IIB</option>
+          <option value="IIIA">IIIA</option>
+          <option value="IIIB">IIIB</option>
+          <option value="IIIC">IIIC</option>
+          <option value="IV">IV</option>
+        </select>
+
+        <label for="erStatus">Récepteurs Estrogènes :</label>
+        <select id="erStatus" required>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+
+        <label for="prStatus">Récepteurs Progestérone :</label>
+        <select id="prStatus" required>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+
+        <label for="her2Status">Statut HER2 :</label>
+        <select id="her2Status" required>
+          <option value="positif">Positif</option>
+          <option value="negatif">Négatif</option>
+        </select>
+
+        <label for="ki67">Ki67 (%) :</label>
+        <input type="number" id="ki67" min="0" max="100" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contexte Clinique</legend>
+        <label for="comorbidities">Comorbidités :</label>
+        <textarea id="comorbidities" rows="2"></textarea>
+      </fieldset>
+
+      <button type="button" id="btnBreastCancer">Générer le Plan</button>
+    </form>
+    <div id="resultBreastCancer" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnBreastCancer").addEventListener("click", function(){
+          const age = document.getElementById("bcAge").value;
+          const stage = document.getElementById("bcStage").value;
+          const er = document.getElementById("erStatus").value;
+          const pr = document.getElementById("prStatus").value;
+          const her2 = document.getElementById("her2Status").value;
+          const ki67 = document.getElementById("ki67").value;
+          const comorbidities = document.getElementById("comorbidities").value;
+
+          let treatment = [];
+          let followUp = [];
+          
+          // Conduite à tenir selon les recommandations
+          if(stage.includes('I') || stage.includes('II')) {
+            treatment.push("Chirurgie conservatrice ou mastectomie selon taille tumorale");
+            treatment.push("Radiothérapie adjuvante");
+            if(er === "positif") {
+              treatment.push("Hormonothérapie (Tamoxifène ou Inhibiteurs de l'aromatase)");
+            }
+            if(her2 === "positif") {
+              treatment.push("Trastuzumab pendant 1 an");
+            }
+          }
+          if(stage.includes('III') || stage.includes('IV')) {
+            treatment.push("Chimiothérapie néoadjuvante");
+            treatment.push("Traitement systémique personnalisé selon biomarqueurs");
+          }
+          
+          followUp.push("Surveillance clinique trimestrielle pendant 2 ans puis semestrielle");
+          followUp.push("Mammographie annuelle");
+          if(her2 === "positif") followUp.push("Échocardiographie annuelle sous trastuzumab");
+
+          const report = `Plan de Prise en Charge du Cancer du Sein\n\n
+Âge: ${age} ans
+Stade TNM: ${stage}
+Récepteurs hormonaux: ER ${er}, PR ${pr}
+HER2: ${her2} | Ki67: ${ki67}%
+Comorbidités: ${comorbidities || "Aucune"}\n\n
+Traitement Recommandé:
+- ${treatment.join('\n- ')}
+
+Suivi:
+- ${followUp.join('\n- ')}
+
+[Selon recommandations NCCN 2023 et St Gallen 2023]`;
+
+          document.getElementById("resultBreastCancer").innerHTML = `<pre>${report}</pre>`;
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Cancer de l'Endomètre -->
+  <div id="moduleEndometrialCancer" class="module">
+    <h2>Prise en Charge du Cancer de l'Endomètre</h2>
+    <form id="formEndometrialCancer">
+      <fieldset>
+        <legend>Caractéristiques Tumorales</legend>
+        <label for="ecAge">Âge :</label>
+        <input type="number" id="ecAge" required>
+        
+        <label for="ecHistology">Type Histologique :</label>
+        <select id="ecHistology" required>
+          <option value="endometrioide">Endométrioïde</option>
+          <option value="seropapillaire">Séropapillaire</option>
+          <option value="cellules_claires">Cellules claires</option>
+          <option value="mixte">Mixte</option>
+        </select>
+        
+        <label for="figoStage">Stade FIGO 2023 :</label>
+        <select id="figoStage" required>
+          <option value="IA">IA</option>
+          <option value="IB">IB</option>
+          <option value="II">II</option>
+          <option value="IIIA">IIIA</option>
+          <option value="IIIB">IIIB</option>
+          <option value="IIIC">IIIC</option>
+          <option value="IVA">IVA</option>
+          <option value="IVB">IVB</option>
+        </select>
+        
+        <label for="tumorGrade">Grade :</label>
+        <select id="tumorGrade">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        
+        <label for="molecularClass">Classification Moléculaire :</label>
+        <select id="molecularClass">
+          <option value="POLE">POLE muté</option>
+          <option value="MMRd">MMRd</option>
+          <option value="NSMP">NSMP</option>
+          <option value="p53abn">p53abn</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contexte Clinique</legend>
+        <label for="menopausalStatus">Statut Ménopausique :</label>
+        <select id="menopausalStatus">
+          <option value="pre">Pré-ménopausique</option>
+          <option value="peri">Périménopausique</option>
+          <option value="post">Post-ménopausique</option>
+        </select>
+        
+        <label><input type="checkbox" id="lymphovascular"> Emboles lymphovasculaires</label>
+        <label><input type="checkbox" id="myometrial"> Envahissement myométrial >50%</label>
+        <label><input type="checkbox" id="fertility"> Désir de préservation fertilité</label>
+      </fieldset>
+
+      <button type="button" id="btnEndometrial">Générer le Plan</button>
+    </form>
+    <div id="resultEndometrial" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnEndometrial").addEventListener("click", function(){
+          const age = document.getElementById("ecAge").value;
+          const histology = document.getElementById("ecHistology").value;
+          const stage = document.getElementById("figoStage").value;
+          const grade = document.getElementById("tumorGrade").value;
+          const molecular = document.getElementById("molecularClass").value;
+          const menopausal = document.getElementById("menopausalStatus").value;
+          const lvi = document.getElementById("lymphovascular").checked;
+          const myoinvasion = document.getElementById("myometrial").checked;
+          const fertility = document.getElementById("fertility").checked;
+
+          let treatment = [];
+          let followUp = [];
+          let recommendations = [];
+
+          // Arbre décisionnel selon ESMO 2023
+          if(fertility && stage === "IA" && grade === "1") {
+            treatment.push("Traitement conservateur : Progestatifs + surveillance rapprochée");
+            treatment.push("Hystéroscopie de contrôle trimestrielle");
+          } else {
+            treatment.push("Hystérectomie totale avec annexectomie bilatérale");
+            
+            if(stage >= "IB" || lvi || grade === "3") {
+              treatment.push("Lymphadénectomie pelvienne ± para-aortique");
+            }
+            
+            if(stage >= "II") {
+              treatment.push("Radiothérapie pelvienne");
+            }
+            
+            if(stage >= "III" || molecular === "p53abn") {
+              treatment.push("Chimiothérapie adjuvante (Carboplatine/Paclitaxel)");
+            }
+          }
+
+          // Gestion selon profil moléculaire
+          switch(molecular) {
+            case "POLE":
+              recommendations.push("Risque faible - possible désescalade thérapeutique");
+              break;
+            case "MMRd":
+              recommendations.push("Immunothérapie à considérer (Dostarlimab)");
+              break;
+            case "p53abn":
+              recommendations.push("Risque élevé - traitement agressif nécessaire");
+              break;
+          }
+
+          // Suivi
+          followUp.push("Examen clinique trimestriel pendant 2 ans puis semestriel");
+          followUp.push("Échographie pelvienne + dosage CA125 annuel");
+          if(molecular === "MMRd") followUp.push("Dépistage syndrome Lynch");
+
+          const report = `Plan de Prise en Charge - Cancer de l'Endomètre\n\n
+Caractéristiques:
+- Âge: ${age} ans | Statut: ${menopausal}
+- Type: ${histology} | Grade: ${grade}
+- Stade: ${stage} | Classification: ${molecular}
+
+Traitements Proposés:
+- ${treatment.join('\n- ')}
+
+Recommandations Spécifiques:
+${recommendations.join('\n')}
+
+Protocole de Suivi:
+- ${followUp.join('\n- ')}
+
+[Selon recommandations ESMO 2023 et NCCN 2024]`;
+
+          document.getElementById("resultEndometrial").innerHTML = `<pre>${report}</pre>`;
+        });
+      })();
+    </script>
+  </div>
+  
+  <!-- Module : Ménopause -->
+  <div id="moduleMenopause" class="module">
+    <h2>Évaluation de la Ménopause</h2>
+    <form id="formMenopause">
+      <fieldset>
+        <legend>Informations Générales</legend>
+        <label for="menoAge">Âge :</label>
+        <input type="number" id="menoAge" required>
+        
+        <label for="menoWeight">Poids (kg) :</label>
+        <input type="number" id="menoWeight" required oninput="updateBMI('menoWeight','menoHeight','menoBMI')">
+        
+        <label for="menoHeight">Taille (cm) :</label>
+        <input type="number" id="menoHeight" required oninput="updateBMI('menoWeight','menoHeight','menoBMI')">
+        
+        <label for="menoBMI">IMC :</label>
+        <input type="number" id="menoBMI" step="0.1" readonly>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Évaluation de la Ménopause</legend>
+        <label for="menoAgeOnset">Âge de début de la ménopause :</label>
+        <input type="number" id="menoAgeOnset" placeholder="ex: 50">
+        
+        <label>Symptômes (cochez ceux présents) :</label>
+        <label><input type="checkbox" id="hotFlashes"> Bouffées de chaleur</label>
+        <label><input type="checkbox" id="nightSweats"> Sueurs nocturnes</label>
+        <label><input type="checkbox" id="sleepDisturbances"> Troubles du sommeil</label>
+        <label><input type="checkbox" id="moodChanges"> Changements d'humeur</label>
+        <label><input type="checkbox" id="vaginalDryness"> Sécheresse vaginale</label>
+        
+        <label for="otherSymptoms">Autres symptômes :</label>
+        <textarea id="otherSymptoms" rows="2"></textarea>
+        
+        <label for="hrtUsage">Utilisation d'HRT :</label>
+        <select id="hrtUsage">
+          <option value="">--Sélectionner--</option>
+          <option value="oui">Oui</option>
+          <option value="non">Non</option>
+          <option value="en_cours">En cours de discontinuation</option>
+        </select>
+        
+        <label for="fshLevel">Niveau de FSH (UI/L) :</label>
+        <input type="number" id="fshLevel" step="0.1">
+        
+        <label for="estradiolLevel">Niveau d'Estradiol (pg/mL) :</label>
+        <input type="number" id="estradiolLevel" step="0.1">
+      </fieldset>
+      
+      <button type="button" id="btnMenopause">Générer le Rapport</button>
+    </form>
+    <div id="resultMenopause" class="result"></div>
+    <script>
+      (function(){
+        document.getElementById("btnMenopause").addEventListener("click", function(){
+          var age = document.getElementById("menoAge").value;
+          var weight = document.getElementById("menoWeight").value;
+          var height = document.getElementById("menoHeight").value;
+          var bmi = document.getElementById("menoBMI").value;
+          var ageOnset = document.getElementById("menoAgeOnset").value;
+          
+          var symptoms = [];
+          if(document.getElementById("hotFlashes").checked) symptoms.push("Bouffées de chaleur");
+          if(document.getElementById("nightSweats").checked) symptoms.push("Sueurs nocturnes");
+          if(document.getElementById("sleepDisturbances").checked) symptoms.push("Troubles du sommeil");
+          if(document.getElementById("moodChanges").checked) symptoms.push("Changements d'humeur");
+          if(document.getElementById("vaginalDryness").checked) symptoms.push("Sécheresse vaginale");
+          
+          var otherSymptoms = document.getElementById("otherSymptoms").value;
+          var hrtUsage = document.getElementById("hrtUsage").value;
+          var fshLevel = document.getElementById("fshLevel").value;
+          var estradiolLevel = document.getElementById("estradiolLevel").value;
+          
+          var report = "Rapport d'Évaluation de la Ménopause\n\n" +
+                       "Informations Générales:\n" +
+                       "Âge : " + age + " ans\n" +
+                       "Poids : " + weight + " kg, Taille : " + height + " cm, IMC : " + bmi + "\n\n" +
+                       "Évaluation de la Ménopause:\n" +
+                       "Âge de début de la ménopause : " + (ageOnset || "Non précisé") + "\n" +
+                       "Symptômes : " + (symptoms.length ? symptoms.join(", ") : "Aucun") +
+                       (otherSymptoms ? " | Autres: " + otherSymptoms : "") + "\n" +
+                       "Utilisation d'HRT : " + (hrtUsage || "Non précisé") + "\n" +
+                       "Niveau de FSH : " + (fshLevel || "Non renseigné") + " UI/L\n" +
+                       "Niveau d'Estradiol : " + (estradiolLevel || "Non renseigné") + " pg/mL\n" +
+                       "\n[Basé sur les recommandations cliniques actuelles]";
+          document.getElementById("resultMenopause").innerHTML = "<pre>" + report + "</pre>";
+        });
+      })();
+    </script>
+  </div>
+ <!-- Module intégré : Foie et Grossesse (ICP, HELLP et AFLP) -->
+  <div id="moduleHepGrossesse" class="module">
+    <h3>Prise en charge foie et grossesse</h3>
+    
+    <!-- Navigation par onglets internes -->
+    <div class="tab-container">
+      <button class="tab-link active" onclick="openHepatite(event, 'moduleICP')">Cholestase intra‑hépatique gravidique (ICP)</button>
+      <button class="tab-link" onclick="openHepatite(event, 'moduleHELLP')">Syndrome HELLP</button>
+      <button class="tab-link" onclick="openHepatite(event, 'moduleAFLP')">AFLP (Foie gras aigu)</button>
+    </div>
+
+    <!-- Module ICP -->
+    <div id="moduleICP" class="module active" style="display: block;">
+      <h4>Prise en charge de l'ICP</h4>
+      <form id="formICP">
+        <!-- Section 1 : Informations Obstétricales -->
+        <section class="form-section">
+          <h4>Informations Obstétricales</h4>
+          <div class="grid-container">
+            <div class="input-group">
+              <label for="icp_age">Âge maternel (ans) :</label>
+              <input type="number" id="icp_age" min="15" max="50" required>
+            </div>
+            <div class="input-group">
+              <label for="icp_gestationalAge">Âge gestationnel (SA) :</label>
+              <input type="number" id="icp_gestationalAge" min="12" max="42" required>
+            </div>
+            <div class="input-group">
+              <label for="icp_parity">Parité :</label>
+              <select id="icp_parity" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="≥3">≥3</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section 2 : Biomarqueurs Hépatiques -->
+        <section class="form-section">
+          <h4>Biomarqueurs Hépatiques</h4>
+          <div class="grid-container">
+            <div class="input-group">
+              <label for="icp_bileAcids">Acides biliaires (µmol/L) :</label>
+              <input type="number" id="icp_bileAcids" step="0.1" required>
+              <span class="reference">ICP si >10 µmol/L</span>
+            </div>
+            <div class="input-group">
+              <label for="icp_alt">ALT (U/L) :</label>
+              <input type="number" id="icp_alt" required>
+              <span class="reference">Normale : &lt;40 U/L</span>
+            </div>
+            <div class="input-group">
+              <label for="icp_ast">AST (U/L) :</label>
+              <input type="number" id="icp_ast" required>
+              <span class="reference">Normale : &lt;40 U/L</span>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section 3 : Symptomatologie -->
+        <section class="form-section">
+          <h4>Symptomatologie</h4>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="icp_pruritus">
+              Prurit palmo‑plantaire présent
+            </label>
+          </div>
+          <div class="input-group">
+            <label for="icp_pruritusDuration">Durée du prurit (semaines) :</label>
+            <input type="number" id="icp_pruritusDuration" min="0">
+          </div>
+        </section>
+        
+        <!-- Section 4 : Commentaires -->
+        <section class="form-section">
+          <h4>Commentaires</h4>
+          <textarea id="icp_comments" rows="3" placeholder="Entrez vos remarques supplémentaires..."></textarea>
+        </section>
+        
+        <button type="button" class="cta-button" onclick="generateICPPlan()">Générer la Prise en Charge ICP</button>
+      </form>
+      <div id="resultICP" class="result-container"></div>
+    </div>
+
+    <!-- Module HELLP -->
+    <div id="moduleHELLP" class="module" style="display: none;">
+      <h4>Prise en charge du Syndrome HELLP</h4>
+      <form id="formHELLP">
+        <!-- Section 1 : Informations Obstétricales -->
+        <section class="form-section">
+          <h4>Informations Obstétricales</h4>
+          <div class="grid-container">
+            <div class="input-group">
+              <label for="hellp_age">Âge maternel (ans) :</label>
+              <input type="number" id="hellp_age" min="15" max="50" required>
+            </div>
+            <div class="input-group">
+              <label for="hellp_gestationalAge">Âge gestationnel (SA) :</label>
+              <input type="number" id="hellp_gestationalAge" min="12" max="42" required>
+            </div>
+            <div class="input-group">
+              <label for="hellp_parity">Parité :</label>
+              <select id="hellp_parity" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="≥3">≥3</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section 2 : Biomarqueurs Hépatiques et Hémolytiques -->
+        <section class="form-section">
+          <h4>Biomarqueurs et Hémolytiques</h4>
+          <div class="grid-container">
+            <div class="input-group">
+              <label for="hellp_alt">ALT (U/L) :</label>
+              <input type="number" id="hellp_alt" required>
+              <span class="reference">≥70 U/L suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="hellp_ast">AST (U/L) :</label>
+              <input type="number" id="hellp_ast" required>
+              <span class="reference">≥70 U/L suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="hellp_ldh">LDH (U/L) :</label>
+              <input type="number" id="hellp_ldh" required>
+              <span class="reference">>600 U/L suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="hellp_haptoglobin">Haptoglobine (g/L) :</label>
+              <input type="number" id="hellp_haptoglobin" step="0.1" required>
+              <span class="reference">&lt;0.5 g/L suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="hellp_platelets">Plaquettes (/mm³) :</label>
+              <input type="number" id="hellp_platelets" required>
+              <span class="reference">Classe 1 : &lt;50 000, Classe 2 : 50-100 000</span>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section 3 : Symptomatologie -->
+        <section class="form-section">
+          <h4>Symptomatologie</h4>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="hellp_epigastricPain">
+              Douleur épigastrique
+            </label>
+          </div>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="hellp_nausea">
+              Nausées/Vomissements
+            </label>
+          </div>
+        </section>
+        
+        <!-- Section 4 : Commentaires -->
+        <section class="form-section">
+          <h4>Commentaires</h4>
+          <textarea id="hellp_comments" rows="3" placeholder="Remarques supplémentaires..."></textarea>
+        </section>
+        
+        <button type="button" class="cta-button" onclick="generateHELLPPlan()">Générer le Plan HELLP</button>
+      </form>
+      <div id="resultHELLP" class="result-container"></div>
+    </div>
+
+    <!-- Module AFLP -->
+    <div id="moduleAFLP" class="module" style="display: none;">
+      <h4>Prise en charge de l'AFLP (Foie gras aigu)</h4>
+      <form id="formAFLP">
+        <!-- Section 1 : Informations Obstétricales -->
+        <section class="form-section">
+          <h4>Informations Obstétricales</h4>
+          <div class="grid-container">
+            <div class="input-group">
+              <label for="aflp_age">Âge maternel (ans) :</label>
+              <input type="number" id="aflp_age" min="15" max="50" required>
+            </div>
+            <div class="input-group">
+              <label for="aflp_gestationalAge">Âge gestationnel (SA) :</label>
+              <input type="number" id="aflp_gestationalAge" min="12" max="42" required>
+            </div>
+            <div class="input-group">
+              <label for="aflp_parity">Parité :</label>
+              <select id="aflp_parity" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="≥3">≥3</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section 2 : Biomarqueurs et Examens Complémentaires -->
+        <section class="form-section">
+          <h4>Biomarqueurs et Examens Complémentaires</h4>
+          <div class="grid-container">
+            <div class="input-group">
+              <label for="aflp_bilirubin">Bilirubine (mg/dL) :</label>
+              <input type="number" id="aflp_bilirubin" step="0.1" required>
+              <span class="reference">>1.2 mg/dL suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="aflp_alt">ALT (U/L) :</label>
+              <input type="number" id="aflp_alt" required>
+            </div>
+            <div class="input-group">
+              <label for="aflp_ast">AST (U/L) :</label>
+              <input type="number" id="aflp_ast" required>
+            </div>
+            <div class="input-group">
+              <label for="aflp_ldh">LDH (U/L) :</label>
+              <input type="number" id="aflp_ldh" required>
+              <span class="reference">>600 U/L suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="aflp_inr">INR :</label>
+              <input type="number" id="aflp_inr" step="0.01" required>
+              <span class="reference">>1.5 suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="aflp_creatinine">Créatinine (mg/dL) :</label>
+              <input type="number" id="aflp_creatinine" step="0.1" required>
+              <span class="reference">>1.1 mg/dL suspecté</span>
+            </div>
+            <div class="input-group">
+              <label for="aflp_glucose">Glycémie (mmol/L) :</label>
+              <input type="number" id="aflp_glucose" step="0.1" required>
+              <span class="reference">&lt;4 mmol/L suspecté</span>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section 3 : Symptomatologie -->
+        <section class="form-section">
+          <h4>Symptomatologie</h4>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="aflp_vomiting">
+              Vomissements persistants
+            </label>
+          </div>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="aflp_abdominalPain">
+              Douleur abdominale
+            </label>
+          </div>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="aflp_encephalopathy">
+              Encéphalopathie
+            </label>
+          </div>
+          <div class="input-group">
+            <label>
+              <input type="checkbox" id="aflp_ascites">
+              Ascite détectée à l'échographie
+            </label>
+          </div>
+        </section>
+        
+        <!-- Section 4 : Commentaires -->
+        <section class="form-section">
+          <h4>Commentaires</h4>
+          <textarea id="aflp_comments" rows="3" placeholder="Remarques supplémentaires..."></textarea>
+        </section>
+        
+        <button type="button" class="cta-button" onclick="generateAFLPPlan()">Générer le Plan AFLP</button>
+      </form>
+      <div id="resultAFLP" class="result-container"></div>
+    </div>
+
+    <!-- Scripts pour la gestion des onglets internes et génération des plans -->
+    <script>
+      // Fonction de gestion des onglets internes
+      function openHepatite(evt, moduleId) {
+        // On cible uniquement les modules internes du module Foie et Grossesse
+        var modules = document.querySelectorAll('#moduleHepGrossesse > .module');
+        modules.forEach(function(module) {
+          module.classList.remove("active");
+          module.style.display = "none";
+        });
+        var tablinks = document.querySelectorAll('#moduleHepGrossesse .tab-link');
+        tablinks.forEach(function(link) {
+          link.classList.remove("active");
+        });
+        document.getElementById(moduleId).classList.add("active");
+        document.getElementById(moduleId).style.display = "block";
+        evt.currentTarget.classList.add("active");
+      }
+
+      // Génération du plan pour ICP
+      function generateICPPlan() {
+        const maternalAge = document.getElementById('icp_age').value;
+        const gestationalAge = document.getElementById('icp_gestationalAge').value;
+        const parity = document.getElementById('icp_parity').value;
+        
+        const bileAcids = parseFloat(document.getElementById('icp_bileAcids').value) || 0;
+        const ALT = parseFloat(document.getElementById('icp_alt').value) || 0;
+        const AST = parseFloat(document.getElementById('icp_ast').value) || 0;
+        
+        const pruritus = document.getElementById('icp_pruritus').checked;
+        const pruritusDuration = document.getElementById('icp_pruritusDuration').value || "Non renseigné";
+        
+        const comments = document.getElementById('icp_comments').value.trim() || "Aucun commentaire supplémentaire.";
+        
+        let severity = "Modérée";
+        if(bileAcids > 40 || ALT > 200 || AST > 200) {
+          severity = "Sévère";
+        }
+        
+        let report = `<h4>Résumé de la Prise en Charge de l'ICP</h4>`;
+        report += `<p><strong>Informations Obstétricales :</strong> Âge maternel : ${maternalAge} ans, Âge gestationnel : ${gestationalAge} SA, Parité : ${parity}</p>`;
+        report += `<p><strong>Biomarqueurs :</strong> Acides biliaires : ${bileAcids} µmol/L, ALT : ${ALT} U/L, AST : ${AST} U/L</p>`;
+        report += `<p><strong>Symptomatologie :</strong> Prurit : ${pruritus ? "Présent" : "Absent"}, Durée du prurit : ${pruritusDuration} semaines</p>`;
+        
+        let management = `<h4>Plan de Prise en Charge</h4>`;
+        if (severity === "Sévère") {
+          management += `<p><strong>ICP sévère détectée</strong> :</p>
+            <ul>
+              <li>Hospitalisation recommandée.</li>
+              <li>Administration d'Ursodeoxycholic Acid (UDCA) à 10-15 mg/kg/jour.</li>
+              <li>Surveillance fœtale rapprochée (monitoring CTG quotidien, échographie Doppler hépatique).</li>
+              <li>Induction du travail envisagée à 36-37 SA selon l'évolution.</li>
+            </ul>`;
+        } else {
+          management += `<p><strong>ICP modérée</strong> :</p>
+            <ul>
+              <li>Prise en charge ambulatoire avec UDCA à 10-15 mg/kg/jour.</li>
+              <li>Suivi hépatique et fœtal hebdomadaire.</li>
+              <li>Induction du travail envisagée à 37-38 SA en cas d'évolution défavorable.</li>
+            </ul>`;
+        }
+        
+        let recommendations = `<h4>Recommandations :</h4>
+          <ul>
+            <li>Arrêter tout médicament hépatotoxique.</li>
+            <li>Contrôle régulier des acides biliaires et enzymes hépatiques.</li>
+            <li>Consultation multidisciplinaire entre obstétriciens et hépatologues.</li>
+          </ul>`;
+        
+        report += management + recommendations;
+        report += `<p><strong>Commentaires :</strong> ${comments}</p>`;
+        
+        document.getElementById('resultICP').innerHTML = report;
+      }
+
+      // Génération du plan pour HELLP
+      function generateHELLPPlan() {
+        const age = document.getElementById('hellp_age').value;
+        const gestAge = document.getElementById('hellp_gestationalAge').value;
+        const parity = document.getElementById('hellp_parity').value;
+        const alt = parseFloat(document.getElementById('hellp_alt').value) || 0;
+        const ast = parseFloat(document.getElementById('hellp_ast').value) || 0;
+        const ldh = parseFloat(document.getElementById('hellp_ldh').value) || 0;
+        const haptoglobin = parseFloat(document.getElementById('hellp_haptoglobin').value) || 0;
+        const platelets = parseFloat(document.getElementById('hellp_platelets').value) || 0;
+        const epigastricPain = document.getElementById('hellp_epigastricPain').checked;
+        const nausea = document.getElementById('hellp_nausea').checked;
+        const comments = document.getElementById('hellp_comments').value.trim() || "Aucun commentaire supplémentaire.";
+        
+        let report = `<h4>Résumé du Syndrome HELLP</h4>`;
+        report += `<p><strong>Informations Obstétricales :</strong> Âge maternel : ${age} ans, Âge gestationnel : ${gestAge} SA, Parité : ${parity}</p>`;
+        report += `<p><strong>Biomarqueurs :</strong> ALT : ${alt} U/L, AST : ${ast} U/L, LDH : ${ldh} U/L, Haptoglobine : ${haptoglobin} g/L, Plaquettes : ${platelets} /mm³</p>`;
+        report += `<p><strong>Symptomatologie :</strong> Douleur épigastrique : ${epigastricPain ? "Oui" : "Non"}, Nausées/Vomissements : ${nausea ? "Oui" : "Non"}</p>`;
+        
+        let management = `<h4>Plan de Prise en Charge</h4>`;
+        if (alt >= 70 && ast >= 70 && ldh > 600 && haptoglobin < 0.5 && platelets < 100000) {
+          management += `<p><strong>Syndrome HELLP confirmé</strong></p>
+            <ul>
+              <li>Hospitalisation immédiate.</li>
+              <li>Contrôle tensionnel strict et surveillance des complications hémolytiques.</li>
+              <li>Administration de corticothérapie (ex. bétaméthasone 12 mg/24h).</li>
+              <li>Préparation pour un accouchement en urgence selon l'évolution clinique.</li>
+            </ul>`;
+        } else {
+          management += `<p>Critères de HELLP non pleinement confirmés. Surveillance rapprochée et réévaluation clinique recommandées.</p>`;
+        }
+        
+        report += management;
+        report += `<p><strong>Commentaires :</strong> ${comments}</p>`;
+        
+        document.getElementById('resultHELLP').innerHTML = report;
+      }
+
+      // Génération du plan pour AFLP
+      function generateAFLPPlan() {
+        const age = document.getElementById('aflp_age').value;
+        const gestAge = document.getElementById('aflp_gestationalAge').value;
+        const parity = document.getElementById('aflp_parity').value;
+        const bilirubin = parseFloat(document.getElementById('aflp_bilirubin').value) || 0;
+        const alt = parseFloat(document.getElementById('aflp_alt').value) || 0;
+        const ast = parseFloat(document.getElementById('aflp_ast').value) || 0;
+        const ldh = parseFloat(document.getElementById('aflp_ldh').value) || 0;
+        const inr = parseFloat(document.getElementById('aflp_inr').value) || 0;
+        const creatinine = parseFloat(document.getElementById('aflp_creatinine').value) || 0;
+        const glucose = parseFloat(document.getElementById('aflp_glucose').value) || 0;
+        
+        const vomiting = document.getElementById('aflp_vomiting').checked;
+        const abdominalPain = document.getElementById('aflp_abdominalPain').checked;
+        const encephalopathy = document.getElementById('aflp_encephalopathy').checked;
+        const ascites = document.getElementById('aflp_ascites').checked;
+        
+        const comments = document.getElementById('aflp_comments').value.trim() || "Aucun commentaire supplémentaire.";
+        
+        let report = `<h4>Résumé de l'AFLP (Foie gras aigu)</h4>`;
+        report += `<p><strong>Informations Obstétricales :</strong> Âge maternel : ${age} ans, Âge gestationnel : ${gestAge} SA, Parité : ${parity}</p>`;
+        report += `<p><strong>Biomarqueurs :</strong> Bilirubine : ${bilirubin} mg/dL, ALT : ${alt} U/L, AST : ${ast} U/L, LDH : ${ldh} U/L, INR : ${inr}, Créatinine : ${creatinine} mg/dL, Glycémie : ${glucose} mmol/L</p>`;
+        report += `<p><strong>Symptomatologie :</strong> Vomissements : ${vomiting ? "Oui" : "Non"}, Douleur abdominale : ${abdominalPain ? "Oui" : "Non"}, Encéphalopathie : ${encephalopathy ? "Oui" : "Non"}, Ascite : ${ascites ? "Oui" : "Non"}</p>`;
+        
+        let score = 0;
+        if (bilirubin > 1.2) score++;
+        if (ldh > 600) score++;
+        if (inr > 1.5) score++;
+        if (creatinine > 1.1) score++;
+        if (glucose < 4) score++;
+        if (vomiting) score++;
+        if (encephalopathy) score++;
+        if (ascites) score++;
+        
+        let management = `<h4>Plan de Prise en Charge</h4>`;
+        if (score >= 4) {
+          management += `<p><strong>AFLP suspectée</strong> (score ${score} sur critères évalués) :</p>
+            <ul>
+              <li>Hospitalisation immédiate en unité de soins intensifs.</li>
+              <li>Support hémodynamique et correction des hypoglycémies.</li>
+              <li>Préparation à l'accouchement en urgence avec assistance multidisciplinaire.</li>
+              <li>Surveillance rapprochée des paramètres biologiques.</li>
+            </ul>`;
+        } else {
+          management += `<p>Les critères d'AFLP ne sont pas pleinement remplis. Surveillance rapprochée et réévaluation clinique sont recommandées.</p>`;
+        }
+        
+        report += management;
+        report += `<p><strong>Commentaires :</strong> ${comments}</p>`;
+        
+        document.getElementById('resultAFLP').innerHTML = report;
+      }
+    </script>
+  </div>
+  <footer>
+    <p style="font-size: 0.9em; text-align: center;" style="font-size: 0.9em;">Développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
+    <p style="font-size: 0.9em; text-align: center;"Ce document est fourni à titre informatif.</p>
+  </footer>
+
+</body>
+</html>
 
