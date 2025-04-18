@@ -160,6 +160,7 @@
     <button onclick="showModule('modulePancreatiteChro')">PCC</button>
     <button onclick="showModule('modulePancreatiteAigu')">Pancréatite aiguë</button>
     <button onclick="showModule('modulePancreaticCyst')">kyste pancréatique</button>
+    <button onclick="showModule('modulePseudokystes')">pseudokystes du pancréas</button> 
     <button onclick="showModule('moduleFissureAnale')">Fissure anale</button>	
     <button onclick="showModule('moduleHemorrhoids')">Maladie hémorroïdaire</button>
     <button onclick="showModule('moduleAlcoolique')">Hépatite alcoolique aiguë</button>
@@ -9272,6 +9273,107 @@ button:hover { background: #0056b3; }
     }
   </script>
 </div>
+<!-- Module : Prise en charge des pseudokystes pancréatiques -->
+<div id="modulePseudokystes" class="module">
+  <h3>Prise en charge des pseudokystes pancréatiques</h3>
+
+  <!-- Données cliniques -->
+  <section class="form-section">
+    <h2>Données cliniques</h2>
+    <div class="input-group">
+      <label for="symptomes_pseudo">Symptômes :</label>
+      <select id="symptomes_pseudo">
+        <option value="asymptomatique">Asymptomatique</option>
+        <option value="douleur">Douleurs abdominales</option>
+        <option value="compression">Compression digestive ou biliaire</option>
+        <option value="infecte">Infecté (fièvre, syndrome inflammatoire)</option>
+        <option value="hemorragie">Complication hémorragique</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="duree_pseudo">Durée d'évolution du pseudokyste :</label>
+      <select id="duree_pseudo">
+        <option value="<4sem">Moins de 4 semaines</option>
+        <option value=">4sem">Plus de 4 semaines</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Imagerie -->
+  <section class="form-section">
+    <h2>Résultats d'imagerie</h2>
+    <div class="input-group">
+      <label for="taille_pseudo">Taille du pseudokyste (cm) :</label>
+      <input type="number" id="taille_pseudo" step="0.1" min="0">
+    </div>
+    <div class="input-group">
+      <label for="mur_mature">Paroi bien définie (mature) ?</label>
+      <select id="mur_mature">
+        <option value="oui">Oui</option>
+        <option value="non">Non</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Actions -->
+  <button onclick="generatePseudokystePlan()">Générer la conduite à tenir</button>
+  <div id="resultPseudokyste" class="result"></div>
+</div>
+
+<script>
+function generatePseudokystePlan() {
+  const symptomes = document.getElementById("symptomes_pseudo").value;
+  const duree = document.getElementById("duree_pseudo").value;
+  const taille = parseFloat(document.getElementById("taille_pseudo").value);
+  const mur = document.getElementById("mur_mature").value;
+
+  let html = '<h4>Conduite à tenir :</h4><ul>';
+
+  if (symptomes === "asymptomatique") {
+    if (taille < 6 && duree === ">4sem" && mur === "oui") {
+      html += '<li>Surveillance simple avec imagerie tous les 3-6 mois.</li>';
+    } else {
+      html += '<li>Surveillance rapprochée. Répéter imagerie à 4 semaines.</li>';
+    }
+  } else {
+    html += '<li><strong>Drainage nécessaire</strong> : indication thérapeutique formelle.</li>';
+    if (symptomes === "infecte") {
+      html += '<li>Privilégier un drainage par voie endoscopique ou percutanée, en fonction de la localisation et du matériel disponible.</li>';
+    } else if (symptomes === "compression") {
+      html += '<li>Drainage endoscopique interne si possible (échoendoscopie-guidée).</li>';
+    } else if (symptomes === "hemorragie") {
+      html += '<li>Évaluer en urgence avec angio-TDM. Embolisation si saignement actif.</li>';
+    }
+  }
+
+  html += '</ul><h4>Remarques :</h4><ul>';
+  html += '<li>Les pseudokystes apparaissent généralement plus de 4 semaines après une pancréatite aiguë.</li>';
+  html += '<li>La ponction de diagnostic n’est pas systématique (éviter si asymptomatique).</li>';
+  html += '<li>La chirurgie est réservée aux échecs du traitement endoscopique ou aux formes compliquées.</li>';
+  html += '</ul>';
+
+  document.getElementById("resultPseudokyste").innerHTML = html;
+}
+</script>
+
+<style>
+#modulePseudokystes .form-section {
+  margin-bottom: 1.5em;
+  padding: 1em;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+#modulePseudokystes .input-group {
+  margin-bottom: 1em;
+}
+.result {
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 8px;
+  margin-top: 1em;
+}
+</style>
 
 <footer>	
       <p style="font-size: 0.9em; text-align: center;">Développé par Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
