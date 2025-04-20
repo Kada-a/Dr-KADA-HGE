@@ -565,13 +565,712 @@ button:hover { background: #0056b3; }
   </div>
   </header>
   <nav> 
-    <button onclick="showModule('moduleEchoEndo')">Échoendoscopie Interventionnelle</button>
+    
+	<button onclick="showModule('moduleVaricesOesophagiennes')">Varices Œsophagiennes</button>
+	<button onclick="showModule('moduleVaricesGastriques')">Varices Gastriques</button> 
+	<button onclick="showModule('moduleMucosectomie')">Mucosectomie(EMR)</button>
+	<button onclick="showModule('moduleESD')">Matériel ESD</button>
+	<button onclick="showModule('moduleCPRE')">CPRE</button>
+	<button onclick="showModule('moduleMetalStent')">Prothèse Biliaire Métallique (ERCP)</button>
+	<button onclick="showModule('modulePlasticStent')">Prothèse Biliaire Plastique (ERCP)</button>
+	<button onclick="showModule('moduleEchoPuncture')">Ponction sous écho-endoscopie (FNA/FNB)</button>
+	<button onclick="showModule('moduleEchoEndo')">Échoendoscopie Interventionnelle</button>
+	<button onclick="showModule('moduleLA')">Score œsophagite peptique</button> 
+	<button onclick="showModule('modulePrague')">EBO</button>
+	<button onclick="showModule('moduleForest')">Forest</button> 
+	<button onclick="showModule('moduleParis')">Paris</button>
+	<button onclick="showModule('moduleNICE')">NICE</button>
+	<button onclick="showModule('moduleMayoRCH')">Mayo (RCH)</button>
+	<button onclick="showModule('moduleCrohn')">Crohn</button>
     
   </nav>
+  <!-- Module : Mucosectomie Endoscopique -->
+<div id="moduleMucosectomie" class="module">
+  <h3>Mucosectomie Endoscopique (EMR)</h3>
+
+  <!-- Introduction -->
+  <section class="form-section">
+    <h2>Introduction</h2>
+    <p>L’exérèse mucosale (EMR) est une technique endoscopique permettant de retirer des lésions superficielles du tube digestif via injection sous-muqueuse et utilisation d’une anse de résection.</p>
+  </section>
+
+  <!-- Préparation de l’examen -->
+  <section class="form-section">
+    <h2>Préparation de l’examen</h2>
+    <h3>Patient</h3>
+    <ul>
+      <li>Jeûne strict 6–8 h avant procédure</li>
+      <li>Consentement éclairé et information sur risques (saignement, perforation)</li>
+      <li>Évaluation anesthésique (sédation ou anesthésie générale selon contexte)</li>
+    </ul>
+
+    <h3>Endoscope</h3>
+    <ul>
+      <li>Gastroscope ou coloscope thérapeutique avec canal opérateur ≥ 3,7 mm</li>
+      <li>Capuchon distal transparent pour stabilisation de la lésion</li>
+    </ul>
+
+    <h3>Table d’instrumentation</h3>
+    <ul>
+      <li>Seringue et aiguilles d’injection (25–27G)</li>
+      <li>Solution d’injection (saline + indigo carmin ou sérum enrichi)</li>
+      <li>Anses de résection (selon localisation)</li>
+      <li>Pinces hémostatiques</li>
+      <li>Forceps de coagulation ou APC (Argon Plasma Coagulation)</li>
+    </ul>
+
+    <h3>Préparation de la scopie</h3>
+    <ul>
+      <li>Insufflation douce (CO₂)</li>
+      <li>Positionnement optimal du patient (décubitus adapté)</li>
+    </ul>
+  </section>
+
+  <!-- Déroulement -->
+  <section class="form-section">
+    <h2>Déroulement de la procédure</h2>
+    <ol>
+      <li>Injection sous-muqueuse autour de la lésion pour création d’un coussinet</li>
+      <li>Positionnement de l’anse en bordure du coussinet</li>
+      <li>Captation et strangulation de la muqueuse</li>
+      <li>Application d’un courant de coupe coagulation (Endocut preferred)</li>
+      <li>Hémostase immédiate si nécessaire (placement de clips) </li>
+      <li>Récupération de la pièce pour étude histologique</li>
+    </ol>
+  </section>
+
+  <!-- Surveillance -->
+  <section class="form-section">
+    <h2>Surveillance post-procédure</h2>
+    <ul>
+      <li>Observation en salle de réveil 2–4 h</li>
+      <li>Évaluation des signes cliniques : douleurs, hématémèse, méléna</li>
+      <li>Contrôle endoscopique si saignement suspect</li>
+      <li>Règles de reprise alimentaire progressives</li>
+    </ul>
+  </section>
+
+  <!-- Traçabilité -->
+  <section class="form-section">
+    <h2>Traçabilité</h2>
+    <ul>
+      <li>Documentation précise : localisation, taille, aspects endoscopiques (Paris classification)</li>
+      <li>Numéro de lot des anse et matériel utilisé</li>
+      <li>Photographies ou vidéographie de la lésion avant et après résection</li>
+      <li>Compte rendu détaillé des incidents éventuels</li>
+    </ul>
+  </section>
+</div>
+
   
+  
+ <div id="moduleESD" class="module">
+  <h3>Matériel – Dissection Sous-Muqueuse Endoscopique (ESD)</h3>
+
+  <!-- Capuchon Endoscope -->
+  <section class="form-section">
+    <h4>1. Configuration de base</h4>
+    <div class="sub-section">
+      <h5>Capuchon endoscopique</h5>
+      <ul>
+        <li>Nouveaux modèles à double canal  permettant une meilleure triangulation</li> <!-- (Strait™, Olympus) -->
+        <li>Préférer les capuchons transparents à bord distal oblique pour meilleure visibilité</li> <!-- (ST-Hood®) -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- Instruments de Dissection -->
+  <section class="form-section">
+    <h4>2. Bistouris de dissection</h4>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Génération</th><th>Modèles</th><th>Avantages</th><th>Indications</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3ème gén</td><td>Clutch Cutter<br>SB Knife Jr</td><td>• Dissection bidirectionnelle<br>• Hémostase intégrée</td><td>Lésions coliques<br>Débutants</td></tr>
+          <tr><td>2ème gén</td><td>Dual Jet<br>Flush Knife BT</td><td>• Irrigation intégrée<br>• Faible adhérence</td><td>Estomac<br>Œsophage</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="evidence">Niveau de preuve : JGES 2022 recommande les bistouris 3G en première intention (Grade A)</p>
+  </section>
+
+  <!-- Traction et Hémostase -->
+  <section class="form-section">
+    <h4>3. Techniques de traction avancées</h4>
+    <ul>
+      <li><strong>Systèmes de traction dynamique</strong> :
+        <ul>
+          <li>Clip-and-line (Pocket-created method)</li>
+          <!--  <li>Traction externe magnétique (MAGENT™) --></li>
+          <li>Ancrage par double clip (Dual Clip Traction)</li>
+        </ul>
+      </li>
+      <li><strong>Hémostase proactive</strong> :
+        <ul>
+          <li>Coagrasper Hemo (coagulation pulsée)</li>
+          <li>Poudres hémostatiques  pour surfaces larges</li> <!--  (UI-EWD™) -->
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Innovations Technologiques -->
+  <section class="form-section">
+    <h4>4. Innovations récentes</h4>
+    <div class="sub-section">
+      <h5>Plateforme intégrée ENDO DRIVE®</h5>
+      <ul>
+        <li>Contrôle électronique de la pression d'insufflation (CO<sub>2</sub> intelligent)</li>
+        <li>Mode ESD dédié avec réglages préprogrammés :
+          <ul>
+            <li>Forced Coag : 50W, Effet 2 (VIO3®)</li>
+            <li>Endo Cut Q : Durée 2, Intervalle 3</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="sub-section">
+      <h5>Endoscopes dédiés</h5>
+      <ul>
+        <li>Gastroscopes à vision latérale  pour l'estomac proximal</li>   <!--(EG-760Z®)-->
+        <li>Coloscopes à double courbure  pour le côlon droit</li>  <!--(PCF-H290TI®)-->
+      </ul>
+    </div>
+  </section>
+
+  <!-- Références Actualisées -->
+  <section class="form-section references">
+    <h4>Références scientifiques</h4>
+    <ul>
+    <li>ESGE Guideline 2023: Endoscopic submucosal dissection (Endoscopy. 2023 Feb;55(2))</li>
+      <li>JGES White Paper on ESD: Update on devices (Dig Endosc. 2022 Suppl 1)</li>
+      <li>Consensus international sur l'ESD colique (Gastroenterology. 2022;163(5))</li> 
+    </ul>
+  </section>
+</div>
+
+<style>
+.module {
+  font-family: 'Roboto', sans-serif;
+  max-width: 1000px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.form-section {
+  background: white;
+  border-left: 4px solid #3b82f6;
+}
+
+.sub-section {
+  padding: 12px;
+  margin: 10px 0;
+  background: #f1f5f9;
+  border-radius: 6px;
+}
+
+table {
+  border: 1px solid #cbd5e1;
+  margin: 15px 0;
+}
+
+th {
+  background: #e2e8f0;
+  font-weight: 600;
+}
+
+td {
+  vertical-align: top;
+}
+
+.evidence {
+  color: #64748b;
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+
+.references ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.references li {
+  margin: 8px 0;
+  padding-left: 20px;
+  text-indent: -20px;
+}
+</style>
+<!-- Module: Tumeurs exocrines du pancréas -->
+<div id="modulePancreas" class="module">
+  ... (le code existant du module Pancreas inchangé) ...
+</div>
+
+<!-- Module: Varices Gastriques et Cardio-Tubérositaires -->
+<div id="moduleVaricesGastriques" class="module">
+  <h3>Varices Gastriques et Cardio-Tubérositaires</h3>
+  <section class="form-section">
+    <h4>Introduction</h4>
+    <p>Tout patient cirrhotique ayant une hémorragie digestive doit bénéficier d’une endoscopie dans les 12 heures. Le traitement de référence est la ligature élastique. En cas d’échec ou de récidive, envisager la sclérothérapie, la mise en place d’une sonde de Blakemore ou la pose d’une prothèse œsophagienne en attendant un TIPS précoce.</p>
+  </section>
+  <section class="form-section">
+    <h4>Classification (Sarin)</h4>
+    <table>
+      <thead>
+        <tr><th>Grade</th><th>Définition</th><th>Topographie</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>GOV 1</td><td>Varices en prolongement d’un cordon de VO</td><td>Long de la petite courbure gastrique</td></tr>
+        <tr><td>GOV 2</td><td>Varices en prolongement d’un cordon de VO</td><td>Long de la grande courbure gastrique</td></tr>
+        <tr><td>IGV 1</td><td>Varices gastriques isolées</td><td>Fundus, à distance du cardia</td></tr>
+        <tr><td>IGV 2</td><td>Varices gastriques isolées</td><td>Antre/pylore, à distance du fundus</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section class="form-section">
+  
+    <div class="sub-section">
+      <h5>Hémostase sous Échoendoscopie</h5>
+      <ul>
+        <li><strong>Indications</strong> :
+          <ul>
+            <li>Hémorragie active non contrôlée par endoscopie conventionnelle</li>
+            <li>Varices difficiles d'accès ou localisation atypique</li>
+            <li>Alternative au TIPS en cas de contre-indications</li>
+          </ul>
+        </li>
+        <li><strong>Technique</strong> :
+          <ul>
+            <li>Repérage échoendoscopique des vaisseaux nourriciers</li>
+            <li>Injection sous guidage échoendoscopique de :
+              <ul>
+                <li>Cyanoacrylate (colle biologique)</li>
+                <li>Thrombine</li>
+                <li>Coils métalliques</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Avantages</strong> :
+          <ul>
+            <li>Précision accrue grâce à la visualisation vasculaire</li>
+            <li>Traitement ciblé des vaisseaux perforants</li>
+            <li>Taux de réussite > 90% dans les centres experts</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h4>Indications du TIPS</h4>
+    <ul>
+      <li>Hémorragie persistante malgré ligature/sclérothérapie</li>
+      <li>TIPS précoce (< 72h) si facteurs pronostiques défavorables :
+        <ul>
+          <li>Child-Pugh C</li>
+          <li>Score MELD > 18</li>
+          <li>Ascite réfractaire</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</div>
+</div>
+
+<div id="moduleVaricesOesophagiennes" class="module">
+  <h3>Varices Œsophagiennes</h3>
+  
+  <section class="form-section">
+    <h4>Introduction</h4>
+    <p>Les varices œsophagiennes sont des dilatations veineuses secondaires à l’hypertension portale. Toute hémorragie par rupture nécessite une prise en charge urgente multidisciplinaire.</p>
+  </section>
+
+  <section class="form-section">
+    <h4>Classification des Varices Œsophagiennes</h4>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Grade</th><th>Définition</th><th>Prophylaxie primaire</th><th>Prophylaxie secondaire</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>I</td><td>Varices s’aplatissant à l’insufflation</td><td>Bêta-bloquants (si signes rouges ou Child C)</td><td>Bêta-bloquants + ligature élastique</td></tr>
+          <tr><td>II</td><td>Varices non s’aplatissant, intervalles muqueux &lt;1/3 lumière</td><td>Bêta-bloquants ou ligature</td><td>Bêta-bloquants + ligature</td></tr>
+          <tr><td>III</td><td>Grosses varices confluintes &gt;1/3 lumière</td><td>Bêta-bloquants ou ligature</td><td>Bêta-bloquants + ligature</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="form-section">
+  
+    <div class="sub-section">
+      <h5>Hémostase sous Échoendoscopie</h5>
+      <ul>
+        <li><strong>Indications</strong> :
+          <ul>
+            <li>Hémorragie active non contrôlée par endoscopie conventionnelle</li>
+            <li>Varices difficiles d'accès ou localisation atypique</li>
+            <li>Alternative au TIPS en cas de contre-indications</li>
+          </ul>
+        </li>
+        <li><strong>Technique</strong> :
+          <ul>
+            <li>Repérage échoendoscopique des vaisseaux nourriciers</li>
+            <li>Injection sous guidage échoendoscopique de :
+              <ul>
+                <li>Cyanoacrylate (colle biologique)</li>
+                <li>Thrombine</li>
+                <li>Coils métalliques</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Avantages</strong> :
+          <ul>
+            <li>Précision accrue grâce à la visualisation vasculaire</li>
+            <li>Traitement ciblé des vaisseaux perforants</li>
+            <li>Taux de réussite > 90% dans les centres experts</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h4>Indications du TIPS</h4>
+    <ul>
+      <li>Hémorragie persistante malgré ligature/sclérothérapie</li>
+      <li>TIPS précoce (< 72h) si facteurs pronostiques défavorables :
+        <ul>
+          <li>Child-Pugh C</li>
+          <li>Score MELD > 18</li>
+          <li>Ascite réfractaire</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<style>
+.module { 
+  font-family: 'Segoe UI', sans-serif; 
+  max-width: 1000px; 
+  margin: 25px auto; 
+  background: #f8fafc; 
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-section { 
+  background: white; 
+  border: 1px solid #e2e8f0; 
+  padding: 20px; 
+  margin-bottom: 25px; 
+  border-radius: 8px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%; 
+  border-collapse: collapse; 
+  margin: 15px 0;
+}
+
+th, td { 
+  border: 1px solid #cbd5e1; 
+  padding: 12px; 
+  text-align: left;
+}
+
+th { 
+  background: #f1f5f9; 
+  font-weight: 600;
+}
+
+ul { 
+  margin: 10px 0; 
+  padding-left: 25px;
+}
+
+.sub-section {
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+h4 { color: #2d3748; margin-bottom: 15px; }
+h5 { color: #4a5568; margin: 10px 0; }
+strong { color: #2d3748; }
+</style>
+
+ 
+  <!-- Module : Ponction sous écho-endoscopie -->
+<div id="moduleEchoPuncture" class="module">
+  <h3>Ponction sous écho-endoscopie (FNA/FNB)</h3>
+
+  <!-- Introduction -->
+  <section class="form-section">
+    <h4>Introduction</h4>
+    <p>La ponction sous écho-endoscopie (FNA/FNB) permet le prélèvement cytologique ou histologique de lésions digestives et pancréatiques sous contrôle échographique, pour diagnostic et guidage thérapeutique.</p>
+  </section>
+
+  <!-- Préparation -->
+  <section class="form-section">
+    <h4>Préparation</h4>
+    <h5>Patient :</h5>
+    <ul>
+      <li>Jeûne 6 h (liquides) / 8 h (solides).</li>
+      <li>Antibioprophylaxie si ponction de kyste (par exemple, ciprofloxacine).</li>
+      <li>Correction des troubles de la coagulation (INR &lt;1,5, plaquettes &gt;50 000/mm³).</li>
+    </ul>
+    <h5>Endoscope &amp; scopie :</h5>
+    <ul>
+      <li>Écho-endoscope linéaire avec canal de ponction 2,8 mm.</li>
+      <li>Position de scopie optimisée pour visualiser la lésion (axe long).</li>
+    </ul>
+    <h5>Matériel :</h5>
+    <ul>
+      <li>Aiguilles de FNA (22 G) ou FNB (19 G/22 G) selon indication.</li>
+      <li>Stylet, seringue 10 mL, flacons de fixatif (formol ou alcool).</li>
+      <li>Kit de cytologie sur lame et/ou cellblock.</li>
+      <li>Coloration rapide (ROSE) si disponible.</li>
+    </ul>
+    <h5>Table d'instrumentation :</h5>
+    <ul>
+      <li>Moniteur écho-endoscopique.</li>
+      <li>Panier à instruments (aiguilles, seringues, fixatif).</li>
+    </ul>
+  </section>
+
+  <!-- Déroulement -->
+  <section class="form-section">
+    <h4>Déroulement de la procédure</h4>
+    <ol>
+      <li>Identifier la lésion sous contrôle échographique.</li>
+      <li>Introduire l’aiguille avec stylet avancé dans la lésion.</li>
+      <li>Retirer le stylet, aspirer doucement (selon la technique).</li>
+      <li>Replacer le stylet, retirer l’aiguille et récupérer le matériel pour analyse.</li>
+      <li>Réaliser 3–5 passages selon la cellularité.</li>
+    </ol>
+  </section>
+
+  <!-- Prévention -->
+  <section class="form-section">
+    <h4>Prévention de la pancréatite post-ponction</h4>
+    <ul>
+      <li>Limitation du nombre de passages &lt;5.</li>
+      <li>Injection de lidocaïne intrapancréatique (optionnelle).</li>
+      <li>Hydratation perprocedurale et surveillance post-interventionnelle.</li>
+    </ul>
+  </section>
+
+  <!-- Complications -->
+  <section class="form-section">
+    <h4>Complications potentielles</h4>
+    <ul>
+      <li>Pancréatite aiguë (0,5–2 %).</li>
+      <li>Hémorragie (intra-abdominale ou du tractus digestif).</li>
+      <li>Infection (abcès, sepsis).</li>
+      <li>Risque de perforation digestive.</li>
+    </ul>
+  </section>
+</div>
+
+<style>
+#moduleEchoPuncture {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 20px auto;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+.form-section {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.form-section h4 {
+  margin-top: 0;
+  color: #00539C;
+}
+ul, ol {
+  margin: 10px 0 0 20px;
+}
+h5 {
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+</style>
+
+  
+  
+ <!-- Module : CPRE et Sphinctérotomie -->
+<div id="moduleCPRE" class="module">
+  <h3>CPRE et Sphinctérotomie Endoscopique</h3>
+
+  <!-- Choix de la procédure -->
+  <section class="form-section">
+    <h2>Procédures disponibles</h2>
+    <div class="input-group">
+      <label for="cpreProcedureSelect">Sélectionnez une procédure :</label>
+      <select id="cpreProcedureSelect" onchange="displayCPREDetails()">
+        <option value="">--Choisir une procédure--</option>
+        <option value="cpreDiag">CPRE diagnostique</option>
+        <option value="cpreThera">CPRE thérapeutique</option>
+        <option value="sphincterotomie">Sphinctérotomie endoscopique</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Détails de la procédure -->
+  <section class="form-section" id="cpreDetails" style="display:none;">
+    <h2 id="cpreTitle"></h2>
+
+    <h3>Introduction</h3>
+    <p id="cpreIntro"></p>
+
+    <h3>Préparation de l'examen</h3>
+    <ul>
+      <li><strong>Patient :</strong> Jeûne 6–8 h, bilan coagulation, consentement éclairé.</li>
+      <li><strong>Endoscope :</strong> Duodénoscope à vision latérale, canal de travail ≥ 4,2 mm.</li>
+      <li><strong>Bistouri électrique :</strong> Mode Endocut, puissance adaptée.</li>
+      <li><strong>Table d'instrumentation :</strong> Stents, cathéters, ballonnets, panier d'extraction.</li>
+      <li><strong>Scopie :</strong> Réglage intensifieur, contraste iodé, protection aux radiations.</li>
+    </ul>
+
+    <h3>Indication</h3>
+    <p id="cpreIndication"></p>
+
+    <h3>Technique</h3>
+    <p id="cpreTechnique"></p>
+
+    <h3>Matériel nécessaire</h3>
+    <ul id="cpreMateriel"></ul>
+
+    <h3>Déroulement</h3>
+    <p id="cpreDeroulement"></p>
+
+    <h3>Prévention de la pancréatite post-CPRE</h3>
+    <p id="cprePrevention"></p>
+
+    <h3>Complications potentielles</h3>
+    <p id="cpreComplications"></p>
+  </section>
+</div>
+
+<script>
+  const cpreProcedures = {
+    cpreDiag: {
+      title: "CPRE diagnostique",
+      intro: "Examen combiné endoscopique et radiologique pour visualiser l'arbre biliaire et le canal pancréatique.",
+      indication: "Évaluation des sténoses biliaires, dilatations, anomalies anatomiques, bilans lithiasiques.",
+      technique: "Cathétérisme sélectif de la papille, injection rétrograde de contraste sous scopie, acquisitions filmiques.",
+      materiel: [
+        "Duodénoscope à vision latérale",
+        "Cathéter sélectif 5 Fr",
+        "Seringues à contraste iodé",
+        "Guide hydrophile fin",
+        "Champs stériles et protection radiation"
+      ],
+      deroulement: "Positionnement en D1, repérage de la papille, canulation biliaire, injection, acquisition d'images.",
+      prevention: "Diclofénac 100 mg PR 30 min avant, hydratation IV, guide hydrophile minimalisme des canulations traumatiques.",
+      complications: "Pancréatite (3‑10 %), hémorragie, cholangite, perforation digestive."
+    },
+    cpreThera: {
+      title: "CPRE thérapeutique",
+      intro: "Extension de la CPRE diagnostique permettant l'extraction de calculs, la dilatation ou le drainage.",
+      indication: "Extraction de calculs biliaires, dilatation de sténoses bénignes/malignes, mise en place de stents.",
+      technique: "Après diagnostic, sphinctérotomie, extraction (ballon, panier), dilatation et/ou mise en place de stent.",
+      materiel: [
+        "Sphinctérotome préchargé",
+        "Panier d'extraction",
+        "Ballon d'extraction 6‑10 mm",
+        "Cutter sphinctérotomie",
+        "Stents plastiques ou métalliques",
+        "Guide hydrophile"
+      ],
+      deroulement: "Diagnostic initial, sphinctérotomie, extraction/dilatation, contrôle final par injection de contraste.",
+      prevention: "Anti-inflammatoire rectal, antibioprophylaxie si drainage incomplet, hydratation optimisée.",
+      complications: "Pancréatite, hémorragie post-sphinctérotomie, cholangite, perforation."
+    },
+    sphincterotomie: {
+      title: "Sphinctérotomie endoscopique",
+      intro: "Incision électrique de la papille pour faciliter le drainage biliaire et l'extraction lithiasique.",
+      indication: "Faciliter extraction de calculs, traiter sténoses papillaires, accès thérapeutique biliaire.",
+      technique: "Positionnement du sphinctérotome, incision progressive sous guide, vérification par contraste.",
+      materiel: [
+        "Sphinctérotome stérile",
+        "Guide hydrophile",
+        "Bistouri électrique (mode Endocut)",
+        "Seringue saline"
+      ],
+      deroulement: "Canulation de la papille, incision, injection de contraste, évaluation flow biliaire.",
+      prevention: "Limitation des canulations multiples, anti-inflammatoire rectal, hydratation IV.",
+      complications: "Hémorragie, perforation, pancréatite, infection."
+    }
+  };
+
+  function displayCPREDetails() {
+    const sel = document.getElementById("cpreProcedureSelect").value;
+    const sec = document.getElementById("cpreDetails");
+    if (!cpreProcedures[sel]) {
+      sec.style.display = "none";
+      return;
+    }
+    const d = cpreProcedures[sel];
+    document.getElementById("cpreTitle").textContent = d.title;
+    document.getElementById("cpreIntro").textContent = d.intro;
+    document.getElementById("cpreIndication").textContent = d.indication;
+    document.getElementById("cpreTechnique").textContent = d.technique;
+
+    const ul = document.getElementById("cpreMateriel");
+    ul.innerHTML = "";
+    d.materiel.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+
+    document.getElementById("cpreDeroulement").textContent = d.deroulement;
+    document.getElementById("cprePrevention").textContent = d.prevention;
+    document.getElementById("cpreComplications").textContent = d.complications;
+
+    sec.style.display = "block";
+  }
+</script>
+
+<style>
+#moduleCPRE { font-family: Arial,sans-serif; background: #f9f9f9; padding: 20px; border-radius: 8px; max-width: 900px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+.form-section { background: #fff; border: 1px solid #ddd; margin-bottom: 20px; padding: 15px; border-radius: 6px; }
+.input-group { margin: 15px 0; }
+select { padding: 8px; width: 100%; font-size: 1em; }
+ul { margin-top: 10px; padding-left: 20px; }
+h3 { margin-top: 15px; }
+</style>
+
+
 <!-- Module : Échoendoscopie Interventionnelle -->
 <div id="moduleEchoEndo" class="module">
   <h3>Échoendoscopie Interventionnelle</h3>
+
+  <!-- Introduction -->
+  <section class="form-section">
+    <h2>Introduction</h2>
+    <p>L’échoendoscopie interventionnelle permet le guidage échographique sous endoscopie pour réaliser des techniques thérapeutiques ciblées (drainages, neurolyses, ablations, etc.).</p>
+  </section>
 
   <!-- Procédures -->
   <section class="form-section">
@@ -607,153 +1306,825 @@ button:hover { background: #0056b3; }
     drainageCollections: {
       title: "Drainage de collections",
       indication: "Collections pancréatiques symptomatiques (pseudokystes, nécroses infectées).",
-      technique: "Ponction transgastrique ou transduodénale sous échoendoscopie avec mise en place de prothèses.",
+      technique: "Ponction transgastrique ou transduodénale sous échoendoscopie, mise en place de prothèses métalliques ou plastiques.",
       materiel: [
         "Aiguille de ponction 19G",
-        "Fil guide hydrophile",
-        "Cystotome",
-        "Prothèse métallique d'apposition (ex: )",
-        "Stents plastiques double pig-tail"
+        "Fil guide hydrophile 0.035''",
+        "Cystotome (6 Fr)",
+        "Prothèse métallique d’apposition ( 10–15 mm)",
+        "Stents plastiques double pigtail"
       ]
     },
     drainageCanalBiliaire: {
       title: "Drainage canalaire biliaire",
-      indication: "Obstruction biliaire avec échec ou impossibilité de CPRE.",
-      technique: "Ponction du canal biliaire sous échoendoscopie avec mise en place de prothèse transgastrique ou transduodénale.",
+      indication: "Obstruction biliaire distal ou hiliaire avec échec ou contre-indication à la CPRE.",
+      technique: "Ponction du canal biliaire sous échoendoscopie, dilatation de tract et insertion de prothèse transmurale.",
       materiel: [
         "Aiguille de ponction 19G",
-        "Fil guide hydrophile",
-        "Cystotome",
-        "Prothèse métallique couverte",
-        "Ballon de dilatation"
+        "Fil guide hydrophile 0.025''",
+        "Cystotome 6–8 Fr",
+        "Prothèse métallique couverte (10 mm)",
+        "Ballon de dilatation 4–6 mm"
       ]
     },
     drainageVesiculaire: {
       title: "Drainage vésiculaire",
       indication: "Cholécystite aiguë chez patients à haut risque opératoire.",
-      technique: "Ponction transgastrique de la vésicule sous échoendoscopie avec mise en place de prothèse.",
+      technique: "Ponction transgastrique ou transduodénale de la vésicule, mise en place de stent métallique d’apposition.",
       materiel: [
         "Aiguille de ponction 19G",
-        "Fil guide",
-        "Cystotome",
-        "Prothèse métallique d'apposition (10-15 mm)"
+        "Fil guide 0.025''",
+        "Cystotome 6 Fr",
+        "Prothèse métallique d’apposition (10–12 mm)"
       ]
     },
     drainageCanalPancreatique: {
       title: "Drainage canalaire pancréatique",
-      indication: "Sténose ou obstruction du canal pancréatique principal.",
-      technique: "Ponction du canal pancréatique sous échoendoscopie avec mise en place de stent.",
+      indication: "Sténose ou obstruction du canal pancréatique principal symptomatique.",
+      technique: "Ponction de Wirsung sous échoendoscopie, dilatation du tract et mise en place de stent pancréatique.",
       materiel: [
         "Aiguille de ponction 19G",
-        "Fil guide",
-        "Cystotome",
-        "Stent pancréatique",
-        "Ballon de dilatation"
+        "Fil guide hydrophile fin 0.018''",
+        "Cystotome 6 Fr",
+        "Stent pancréatique 5–7 Fr",
+        "Ballon de dilatation 4 mm"
       ]
     },
     neurolyseBlocCoeliaque: {
       title: "Neurolyse / Bloc coeliaque",
-      indication: "Douleurs abdominales réfractaires (cancer du pancréas, pancréatite chronique).",
-      technique: "Injection d'alcool (neurolyse) ou d'anesthésique (bloc) dans le plexus coeliaque sous échoendoscopie.",
+      indication: "Douleurs abdominales réfractaires (cancer pancréatique, pancréatite chronique).",
+      technique: "Injection d’alcool (neurolyse) ou d’anesthésique local (bloc) dans le plexus cœliaque sous échoendoscopie.",
       materiel: [
         "Aiguille de ponction 19G",
-        "Alcool absolu (pour neurolyse)",
-        "Anesthésique local (pour bloc)",
-        "Seringues de 10-20 ml"
+        "Alcool absolu à 98% (10–20 ml)",
+        "Anesthésique local (bupivacaïne)"
       ]
     },
     traitementHemorragies: {
       title: "Traitement des hémorragies digestives réfractaires",
-      indication: "Hémorragies digestives non contrôlées par endoscopie conventionnelle.",
-      technique: "Injection ciblée ou pose de clips sous échoendoscopie pour hémostase.",
+      indication: "Hémorragies non contrôlées par endoscopie conventionnelle.",
+      technique: "Injection d’agents hémostatiques ou pose de clips sous guidage échographique.",
       materiel: [
-        "Aiguille de ponction",
-        "Agents hémostatiques (ex: cyanoacrylate)",
-        "Clips hémostatiques",
-        "Sondes d'injection"
+        "Aiguille de ponction 22G",
+        "Cyanoacrylate médical",
+        "Clips hémostatiques compatibles écho",
+        "Micro-injecteurs"
       ]
     },
     ablationAntitumorale: {
       title: "Ablation et traitement antitumoral",
-      indication: "Tumeurs digestives non résécables (pancréas, foie, etc.).",
-      technique: "Ablation par radiofréquence ou injection d'agents cytotoxiques sous échoendoscopie.",
+      indication: "Tumeurs digestives non résécables ou palliatif.",
+      technique: "Ablation par radiofréquence ou injection de chimiothérapies locales.",
       materiel: [
-        "Aiguille de ponction",
-        "Sonde de radiofréquence",
-        "Agents cytotoxiques",
-        "Générateur de RF"
+        "Aiguille de ponction 19G",
+        "Sonde de radiofréquence 18G",
+        "Agents cytotoxiques (alcool, acide acétique)"
       ]
     },
     anastomoseGastroJejunale: {
       title: "Anastomose gastro-jéjunale",
-      indication: "Occlusion duodénale ou gastrique d'origine tumorale.",
-      technique: "Création d'une anastomose entre l'estomac et le jéjunum sous échoendoscopie avec prothèse d'apposition.",
+      indication: "Occlusion duodénale ou gastrique tumorale.",
+      technique: "Création de fistule gastrique-jéjunale avec prothèse d’apposition métallique.",
       materiel: [
         "Aiguille de ponction 19G",
-        "Fil guide",
-        "Cystotome",
-        "Prothèse métallique d'apposition (ex: 15 mm)"
+        "Fil guide 0.035''",
+        "Cystotome 10 Fr",
+        "Prothèse métallique d’apposition 15 mm"
       ]
     }
   };
 
   function displayProcedureDetails() {
-    const selected = document.getElementById("procedureSelect").value;
-    const section = document.getElementById("procedureDetails");
-
-    if (procedures[selected]) {
-      const data = procedures[selected];
-      document.getElementById("procedureTitle").textContent = data.title;
-      document.getElementById("indicationText").textContent = data.indication;
-      document.getElementById("techniqueText").textContent = data.technique;
-
-      const materielList = document.getElementById("materielList");
-      materielList.innerHTML = "";
-      data.materiel.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        materielList.appendChild(li);
-      });
-
-      section.style.display = "block";
-    } else {
-      section.style.display = "none";
-    }
+    const sel = document.getElementById("procedureSelect").value;
+    const sec = document.getElementById("procedureDetails");
+    if (procedures[sel]) {
+      const d = procedures[sel];
+      document.getElementById("procedureTitle").textContent = d.title;
+      document.getElementById("indicationText").textContent = d.indication;
+      document.getElementById("techniqueText").textContent = d.technique;
+      const ul = document.getElementById("materielList"); ul.innerHTML = "";
+      d.materiel.forEach(i => { const li = document.createElement("li"); li.textContent = i; ul.appendChild(li); });
+      sec.style.display = 'block';
+    } else sec.style.display = 'none';
   }
 </script>
 
 <style>
-#moduleEchoEndo {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 900px;
-  margin: auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.form-section {
-  background: #fff;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 6px;
-}
-.input-group {
-  margin: 15px 0;
-}
-select {
-  padding: 8px;
-  width: 100%;
-  font-size: 1em;
-}
-ul {
-  margin-top: 10px;
-  padding-left: 20px;
-}
+#moduleEchoEndo { font-family: Arial, sans-serif; max-width: 900px; margin: auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+.form-section { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-bottom: 20px; }
+.input-group { margin: 10px 0; }
+select { width: 100%; padding: 8px; font-size: 1em; }
+ul { margin: 10px 0; padding-left: 20px; }
 </style>
+
+  <!-- Forrest -->
+   <div id="moduleForest" class="module"> 
+ 
+    <h3>Classification de Forrest (Hémorragie d'ulcère gastroduodénal)</h3>
+    <label for="forrestSelect">Sélectionnez la classification :</label>
+    <select id="forrestSelect">
+      <option value="Ia">Ia - Hémorragie artérielle active</option>
+      <option value="Ib">Ib - Hémorragie non artérielle active</option>
+      <option value="IIa">IIa - Vaisseau visible</option>
+      <option value="IIb">IIb - Caillot adhérent</option>
+      <option value="IIc">IIc - Marquage pigmentaire</option>
+      <option value="III">III - Fond d’ulcère propre</option>
+    </select>
+    <br>
+    <button onclick="afficheForrest()">Afficher la classification sélectionnée</button>
+    <div class="result" id="resultForrest"></div>
+ 
+    <script>
+// Forrest
+    function afficheForrest() {
+      const classification = document.getElementById('forrestSelect').value;
+      document.getElementById('resultForrest').innerText = "Classification de Forrest sélectionnée : " + classification;
+    }
+
+    </script>
+  </div>
+   <!-- Paris -->
+   <div id="moduleParis" class="module"> 
+ 
+    <h3>Classification de Paris</h3>
+    <label for="parisSelect">Sélectionnez la classification :</label>
+    <select id="parisSelect">
+      <option value="O-Is">Type O-Is - Lésion sessile</option>
+      <option value="O-Ip">Type O-Ip - Lésion pédiculée</option>
+      <option value="IIa">Type IIa - Lésion légèrement surélevée</option>
+      <option value="IIb">Type IIb - Lésion plane non surélevée</option>
+      <option value="IIc">Type IIc - Lésion plane légèrement déprimé</option>
+      <option value="O-IIc +IIa">Type O-IIc +IIa - Lésion mixte</option>
+	  <option value="III">Type III - Lésion ulcérée</option>
+    </select>
+    <br>
+    <button onclick="afficheParis()">Afficher la classification sélectionnée</button>
+    <div class="result" id="resultParis"></div>
+ 
+    <script>
+// Forrest
+    function afficheParis() {
+      const classification = document.getElementById('parisSelect').value;
+      document.getElementById('resultParis').innerText = "Classification de Paris sélectionnée : " + classification;
+    }
+
+    </script>
+  </div>
   
+  <!-- Module: Classification de Los Angeles - Œsophagite peptique -->
+<div id="moduleLA" class="module">
+  <h3>Classification de Los Angeles<br><small>Score de sévérité de l’œsophagite peptique</small></h3>
+
+  <!-- Introduction -->
+  <section class="form-section">
+    <h2>Introduction</h2>
+    <p>La classification de Los Angeles (LA) évalue la sévérité des lésions œsophagiennes observées en endoscopie. Elle est utilisée pour standardiser la description des érosions et ulcérations liées au reflux gastro-œsophagien.</p>
+  </section>
+
+  <!-- Classification -->
+  <section class="form-section">
+    <h2>Grades LA</h2>
+    <form id="laForm">
+      <label for="laGrade" class="input-group">
+        Sélectionnez le grade :
+        <select id="laGrade" required>
+          <option value="">--Choisir--</option>
+          <option value="A">Grade A</option>
+          <option value="B">Grade B</option>
+          <option value="C">Grade C</option>
+          <option value="D">Grade D</option>
+        </select>
+      </label>
+      <button type="button" onclick="generateLA()">Afficher la description</button>
+    </form>
+    <div id="resultLA" class="result-container"></div>
+  </section>
+
+</div>
+
+<script>
+  function generateLA() {
+    const grade = document.getElementById('laGrade').value;
+    const descriptions = {
+      A: 'Une ou plusieurs lésions muqueuses < 5 mm, limitées au sommet des replis muqueux œsophagiens.',
+      B: 'Au moins une lésion muqueuse > 5 mm, limitée au sommet d’un pli muqueux, mais n’étendant pas sur deux replis adjacents.',
+      C: 'Au moins une lésion muqueuse continue s’étendant sur deux replis muqueux adjacents, mais < 75% de la circonférence œsophagienne.',
+      D: 'Au moins une lésion muqueuse continue s’étendant sur ≥ 75% de la circonférence œsophagienne.'
+    };
+    if (!grade) {
+      alert('Veuillez sélectionner un grade LA.');
+      return;
+    }
+    const desc = descriptions[grade];
+    document.getElementById('resultLA').innerHTML = `
+      <h4>Description du ${grade} :</h4>
+      <p>${desc}</p>
+    `;
+  }
+</script>
+
+<style>
+#moduleLA { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; background: #f9f9f9; padding: 20px; border-radius: 8px; }
+.form-section { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 6px; }
+.input-group { display: block; margin-bottom: 15px; }
+select { width: 100%; padding: 8px; font-size: 1em; }
+button { padding: 8px 16px; background: #00539C; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+button:hover { background: #003f7f; }
+.result-container { margin-top: 15px; padding: 10px; background: #eef; border-radius: 4px; }
+</style>
+
+
+<!-- Module : Classification Prague - Muqueuse de Barrett -->
+<div id="modulePrague" class="module">
+  <h3>Classification Prague - Muqueuse de Barrett</h3>
+
+  <form id="pragueForm">
+    <!-- Modalités de mesure -->
+    <section class="form-section">
+      <h2>Modalités de mesure</h2>
+      <ul>
+        <li>Mesurer la longueur <strong>circonférentielle (C)</strong> : distance en cm entre le bord supérieur des plis gastriques et le début de la muqueuse de Barrett.</li>
+        <li>Mesurer la longueur <strong>maximale (M)</strong> : distance en cm entre le bord supérieur des plis gastriques et l'extension la plus haute de la muqueuse de Barrett.</li>
+      </ul>
+    </section>
+
+    <!-- Saisie des mesures -->
+    <section class="form-section">
+      <h2>Saisie des mesures</h2>
+      <div class="input-group">
+        <label for="pragueC">Longueur circonférentielle (C, cm) :</label>
+        <input type="number" id="pragueC" min="0" step="0.1" placeholder="Ex: 2.0" required>
+      </div>
+      <div class="input-group">
+        <label for="pragueM">Longueur maximale (M, cm) :</label>
+        <input type="number" id="pragueM" min="0" step="0.1" placeholder="Ex: 4.5" required>
+      </div>
+    </section>
+
+    <!-- Indications -->
+    <section class="form-section">
+      <h2>Indications</h2>
+      <p>Évaluation endoscopique et surveillance des patients présentant une muqueuse de Barrett œsophagienne.</p>
+    </section>
+
+    <button type="button" class="cta-button" onclick="generatePrague()">Générer la classification</button>
+  </form>
+
+  <!-- Résultat -->
+  <div id="resultPrague" class="result-container"></div>
+</div>
+
+<script>
+  function generatePrague() {
+    const C = document.getElementById('pragueC').value;
+    const M = document.getElementById('pragueM').value;
+    if (C === '' || M === '' || Number(M) < Number(C)) {
+      alert('Veuillez entrer des valeurs valides (M ≥ C).');
+      return;
+    }
+    const result = `
+      <h4>Résultat Classification Prague</h4>
+      <p><strong>Prague : C${C} M${M}</strong></p>
+      <p>Cette classification permet de quantifier l'étendue de la muqueuse de Barrett et de standardiser le suivi endoscopique.</p>
+    `;
+    document.getElementById('resultPrague').innerHTML = result;
+  }
+</script>
+
+<style>
+/* Styles du module Classification Prague */
+#modulePrague { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; border-radius: 8px; max-width: 600px; margin: 20px auto; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+.form-section { background: #fff; border: 1px solid #ddd; margin-bottom: 15px; padding: 12px; border-radius: 6px; }
+.input-group { margin: 10px 0; }
+input[type="number"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+.cta-button { background: #00539C; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+.cta-button:hover { background: #003f7f; }
+.result-container { margin-top: 15px; padding: 15px; background: #eef; border-radius: 4px; }
+</style>
+
+<!-- Module : Classification NICE (NBI International Colorectal Endoscopic) -->
+<div id="moduleNICE" class="module">
+  <h3>Classification NICE (NBI International Colorectal Endoscopic)</h3>
+
+  <!-- Description rapide -->
+  <section class="form-section">
+    <h2>Présentation</h2>
+    <p>La classification NICE permet d’évaluer les lésions colorectales sous NBI en trois types :</p>
+    <ul>
+      <li><strong>Type 1 :</strong> Hyperplasie (lésion bénigne)</li>
+      <li><strong>Type 2 :</strong> Adénome ou lésion dysplasique (précancéreuse)</li>
+      <li><strong>Type 3 :</strong> Cancer invasif (sous-muqueux profond)</li>
+    </ul>
+  </section>
+
+  <!-- Sélection NICE -->
+  <section class="form-section">
+    <h2>Évaluation de la lésion</h2>
+    <div class="input-group">
+      <label for="niceType">Type NICE :</label>
+      <select id="niceType" required>
+        <option value="">--Sélectionner--</option>
+        <option value="1">NICE Type 1</option>
+        <option value="2">NICE Type 2</option>
+        <option value="3">NICE Type 3</option>
+      </select>
+    </div>
+    <button type="button" onclick="generateNICEReport()">Générer le rapport NICE</button>
+  </section>
+
+  <!-- Résultat -->
+  <div id="resultNICE" class="recommendation-box"></div>
+</div>
+
+<script>
+function generateNICEReport() {
+  const type = document.getElementById('niceType').value;
+  if (!type) {
+    alert('Veuillez choisir un Type NICE');
+    return;
+  }
+  const details = {
+    '1': {
+      name: 'NICE Type 1',
+      color: 'Pâle ou blanchâtre',
+      vessels: 'Absence de vaisseaux visibles ou lignes régulières discrètes',
+      pits: 'Points sombres, surface lisse',
+      management: 'Exérèse endoscopique simple ou observation'
+    },
+    '2': {
+      name: 'NICE Type 2',
+      color: 'Marron clair à marron foncé',
+      vessels: 'Vaisseaux réguliers, fins, en réseau',
+      pits: 'Motif tubulaire ou chitineux',
+      management: 'Résection endoscopique complète (EMR/ESD)'
+    },
+    '3': {
+      name: 'NICE Type 3',
+      color: 'Marron foncé à noir',
+      vessels: 'Vaisseaux irréguliers, larges, tortueux',
+      pits: 'Perte de motif normal',
+      management: 'Suspicion de cancer invasif → bilan et chirurgie'
+    }
+  };
+
+  const d = details[type];
+  const html = `
+    <h4>${d.name}</h4>
+    <table>
+      <tr><th>Critère</th><th>Observation</th></tr>
+      <tr><td>Couleur</td><td>${d.color}</td></tr>
+      <tr><td>Vaisseaux</td><td>${d.vessels}</td></tr>
+      <tr><td>Motif de surface</td><td>${d.pits}</td></tr>
+    </table>
+    <p><strong>Prise en charge :</strong> ${d.management}</p>
+  `;
+
+  document.getElementById('resultNICE').innerHTML = html;
+}
+</script>
+
+<style>
+#moduleNICE { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+.form-section { margin-bottom: 20px; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 5px; }
+.input-group { margin: 10px 0; }
+select { width: 100%; padding: 8px; font-size: 1em; }
+button { padding: 10px 20px; background: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+button:hover { background: #0056b3; }
+.recommendation-box { margin-top: 15px; padding: 15px; background: #eef; border-radius: 5px; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background: #f0f0f0; }
+</style>
+
+
+<!-- Module : Score endoscopique de Mayo pour Rectocolite hémorragique (RCH) -->
+<div id="moduleMayoRCH" class="module">
+  <h3>Score endoscopique de Mayo (RCH)</h3>
   
+  <form id="formMayoRCH">
+    <section class="form-section">
+      <h4>Choisissez le sous‐score endoscopique :</h4>
+      <div class="input-group">
+        <label><input type="radio" name="mayoSubscore" value="0" required>
+          0 – Normal ou inactif : muqueuse normale, vascularisation préservée</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="mayoSubscore" value="1">
+          1 – Léger : érythème, vascularisation légèrement diminuée, légère friabilité</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="mayoSubscore" value="2">
+          2 – Modéré : érythème marqué, vascularisation absente, friabilité évidente</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="mayoSubscore" value="3">
+          3 – Sévère : ulcérations superficielles ou profondes, saignement spontané</label>
+      </div>
+    </section>
+    
+    <button type="button" class="cta-button" onclick="generateMayoRCH()">Calculer le score</button>
+  </form>
+  
+  <div id="resultMayoRCH" class="result-container" style="display:none;"></div>
+</div>
+
+<script>
+  function generateMayoRCH() {
+    const choices = document.getElementsByName('mayoSubscore');
+    let subscore = null;
+    for (let c of choices) {
+      if (c.checked) {
+        subscore = c.value;
+        break;
+      }
+    }
+    if (subscore === null) {
+      alert('Veuillez sélectionner un sous‐score.');
+      return;
+    }
+    
+    const descriptions = {
+      0: 'Normal ou inactif: muqueuse normale, vascularisation préservée.',
+      1: 'Léger: érythème, vascularisation légèrement diminuée, légère friabilité.',
+      2: 'Modéré: érythème marqué, vascularisation absente, friabilité évidente.',
+      3: 'Sévère: ulcérations superficielles ou profondes, saignement spontané.'
+    };
+    
+    const container = document.getElementById('resultMayoRCH');
+    container.innerHTML = `
+      <h4>Résultat :</h4>
+      <p><strong>Sous-score :</strong> ${subscore}</p>
+      <p><strong>Description :</strong> ${descriptions[subscore]}</p>
+      <h4>Interprétation :</h4>
+      <ul>
+        <li>0–1 : maladie contrôlée, entretien du traitement actuel.</li>
+        <li>2 : activité modérée, envisager adaptation thérapeutique (corticoïdes topiques/oraux, immunosuppresseurs).</li>
+        <li>3 : activité sévère, hospitalisation possible et mise en route de traitements de fond ou biologiques.</li>
+      </ul>
+    `;
+    container.style.display = 'block';
+  }
+</script>
+
+<style>
+  /* Réutilisation des styles globaux du site */
+  #moduleMayoRCH .form-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+  #moduleMayoRCH .input-group {
+    margin: 10px 0;
+  }
+  #moduleMayoRCH .cta-button {
+    background: #00539C;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #moduleMayoRCH .cta-button:hover {
+    background: #003f7f;
+  }
+  #moduleMayoRCH .result-container {
+    background: #eef;
+    border: 1px solid #c3d8f0;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+  }
+</style>
+
+<!-- Module : Scores Endoscopiques de la Maladie de Crohn -->
+<div id="moduleCrohn" class="module">
+  <h3>Scores Endoscopiques – Crohn</h3>
+  <form id="formCrohnScores">
+    
+    <!-- Section 1 : Score de Rutgeerts -->
+    <section class="form-section">
+      <h4>Score de Rutgeerts (post‑iléocolectomie)</h4>
+      <div class="input-group">
+        <label><input type="radio" name="rutgeerts" value="i0" required>
+          i0 – Pas de lésion aphteuse au niveau de l'anastomose</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="rutgeerts" value="i1">
+          i1 – ≤ 5 aphthes isolés</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="rutgeerts" value="i2">
+          i2 – > 5 aphthes ou confluence d’ulcères</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="rutgeerts" value="i3">
+          i3 – Nombreux ulcères diffus sans sténose</label>
+      </div>
+      <div class="input-group">
+        <label><input type="radio" name="rutgeerts" value="i4">
+          i4 – Ulcères diffus et sténose macroscopique</label>
+      </div>
+    </section>
+
+    <!-- Section 2 : SES‑CD -->
+    <section class="form-section">
+      <h4>SES‑CD (Simple Endoscopic Score for Crohn’s Disease)</h4>
+      <p>Attribuez pour chaque segment (Iléon terminal, Côlon droit, Côlon transverse, Côlon gauche, Rectum) :</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Segment</th>
+            <th>Ulcères (0–3)</th>
+            <th>Surface ulcérée (0–3)</th>
+            <th>Surface affectée (0–3)</th>
+            <th>Sténose (0–3)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Pour chaque segment, on donne 4 <select> -->
+          <script>
+            const segments = ['iléon', 'droit', 'transverse', 'gauche', 'rectum'];
+            for (let seg of segments) {
+              document.write(`
+                <tr>
+                  <td>${seg.charAt(0).toUpperCase() + seg.slice(1)}</td>
+                  <td>
+                    <select name="${seg}_ulcer" required>
+                      <option value="">–</option>
+                      <option value="0">0 : aucun</option>
+                      <option value="1">1 : aphthoid</option>
+                      <option value="2">2 : superficiel</option>
+                      <option value="3">3 : profond</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="${seg}_ulcer_surface" required>
+                      <option value="">–</option>
+                      <option value="0">0 : <10 %</option>
+                      <option value="1">1 : 10–30 %</option>
+                      <option value="2">2 : 30–50 %</option>
+                      <option value="3">3 : >50 %</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="${seg}_affected_surface" required>
+                      <option value="">–</option>
+                      <option value="0">0 : <50 %</option>
+                      <option value="1">1 : 50–75 %</option>
+                      <option value="2">2 : >75 %</option>
+                      <option value="3">3 : circonscrit</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="${seg}_stenosis" required>
+                      <option value="">–</option>
+                      <option value="0">0 : aucun</option>
+                      <option value="1">1 : unique, voies passables</option>
+                      <option value="2">2 : multiple, voies passables</option>
+                      <option value="3">3 : impassable</option>
+                    </select>
+                  </td>
+                </tr>
+              `);
+            }
+          </script>
+        </tbody>
+      </table>
+    </section>
+
+    <button type="button" class="cta-button" onclick="generateCrohnScores()">Calculer les scores</button>
+  </form>
+
+  <div id="resultCrohn" class="result-container" style="display:none;"></div>
+</div>
+
+<script>
+  function generateCrohnScores() {
+    // Rutgeerts
+    const rChoices = document.getElementsByName('rutgeerts');
+    let rut = null;
+    for (let c of rChoices) {
+      if (c.checked) { rut = c.value; break; }
+    }
+    if (!rut) { alert('Sélectionnez un score de Rutgeerts.'); return; }
+
+    const rutDesc = {
+      i0: 'Pas de lésion aphteuse',
+      i1: '≤ 5 aphthes isolés',
+      i2: '> 5 aphthes ou confluence',
+      i3: 'Ulcères diffus sans sténose',
+      i4: 'Ulcères diffus + sténose'
+    }[rut];
+
+    // SES-CD
+    const segments = ['iléon', 'droit', 'transverse', 'gauche', 'rectum'];
+    let sesTotal = 0;
+    for (let seg of segments) {
+      const ulcer = parseInt(document.querySelector(`[name="${seg}_ulcer"]`).value, 10);
+      const usurf = parseInt(document.querySelector(`[name="${seg}_ulcer_surface"]`).value, 10);
+      const afsurf = parseInt(document.querySelector(`[name="${seg}_affected_surface"]`).value, 10);
+      const sten = parseInt(document.querySelector(`[name="${seg}_stenosis"]`).value, 10);
+      if (isNaN(ulcer)||isNaN(usurf)||isNaN(afsurf)||isNaN(sten)) {
+        alert('Remplissez tous les champs SES‑CD.'); return;
+      }
+      sesTotal += ulcer + usurf + afsurf + sten;
+    }
+
+    // SES-CD interprétation
+    let sesInterp = '';
+    if (sesTotal <= 2) sesInterp = 'Inactif / léger';
+    else if (sesTotal <= 6) sesInterp = 'Léger‑modéré';
+    else if (sesTotal <= 15) sesInterp = 'Modéré';
+    else sesInterp = 'Sévère';
+
+    // Affichage
+    const out = document.getElementById('resultCrohn');
+    out.innerHTML = `
+      <h4>Résultats</h4>
+      <p><strong>Score de Rutgeerts :</strong> ${rut.toUpperCase()} (${rutDesc})</p>
+      <p><strong>SES‑CD total :</strong> ${sesTotal} — <em>${sesInterp}</em></p>
+      <h4>Interprétation clinique</h4>
+      <ul>
+        <li>Rutgeerts ≥ i2 : haut risque de récidive clinique post‑op.</li>
+        <li>SES‑CD > 6 : nécessite souvent adaptation ou intensification thérapeutique.</li>
+      </ul>
+    `;
+    out.style.display = 'block';
+  }
+</script>
+
+<style>
+  #moduleCrohn .form-section {
+    background: #fff; border: 1px solid #ddd;
+    padding: 15px; margin-bottom: 20px;
+    border-radius: 6px;
+  }
+  #moduleCrohn table {
+    width: 100%; border-collapse: collapse; margin-top: 10px;
+  }
+  #moduleCrohn th, #moduleCrohn td {
+    border: 1px solid #ccc; padding: 6px; text-align: center;
+  }
+  #moduleCrohn .cta-button {
+    background: #00539C; color: #fff;
+    border: none; padding: 10px 20px;
+    border-radius: 4px; cursor: pointer;
+  }
+  #moduleCrohn .cta-button:hover { background: #003f7f; }
+  #moduleCrohn .result-container {
+    background: #eef; border: 1px solid #c3d8f0;
+    padding: 15px; border-radius: 6px;
+  }
+</style>
+
+
+<!-- Module : Pose de Prothèse Biliaire Métallique -->
+<div id="moduleMetalStent" class="module">
+  <h3>Pose de Prothèse Biliaire Métallique (ERCP)</h3>
+
+  <!-- Introduction -->
+  <section class="form-section">
+    <h2>Introduction</h2>
+    <p>La pose de prothèse biliaire métallique est indiquée principalement dans les obstructions biliaires malignes ou dans certaines obstructions bénignes réfractaires, afin de restaurer la drainage biliaire et prévenir les complications cholestatiques.</p>
+  </section>
+
+  <!-- Préparation de l'examen -->
+  <section class="form-section">
+    <h2>Préparation de l'examen</h2>
+    <h3>Patient</h3>
+    <ul>
+      <li>Jeûne strict de 6&nbsp;h</li>
+      <li>Bilan pré-anesthésique (coagulation, NFS, fonction rénale)</li>
+      <li>Consentement éclairé après explication des risques (pancréatite, saignement, perforation)</li>
+	  <li>Pvévention pancréatite Post CPRE: Rectal indomethacin (100 mg)</li>
+    </ul>
+    <h3>Endoscope</h3>
+    <ul>
+      <li>Duodénoscope à optique latérale</li>
+      <li>Vérification du fonctionnement de l'optique et du canal de travail</li>
+    </ul>
+    <h3>Préparation de la table d’instrumentation</h3>
+    <ul>
+      <li>Sphinctérotome et cathéters de canulation</li>
+      <li>Fils-guide hydrophiles et rigides</li>
+      <li>Ballons de dilatation </li>
+      <li>Prothèse métallique auto-expansible (diamètre 6–10&nbsp;mm, longueur adaptée)</li>
+      <li>Injecteurs de contraste</li>
+    </ul>
+    <h3>Préparation de la scopie</h3>
+    <ul>
+      <li>Contrôle, positionnement et protections plombées</li>
+      <li>Réglage des intensités et repérages anatomiques</li>
+    </ul>
+  </section>
+
+  <!-- Déroulement -->
+  <section class="form-section">
+    <h2>Déroulement</h2>
+    <ol>
+      <li>Canalisation sélective du canal biliaire principal sous contrôle fluoroscopique.</li>
+      <li>Cholangiographie diagnostique pour confirmer le niveau et l’étendue de l’obstruction.</li>
+      <li>Passage d’un fil-guide au-delà de la sténose biliaire.</li>
+      <li>Eventuelle dilatation pré-prothétique à l’aide d’un ballon si nécessaire.</li>
+      <li>Déploiement de la prothèse métallique auto‑expansible sous repérage fluoroscopique.</li>
+      <li>Contrôle final de la position et du bon drainage biliaire par injection de contraste.</li>
+      <li>Retrait du duodénoscope et surveillance post‑procédure.</li>
+    </ol>
+  </section>
+
+  <!-- Surveillance -->
+  <section class="form-section">
+    <h2>Surveillance</h2>
+    <ul>
+      <li>Contrôle clinique (fièvre, douleurs abdominales) post‑procédure immédiat</li>
+      <li>Bilans biologiques : bilirubine, enzymes hépatiques à J1 et J3</li>
+      <li>Échographie ou scanner de contrôle à 4–6 semaines pour valider le drainage</li>
+    </ul>
+  </section>
+
+  <!-- Traçabilité -->
+  <section class="form-section">
+    <h2>Traçabilité</h2>
+    <ul>
+      <li>Enregistrement de la référence, du diamètre et de la longueur de la prothèse</li>
+      <li>Numéro de lot et date de péremption</li>
+      <li>Rapport opératoire détaillé (technique, complications éventuelles)</li>
+    </ul>
+  </section>
+</div>
+
+<!-- Module : Pose de prothèse biliaire et pancréatique plastique -->
+<div id="modulePlasticStent" class="module">
+  <h3>Pose de prothèse biliaire et pancréatique plastique</h3>
+
+  <!-- Section : Introduction -->
+  <section class="form-section">
+    <h2>Introduction</h2>
+    <p>La pose de prothèse plastique permet le drainage transpapillaire des sténoses biliaires ou pancréatiques bénignes ou malignes, en cas d'échec ou de contre-indication à la résection chirurgicale.</p>
+  </section>
+
+  <!-- Section : Préparation de l'examen -->
+  <section class="form-section">
+    <h2>Préparation de l’examen</h2>
+    <ul>
+      <li><strong>Patient :</strong> Jeûne strict 6‑8 heures, bilan préopératoire (ionogramme, TP/TCA), consentement éclairé.</li>
+	  <li><strong>Pvévention pancréatite Post CPRE</strong>: Rectal indomethacin (100 mg)</li>
+      <li><strong>Endoscope :</strong> Duodénoscope à vision latérale, canal de travail ≥ 4,2 mm.</li>
+      <li><strong>Préparation de la table d’instrumentation :</strong>
+        <ul>
+          <li>Prothèses plastiques (7–10 Fr) de différentes longueurs.</li>
+          <li>Cathéters de cholangiographie et pancréatographie.</li>
+          <li>Fils-guide hydrophiles (0,025–0,035"), sphinctérotome.</li>
+          <li>Injecteur de contraste, seringues 10–20 mL.</li>
+        </ul>
+      </li>
+      <li><strong>Préparation de la scopie :</strong> Installation du amplificateur de brillance (C‑arm), masques plombés, repères antérieure/postérieure.</li>
+    </ul>
+  </section>
+
+  <!-- Section : Déroulement -->
+  <section class="form-section">
+    <h2>Déroulement</h2>
+    <ol>
+      <li>Accès duodénal et canulation selective du canal biliaire ou pancréatique.</li>
+      <li>Injection de contraste et acquisition d'images pour confirmer la sténose.</li>
+      <li>Sphinctérotomie papillaire si nécessaire pour faciliter l'introduction de la prothèse.</li>
+      <li>Glissement du fil-guide au-delà de la sténose sous contrôle scopique.</li>
+      <li>Avancement de la prothèse plastique sur le fil-guide jusqu’à position optimale.</li>
+      <li>Vérification de la position par injection contrastée et retrait du matériel.</li>
+    </ol>
+  </section>
+
+  <!-- Section : Surveillance -->
+  <section class="form-section">
+    <h2>Surveillance</h2>
+    <ul>
+      <li>Radiographie abdominale de contrôle à 24 heures.</li>
+      <li>Suivi clinique : douleurs, fièvre, ictère.</li>
+      <li>Bilan biologique : enzymes hépatiques, lipasémie à 12–24 heures.</li>
+      <li>Changement ou retrait de la prothèse après 3–6 mois selon indication.</li>
+    </ul>
+  </section>
+
+  <!-- Section : Traçabilité -->
+  <section class="form-section">
+    <h2>Traçabilité</h2>
+    <ul>
+      <li>Numéro de lot, calibre et longueur de la prothèse.</li>
+      <li>Date et heure de la pose.</li>
+      <li>Signature de l’opérateur, anesthésiste et infirmier référent.</li>
+    </ul>
+  </section>
+</div>
+
+<style>
+#modulePlasticStent { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+.form-section { margin-bottom: 20px; background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 6px; }
+ul, ol { margin: 10px 0 10px 20px; }
+</style>
+
 
 <footer>
        <p style="font-size: 0.9em; text-align: center;">Dr KADA Abdelkrim. Ce document est fourni à titre informatif. 2025 contact@kadawebhge.fr</p>
